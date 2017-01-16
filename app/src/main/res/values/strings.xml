@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">WeatherToWear</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="preferences">Preferences</string>
+    <string name="my_closet">My Closet</string>
+    <string name="saved_outfits">Saved Outfits</string>
+    <string name="new_outfits">New Outfits</string>
+    <string name="options">Options</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="what_do_you_find">What do you find...</string>
+    <string name="hot">Hot</string>
+    <string name="cold">Cold</string>
+    <string name="enter_your_zip_code">Enter your Zip Code:</string>
+    <string name="what_times_will_you_be_gone_for">What times will you be gone for?</string>
+    <string name="home">Home</string>
+    <string name="temp_1">Temperature 1</string>
+    <string name="title_activity_my_saved_outfits">MySavedOutfits</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_my_new_outfits">MyNewOutfits</string>
+</resources>
