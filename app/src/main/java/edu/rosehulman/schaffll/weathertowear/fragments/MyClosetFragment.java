@@ -1,19 +1,21 @@
 package edu.rosehulman.schaffll.weathertowear.fragments;
 
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import edu.rosehulman.schaffll.weathertowear.MyClosetAdapter;
 import edu.rosehulman.schaffll.weathertowear.R;
@@ -25,10 +27,25 @@ import edu.rosehulman.schaffll.weathertowear.R;
 public class MyClosetFragment extends Fragment {
 
     MenuItem add;
+    MyClosetAdapter mAdapter;
+    String[] mClothingItems;
+    boolean mBoolList[];
+//    getResources().getStringArray(R.array.clothing_list);
+
+//    String[] mClothingItems = new String[] {
+//            "A",
+//            "B",
+//            "C"
+//    };
+
+
+
 
     public MyClosetFragment() {
         // Required empty public constructor
     }
+
+
 
 
     @Override
@@ -36,10 +53,15 @@ public class MyClosetFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_my_closet, container, false);
+
         RecyclerView view  =  (RecyclerView) inflater.inflate(R.layout.fragment_my_closet, container, false);
         view.setLayoutManager(new LinearLayoutManager(getContext()));
-        MyClosetAdapter adapter = new MyClosetAdapter(getContext());
-        view.setAdapter(adapter);
+        mAdapter = new MyClosetAdapter(getContext());
+        view.setAdapter(mAdapter);
+
+        mClothingItems = getResources().getStringArray(R.array.clothing_list);
+        mBoolList = new boolean[mClothingItems.length];
+
         return view;
     }
 
@@ -65,20 +87,49 @@ public class MyClosetFragment extends Fragment {
 
     private void showDialog() {
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.my_closet_dialog, null);
-        builder.setView(view);
-
-        TextView textDialog = (TextView)view.findViewById(R.id.myClosetTempDialog);
-        textDialog.setText("More to come! You will be able to pick from a checklist of clothing items here!");
+        builder.setTitle(R.string.add_clothing_title);
 
 
-        builder.show();
+        builder.setMultiChoiceItems(mClothingItems, mBoolList, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
+                if (isChecked) {
+                    mBoolList[indexSelected] = true;
 
+                }
+                else {
+                    mBoolList[indexSelected] = false;
+                }
+            }
+        });
 
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
 
+        builder.setPositiveButton("APPLY", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int k) {
+                // Show selected clothing items
+                for (int i = 0; i < mBoolList.length; i++) {
+                    // Not add everytime
+                    if(mBoolList[i] == true) {
+                        mAdapter.addItem(mClothingItems[i]);
+                    }
+                    else {
+                        mAdapter.removeItem(mClothingItems[i]);
+                    }
+                }
+                dialog.dismiss();
+            }
+        });
 
+        builder.create().show();
 
     }
 

@@ -23,4 +23,50 @@
     <string name="title_activity_my_saved_outfits">MySavedOutfits</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_my_new_outfits">MyNewOutfits</string>
+    <string name="add_clothing_title"> Add Items of Clothing</string>
+
+    <string-array name="hot_spinner">
+        <item> 50 </item>
+        <item> 55 </item>
+        <item> 60 </item>
+        <item> 65 </item>
+        <item> 70 </item>
+        <item> 75 </item>
+        <item> 80 </item>
+        <item> 85 </item>
+        <item> 90 </item>
+        <item> 95 </item>
+        <item> 100 </item>
+    </string-array>
+
+    <string-array name="cold_spinner">
+        <item> 0 </item>
+        <item> 5 </item>
+        <item> 10 </item>
+        <item> 15 </item>
+        <item> 20 </item>
+        <item> 25 </item>
+        <item> 30 </item>
+        <item> 35 </item>
+        <item> 40 </item>
+        <item> 45 </item>
+        <item> 50 </item>
+    </string-array>
+
+    <string-array name="clothing_list">
+        <item> T-Shirt </item>
+        <item> Jeans </item>
+        <item> Sweatpants </item>
+        <item> Sweater </item>
+        <item> Boots </item>
+        <item> Hat </item>
+        <item> Dress </item>
+        <item> Skirt </item>
+        <item> Shorts </item>
+        <item> Umbrella </item>
+        <item> Jacket </item>
+    </string-array>
+
+
 </resources>
+

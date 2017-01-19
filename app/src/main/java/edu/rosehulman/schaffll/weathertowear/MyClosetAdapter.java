@@ -17,17 +17,17 @@ import java.util.ArrayList;
  */
 public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHolder> {
 
-    private ArrayList<String> mDocs;
+    private ArrayList<String> mClosetItems;
 
 //    private DocListFragment.Callback mCallback;
 
 
     public MyClosetAdapter(Context context) {
-        mDocs = new ArrayList<>();
-        mDocs.add("T-shirt");
-        mDocs.add("Shorts");
-        mDocs.add("Umbrella");
-//        mDocs = DocUtils.loadDocs(context);
+        mClosetItems = new ArrayList<>();
+//        mClosetItems.add("T-shirt");
+//        mClosetItems.add("Shorts");
+//        mClosetItems.add("Umbrella");
+//        mClosetItems = DocUtils.loadDocs(context);
 //        mCallback = callback;
     }
 
@@ -39,7 +39,7 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(MyClosetAdapter.ViewHolder holder, int position) {
-//        final Doc doc = mDocs.get(position);
+//        final Doc doc = mClosetItems.get(position);
 //        holder.mTitleTextView.setText(doc.getTitle());
 //        holder.mTitleTextView.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -47,13 +47,13 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 //                mCallback.onDocSelected(doc);
 //            }
 //        });
-        holder.mTitleTextView.setText(mDocs.get(position));
+        holder.mTitleTextView.setText(mClosetItems.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return mDocs.size();
+        return mClosetItems.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -61,7 +61,23 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-           mTitleTextView = (TextView) itemView.findViewById(R.id.clothesTypeTextView);
+            mTitleTextView = (TextView) itemView.findViewById(R.id.clothesTypeTextView);
         }
+    }
+
+    public void addItem(String item) {
+        if (!mClosetItems.contains(item)) {
+            mClosetItems.add(0, item);
+            notifyItemInserted(0);
+            notifyItemRangeChanged(0, mClosetItems.size());
+        }
+    }
+
+    public void removeItem(String item) {
+        int index = mClosetItems.indexOf(item);
+        mClosetItems.remove(item);
+        notifyItemRemoved(index);
+        notifyItemRangeChanged(0, mClosetItems.size());
+
     }
 }
