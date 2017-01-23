@@ -60,6 +60,8 @@ public class MyNewOutfits extends AppCompatActivity {
             }
         });
 
+
+        fab.setVisibility(View.GONE);
     }
 
 
@@ -88,22 +90,23 @@ public class MyNewOutfits extends AppCompatActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class OutfitFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public PlaceholderFragment() {
+        public OutfitFragment() {
         }
 
         /**
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static edu.rosehulman.schaffll.weathertowear.fragments.OutfitFragment newInstance(int sectionNumber) {
+            edu.rosehulman.schaffll.weathertowear.fragments.OutfitFragment fragment = new edu.rosehulman.schaffll.weathertowear.fragments.OutfitFragment();
+//            OutfitFragment fragment = new OutfitFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
@@ -127,14 +130,15 @@ public class MyNewOutfits extends AppCompatActivity {
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
+
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            // Return a OutfitFragment (defined as a static inner class below).
+            return OutfitFragment.newInstance(position + 1);
         }
 
         @Override
@@ -145,15 +149,9 @@ public class MyNewOutfits extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return null;
+
+
+            return "Outfit " + (position + 1);
         }
     }
 }
