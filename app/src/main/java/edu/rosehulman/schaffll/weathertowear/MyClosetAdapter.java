@@ -19,16 +19,8 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 
     private ArrayList<String> mClosetItems;
 
-//    private DocListFragment.Callback mCallback;
-
-
     public MyClosetAdapter(Context context) {
         mClosetItems = new ArrayList<>();
-//        mClosetItems.add("T-shirt");
-//        mClosetItems.add("Shorts");
-//        mClosetItems.add("Umbrella");
-//        mClosetItems = DocUtils.loadDocs(context);
-//        mCallback = callback;
     }
 
     @Override
@@ -39,14 +31,6 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(MyClosetAdapter.ViewHolder holder, int position) {
-//        final Doc doc = mClosetItems.get(position);
-//        holder.mTitleTextView.setText(doc.getTitle());
-//        holder.mTitleTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mCallback.onDocSelected(doc);
-//            }
-//        });
         holder.mTitleTextView.setText(mClosetItems.get(position));
 
     }

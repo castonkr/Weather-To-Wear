@@ -30,31 +30,17 @@ public class MyClosetFragment extends Fragment {
     MyClosetAdapter mAdapter;
     String[] mClothingItems;
     boolean mBoolList[];
-//    getResources().getStringArray(R.array.clothing_list);
-
-//    String[] mClothingItems = new String[] {
-//            "A",
-//            "B",
-//            "C"
-//    };
-
-
-
 
     public MyClosetFragment() {
         // Required empty public constructor
     }
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_my_closet, container, false);
-
-        RecyclerView view  =  (RecyclerView) inflater.inflate(R.layout.fragment_my_closet, container, false);
+        RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_my_closet, container, false);
         view.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new MyClosetAdapter(getContext());
         view.setAdapter(mAdapter);
@@ -66,13 +52,13 @@ public class MyClosetFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         add = menu.add("add");
         add.setIcon(android.R.drawable.ic_menu_add);
         add.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -98,8 +84,7 @@ public class MyClosetFragment extends Fragment {
                 if (isChecked) {
                     mBoolList[indexSelected] = true;
 
-                }
-                else {
+                } else {
                     mBoolList[indexSelected] = false;
                 }
             }
@@ -118,10 +103,9 @@ public class MyClosetFragment extends Fragment {
                 // Show selected clothing items
                 for (int i = 0; i < mBoolList.length; i++) {
                     // Not add everytime
-                    if(mBoolList[i] == true) {
+                    if (mBoolList[i] == true) {
                         mAdapter.addItem(mClothingItems[i]);
-                    }
-                    else {
+                    } else {
                         mAdapter.removeItem(mClothingItems[i]);
                     }
                 }

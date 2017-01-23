@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import edu.rosehulman.schaffll.weathertowear.fragments.OutfitFragment;
+
 public class MyNewOutfits extends AppCompatActivity {
 
     /**
@@ -87,41 +89,6 @@ public class MyNewOutfits extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class OutfitFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public OutfitFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static edu.rosehulman.schaffll.weathertowear.fragments.OutfitFragment newInstance(int sectionNumber) {
-            edu.rosehulman.schaffll.weathertowear.fragments.OutfitFragment fragment = new edu.rosehulman.schaffll.weathertowear.fragments.OutfitFragment();
-//            OutfitFragment fragment = new OutfitFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_my_new_outfits, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -138,7 +105,7 @@ public class MyNewOutfits extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a OutfitFragment (defined as a static inner class below).
-            return OutfitFragment.newInstance(position + 1);
+            return new OutfitFragment();
         }
 
         @Override
@@ -151,7 +118,7 @@ public class MyNewOutfits extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
 
 
-            return "Outfit " + (position + 1);
+            return "New Outfit " + (position + 1);
         }
     }
 }
