@@ -45,7 +45,7 @@
         android:layout_below="@+id/hotTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:entries="@string/temp_1" />
+        android:entries="@array/hot_spinner" />
 
     <TextView
         android:text="@string/cold"
@@ -62,7 +62,8 @@
         android:id="@+id/spinnerCold"
         android:layout_below="@+id/coldTextView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:entries="@array/cold_spinner"/>
 
     <TextView
         android:text="@string/enter_your_zip_code"
