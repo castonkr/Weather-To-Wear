@@ -118,5 +118,8 @@ public class MyNewOutfits extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return "New Outfit " + (position + 1);
         }
+
     }
+
+
 }
