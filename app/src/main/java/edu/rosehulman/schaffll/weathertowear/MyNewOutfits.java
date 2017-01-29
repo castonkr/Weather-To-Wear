@@ -153,8 +153,5 @@ public class MyNewOutfits extends AppCompatActivity {
 
             return "Outfit " + (position + 1);
         }
-
     }
-
-
 }
