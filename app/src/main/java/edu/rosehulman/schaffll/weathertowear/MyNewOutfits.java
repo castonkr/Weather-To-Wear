@@ -116,8 +116,6 @@ public class MyNewOutfits extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-
-
             return "New Outfit " + (position + 1);
         }
     }
