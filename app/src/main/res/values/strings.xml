@@ -24,6 +24,8 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_my_new_outfits">MyNewOutfits</string>
     <string name="add_clothing_title"> Add Items of Clothing</string>
+    <string name="drawer_open">drawer open</string>
+    <string name="drawer_close">drawer close</string>
 
     <string-array name="hot_spinner">
         <item> 50 </item>

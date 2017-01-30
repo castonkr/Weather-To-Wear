@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "819123835302",
+    "firebase_url": "https://weather-to-wear.firebaseio.com",
+    "project_id": "weather-to-wear",
+    "storage_bucket": "weather-to-wear.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819123835302:android:1691acb1cc36667b",
+        "android_client_info": {
+          "package_name": "edu.rosehulman.schaffll.weathertowear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "819123835302-jidkc77oecmkdhtpf147u4ctl1bb5o8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4YX7gito803A2IcYIFd8zlVYx0V70XiA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

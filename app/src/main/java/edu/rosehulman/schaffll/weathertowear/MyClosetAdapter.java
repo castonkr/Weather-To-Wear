@@ -7,6 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 
@@ -18,10 +24,45 @@ import java.util.ArrayList;
 public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHolder> {
 
     private ArrayList<String> mClosetItems;
+    private DatabaseReference mClosetItemsRef;
 
     public MyClosetAdapter(Context context) {
+
         mClosetItems = new ArrayList<>();
+        mClosetItemsRef = FirebaseDatabase.getInstance().getReference().child("clothingItems");
+        //mClosetItemsRef.addChildEventListener(new ClothesChildEventListener());
     }
+
+//    class ClothesChildEventListener implements ChildEventListener{
+//
+//        @Override
+//        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//            String str = dataSnapshot.getValue(String.class);
+//            str.setKey(dataSnapshot.getKey());
+//            mClosetItems.add(s);
+//            notifyDataSetChanged();
+//        }
+//
+//        @Override
+//        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//        }
+//
+//        @Override
+//        public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//        }
+//
+//        @Override
+//        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//        }
+//
+//        @Override
+//        public void onCancelled(DatabaseError databaseError) {
+//
+//        }
+//    }
 
     @Override
     public MyClosetAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
