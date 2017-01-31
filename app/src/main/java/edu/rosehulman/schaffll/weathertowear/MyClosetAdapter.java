@@ -23,13 +23,13 @@ import java.util.ArrayList;
  */
 public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHolder> {
 
-//    private ArrayList<String> mClosetItems;
-    private ArrayList<ClothingItem> mClothingItems;
+    private ArrayList<String> mClothingItems;
+//    private ArrayList<ClothingItem> mClothingItems;
     private DatabaseReference mClothingItemsRef;
 
     public MyClosetAdapter(Context context) {
 
-//        mClosetItems = new ArrayList<>();
+
         mClothingItems = new ArrayList<>();
         mClothingItemsRef = FirebaseDatabase.getInstance().getReference().child("clothingItems");
         mClothingItemsRef.addChildEventListener(new ClothesChildEventListener());
@@ -39,11 +39,11 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-            ClothingItem clothingItem = dataSnapshot.getValue(ClothingItem.class);
-            clothingItem.setKey(dataSnapshot.getKey());
-            mClothingItems.add(0, clothingItem);
-//            String str = (String) dataSnapshot.getValue();
-//            mClosetItems.add(0,str);
+//            ClothingItem clothingItem = dataSnapshot.getValue(ClothingItem.class);
+//            clothingItem.setKey(dataSnapshot.getKey());
+//            mClothingItems.add(0, clothingItem);
+            String str = (String) dataSnapshot.getValue();
+            mClothingItems.add(0,str);
             notifyDataSetChanged();
         }
 
@@ -55,9 +55,9 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
         @Override
         public void onChildRemoved(DataSnapshot dataSnapshot) {
             String key = dataSnapshot.getKey();
-            for (ClothingItem c : mClothingItems) {
-
-            }
+//            for (ClothingItem c : mClothingItems) {
+//
+//            }
         }
 
         @Override
@@ -79,7 +79,7 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(MyClosetAdapter.ViewHolder holder, int position) {
-//        holder.mTitleTextView.setText(mClosetItems.get(position));
+        holder.mTitleTextView.setText(mClothingItems.get(position));
 
     }
 

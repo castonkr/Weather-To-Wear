@@ -30,8 +30,8 @@ public class MyClosetFragment extends Fragment {
 
     private MenuItem add;
     private MyClosetAdapter mAdapter;
-//    String[] mClothingItems;
-    private ClothingItem[] mClothingItems;
+    private String[] mClothingItems;
+//    private ClothingItem[] mClothingItems;
     private boolean mBoolList[];
 
     public MyClosetFragment() {
@@ -47,9 +47,9 @@ public class MyClosetFragment extends Fragment {
         view.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new MyClosetAdapter(getContext());
         view.setAdapter(mAdapter);
-
-//        mClothingItems = getResources().getStringArray(R.array.clothing_list);
-//        mBoolList = new boolean[mClothingItems.length];
+//        mClothingItems = mAdapter.
+        mClothingItems = getResources().getStringArray(R.array.clothing_list);
+        mBoolList = new boolean[mClothingItems.length];
 
         return view;
     }
@@ -81,17 +81,17 @@ public class MyClosetFragment extends Fragment {
         builder.setTitle(R.string.add_clothing_title);
 
 
-//        builder.setMultiChoiceItems(mClothingItems, mBoolList, new DialogInterface.OnMultiChoiceClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
-//                if (isChecked) {
-//                    mBoolList[indexSelected] = true;
-//
-//                } else {
-//                    mBoolList[indexSelected] = false;
-//                }
-//            }
-//        });
+        builder.setMultiChoiceItems(mClothingItems, mBoolList, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
+                if (isChecked) {
+                    mBoolList[indexSelected] = true;
+
+                } else {
+                    mBoolList[indexSelected] = false;
+                }
+            }
+        });
 
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             @Override
