@@ -23,46 +23,53 @@ import java.util.ArrayList;
  */
 public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHolder> {
 
-    private ArrayList<String> mClosetItems;
-    private DatabaseReference mClosetItemsRef;
+//    private ArrayList<String> mClosetItems;
+    private ArrayList<ClothingItem> mClothingItems;
+    private DatabaseReference mClothingItemsRef;
 
     public MyClosetAdapter(Context context) {
 
-        mClosetItems = new ArrayList<>();
-        mClosetItemsRef = FirebaseDatabase.getInstance().getReference().child("clothingItems");
-        //mClosetItemsRef.addChildEventListener(new ClothesChildEventListener());
+//        mClosetItems = new ArrayList<>();
+        mClothingItems = new ArrayList<>();
+        mClothingItemsRef = FirebaseDatabase.getInstance().getReference().child("clothingItems");
+        mClothingItemsRef.addChildEventListener(new ClothesChildEventListener());
     }
 
-//    class ClothesChildEventListener implements ChildEventListener{
-//
-//        @Override
-//        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//            String str = dataSnapshot.getValue(String.class);
-//            str.setKey(dataSnapshot.getKey());
-//            mClosetItems.add(s);
-//            notifyDataSetChanged();
-//        }
-//
-//        @Override
-//        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//        }
-//
-//        @Override
-//        public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//        }
-//
-//        @Override
-//        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//        }
-//
-//        @Override
-//        public void onCancelled(DatabaseError databaseError) {
-//
-//        }
-//    }
+    class ClothesChildEventListener implements ChildEventListener{
+
+        @Override
+        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            ClothingItem clothingItem = dataSnapshot.getValue(ClothingItem.class);
+            clothingItem.setKey(dataSnapshot.getKey());
+            mClothingItems.add(0, clothingItem);
+//            String str = (String) dataSnapshot.getValue();
+//            mClosetItems.add(0,str);
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            // empty at the moment
+        }
+
+        @Override
+        public void onChildRemoved(DataSnapshot dataSnapshot) {
+            String key = dataSnapshot.getKey();
+            for (ClothingItem c : mClothingItems) {
+
+            }
+        }
+
+        @Override
+        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            // empty
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            // empty
+        }
+    }
 
     @Override
     public MyClosetAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -72,13 +79,14 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(MyClosetAdapter.ViewHolder holder, int position) {
-        holder.mTitleTextView.setText(mClosetItems.get(position));
+//        holder.mTitleTextView.setText(mClosetItems.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return mClosetItems.size();
+//        return mClosetItems.size();
+        return mClothingItems.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -90,19 +98,30 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
         }
     }
 
-    public void addItem(String item) {
-        if (!mClosetItems.contains(item)) {
-            mClosetItems.add(0, item);
-            notifyItemInserted(0);
-            notifyItemRangeChanged(0, mClosetItems.size());
-        }
-    }
-
-    public void removeItem(String item) {
-        int index = mClosetItems.indexOf(item);
-        mClosetItems.remove(item);
-        notifyItemRemoved(index);
-        notifyItemRangeChanged(0, mClosetItems.size());
+    public void addClothingItem(ClothingItem item) {
 
     }
+
+    public void removeClothingItem(ClothingItem item) {
+
+    }
+
+
+//    public void addItem(String item) {
+//        if (!mClosetItems.contains(item)) {
+//            mClothingItemsRef.push().setValue(item);
+//            notifyItemInserted(0);
+//            notifyItemRangeChanged(0, mClosetItems.size());
+//        }
+//    }
+
+//    public void removeItem(String item) {
+
+//        mClothingItemsRef.child()
+//        int index = mClosetItems.indexOf(item);
+//        mClosetItems.remove(item);
+//        notifyItemRemoved(index);
+//        notifyItemRangeChanged(0, mClosetItems.size());
+
+//    }
 }
