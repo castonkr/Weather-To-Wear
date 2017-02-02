@@ -2,6 +2,7 @@ package edu.rosehulman.schaffll.weathertowear;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,8 @@ import java.util.ArrayList;
  */
 public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHolder> {
 
-    private ArrayList<String> mClothingItems;
-//    private ArrayList<ClothingItem> mClothingItems;
+//    private ArrayList<String> mClothingItems;
+    private ArrayList<ClothingItem> mClothingItems;
     private DatabaseReference mClothingItemsRef;
 
     public MyClosetAdapter(Context context) {
@@ -39,11 +40,11 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//            ClothingItem clothingItem = dataSnapshot.getValue(ClothingItem.class);
-//            clothingItem.setKey(dataSnapshot.getKey());
-//            mClothingItems.add(0, clothingItem);
-            String str = (String) dataSnapshot.getValue();
-            mClothingItems.add(0,str);
+            ClothingItem clothingItem = dataSnapshot.getValue(ClothingItem.class);
+            clothingItem.setKey(dataSnapshot.getKey());
+            mClothingItems.add(0, clothingItem);
+//            String str = (String) dataSnapshot.getValue();
+//            mClothingItems.add(0,str);
             notifyDataSetChanged();
         }
 
@@ -55,9 +56,13 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
         @Override
         public void onChildRemoved(DataSnapshot dataSnapshot) {
             String key = dataSnapshot.getKey();
-//            for (ClothingItem c : mClothingItems) {
-//
-//            }
+            for (ClothingItem c : mClothingItems) {
+                if(c.getKey().equals(key)){
+                    mClothingItems.remove(c);
+                    notifyDataSetChanged();
+                    return;
+                }
+            }
         }
 
         @Override
@@ -67,7 +72,7 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
-            // empty
+            Log.e("TAG", "Database error: " + databaseError);
         }
     }
 
@@ -79,13 +84,12 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(MyClosetAdapter.ViewHolder holder, int position) {
-        holder.mTitleTextView.setText(mClothingItems.get(position));
-
+//        holder.mTitleTextView.setText(mClothingItems.get(position));
+        holder.mTitleTextView.setText(mClothingItems.get(position).getClothingName());
     }
 
     @Override
     public int getItemCount() {
-//        return mClosetItems.size();
         return mClothingItems.size();
     }
 
@@ -124,4 +128,8 @@ public class MyClosetAdapter extends RecyclerView.Adapter<MyClosetAdapter.ViewHo
 //        notifyItemRangeChanged(0, mClosetItems.size());
 
 //    }
+
+    public ArrayList<ClothingItem> getClothingItemList() {
+        return mClothingItems;
+    }
 }
