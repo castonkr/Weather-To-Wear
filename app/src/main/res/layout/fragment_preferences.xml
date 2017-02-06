@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     tools:context="edu.rosehulman.schaffll.weathertowear.fragments.PreferencesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
 
     <TextView
         android:text="@string/what_do_you_find"
