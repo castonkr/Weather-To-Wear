@@ -20,6 +20,7 @@
     <string name="incorrect_password">Password is incorrect</string>
     <string name="field_required">This field is required</string>
 
+    <string name="logout">Logout</string>
     <string name="login_error">Login Error!</string>
     <string name="no_passwords">You have no passwords</string>
     <string name="action_add">Add</string>

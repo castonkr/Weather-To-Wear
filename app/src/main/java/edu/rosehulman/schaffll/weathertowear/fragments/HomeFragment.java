@@ -4,12 +4,14 @@ package edu.rosehulman.schaffll.weathertowear.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import edu.rosehulman.schaffll.weathertowear.MyNewOutfits;
+import com.google.firebase.database.DatabaseReference;
+
 import edu.rosehulman.schaffll.weathertowear.R;
 
 
@@ -18,18 +20,68 @@ import edu.rosehulman.schaffll.weathertowear.R;
  */
 public class HomeFragment extends Fragment {
 
+    public static final String FIREBASE_PATH = "FIREBASE_PATH";
+    public static final String FIREBASE_USER_ID = "FIREBASE_USER_ID";
+    String mUser;
+    private DatabaseReference mUserRef;
     private OnStartPressedListener mListener;
+    private Toolbar mToolbar;
+    //    TextView cityText;
+//    TextView tempText;
+    String zipcode;
+
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Context context = getContext();
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+//        String firebasePath = getArguments().getString(FIREBASE_PATH);
+//        mUser = getArguments().getString(FIREBASE_USER_ID);
+//        mUserRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
+
+
+//        cityText = (TextView) view.findViewById(R.id.cityTextView);
+//        tempText = (TextView) view.findViewById(R.id.tempTextView);
+
+
+
+//        mUserRef.child("zipcode").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                zipcode = dataSnapshot.getValue().toString();
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getCode());
+//            }
+//        });
+
+//        JSONWeatherTask task = new JSONWeatherTask();
+//        task.execute(new String[]{zipcode});
+
+//        FloatingActionButton fab = ((MainActivity) context).getFab();
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showCourseDialog(null);
+//            }
+//        });
+//        fab.setVisibility(View.VISIBLE);
+
+//        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+//        mToolbar.setTitle("Home");
+//        getActivity().getMenuInflater().inflate(R.menu.main, mToolbar.getMenu());
+//        mToolbar.setOnMenuItemClickListener(this);
+//        mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
+
         ((Button)view.findViewById(R.id.outfitChoiceOne)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,9 +98,11 @@ public class HomeFragment extends Fragment {
 
         });
 
-       // return inflater.inflate(R.layout.fragment_home, container, false);
+        // return inflater.inflate(R.layout.fragment_home, container, false);
         return view;
     }
+
+
 
     @Override
     public void onAttach(Context context) {
@@ -67,8 +121,57 @@ public class HomeFragment extends Fragment {
         mListener = null;
     }
 
+//    @Override
+//    public boolean onMenuItemClick(MenuItem menuItem) {
+//        int id = menuItem.getItemId();
+//        switch (id) {
+//            case R.id.action_logout:
+//                Log.d("PK", "LOGOUT Menu Item Clicked!");
+//                mListener.onLogout();
+//                return true;
+//
+//        }
+//        return false;
+//    }
+
     public interface OnStartPressedListener {
         public void onStartPressed();
+        void onLogout();
     }
+
+//    private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
+//
+//        protected Weather doInBackground(String... params) {
+//            Weather weather = new Weather();
+//            String data = ((new WeatherHttpClient()).getWeatherData(params[0]));
+//            Log.d("Task", data);
+//            try {
+//                weather = JSONWeatherParser.getWeather(data);
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            return weather;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Weather weather) {
+//            super.onPostExecute(weather);
+
+//            if (weather.iconData != null && weather.iconData.length > 0) {
+//                Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
+//                imgView.setImageBitmap(img);
+//            }
+
+//            cityText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
+//            float tempC = Math.round((weather.temperature.getTemp() - 273.15));
+//            float tempF = Math.round(tempC * 1.8) + 32;
+//            tempText.setText("" + tempF + " *F");
+
+
+
+//        }
+
+//    }
 
 }

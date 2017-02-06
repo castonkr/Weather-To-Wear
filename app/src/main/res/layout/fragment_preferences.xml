@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.rosehulman.schaffll.weathertowear.fragments.PreferencesFragment">
-
+    tools:context=".fragments.PreferencesFragment">
 
     <TextView
         android:text="@string/what_do_you_find"
@@ -72,22 +71,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="@string/what_times_will_you_be_gone_for"
+    <Button
+        android:text="Save Changes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/timeGoneForTextView"
+        android:id="@+id/buttonPreferences"
         android:layout_below="@+id/zipCodeEditText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/timePicker2" />
+        android:layout_toRightOf="@+id/zipCodeTextView"
+        android:layout_toEndOf="@+id/zipCodeTextView"
+        android:layout_marginTop="41dp" />
 
 
 </RelativeLayout>

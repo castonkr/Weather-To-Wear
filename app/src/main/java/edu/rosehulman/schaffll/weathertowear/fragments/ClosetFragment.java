@@ -1,10 +1,8 @@
 package edu.rosehulman.schaffll.weathertowear.fragments;
 
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.provider.CallLog;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,32 +14,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-
-import edu.rosehulman.schaffll.weathertowear.ClothingItem;
-import edu.rosehulman.schaffll.weathertowear.MyClosetAdapter;
+import edu.rosehulman.schaffll.weathertowear.ClosetAdapter;
 import edu.rosehulman.schaffll.weathertowear.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyClosetFragment extends Fragment {
+public class ClosetFragment extends Fragment {
 
     private MenuItem add;
-    private MyClosetAdapter mAdapter;
-    private String[] mClothingItemsNames;
-    private ArrayList<ClothingItem> mClothingItems;
-    private DatabaseReference mClothingItemsRef;
+    private ClosetAdapter mAdapter;
+    private String[] mClothingItems;
+//    private ArrayList<ClothingItem> mClothingItems;
+//    private DatabaseReference mClothingItemsRef;
 //    private DatabaseReference mClothingArrayRef;
     private boolean mBoolList[];
 
 
 
-    public MyClosetFragment() {
+    public ClosetFragment() {
         // Required empty public constructor
     }
 
@@ -49,25 +41,13 @@ public class MyClosetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_my_closet, container, false);
+        RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_closet, container, false);
         view.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new MyClosetAdapter(getContext());
+        mAdapter = new ClosetAdapter(getContext());
         view.setAdapter(mAdapter);
-        mClothingItemsNames = getResources().getStringArray(R.array.clothing_list);
-        mClothingItemsRef = FirebaseDatabase.getInstance().getReference().child("clothingItems");
-//        mClothingArrayRef = FirebaseDatabase.getInstance().getReference().child("clothingArray");
-
-//        mClothingItems = mAdapter.getClothingItemList();
-
-//        mClothingItems = new ArrayList<>();
-//        mClothingItems.add(new ClothingItem("clothing1", 1, 2));
-//        mClothingItems.add(new ClothingItem("clothing2", 1, 2));
-
-//        for (int i = 0; i < mClothingItems.size();i++) {
-//            mClothingItemsNames[i] = mClothingItems.get(i).getClothingName();
-//        }
-
-        mBoolList = new boolean[mClothingItemsNames.length];
+//        mClothingItems = mAdapter.
+        mClothingItems = getResources().getStringArray(R.array.clothing_list);
+        mBoolList = new boolean[mClothingItems.length];
 
         return view;
     }
@@ -99,7 +79,7 @@ public class MyClosetFragment extends Fragment {
         builder.setTitle(R.string.add_clothing_title);
 
 
-        builder.setMultiChoiceItems(mClothingItemsNames, mBoolList, new DialogInterface.OnMultiChoiceClickListener() {
+        builder.setMultiChoiceItems(mClothingItems, mBoolList, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
                 if (isChecked) {
@@ -138,5 +118,4 @@ public class MyClosetFragment extends Fragment {
         builder.create().show();
 
     }
-
 }
