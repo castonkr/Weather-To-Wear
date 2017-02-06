@@ -2,6 +2,8 @@ package edu.rosehulman.schaffll.weathertowear.fragments;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -34,12 +37,15 @@ public class HomeFragment extends Fragment {
 
     public static final String FIREBASE_PATH = "FIREBASE_PATH";
     public static final String FIREBASE_USER_ID = "FIREBASE_USER_ID";
-    String mUser;
+
+    private String mUser;
     private DatabaseReference mUserRef;
     private OnStartPressedListener mListener;
     private Toolbar mToolbar;
     private TextView locationText;
     private TextView tempText;
+    private ImageView weatherImage;
+
     String zipcode;
 
 
@@ -60,6 +66,7 @@ public class HomeFragment extends Fragment {
 
         locationText = (TextView) view.findViewById(R.id.locationTextView);
         tempText = (TextView) view.findViewById(R.id.tempTextView);
+        weatherImage = (ImageView) view.findViewById(R.id.weatherImageView);
 
 
 
@@ -78,9 +85,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-//        JSONWeatherTask task = new JSONWeatherTask();
-//        task.execute(new String[]{zipcode});
 
 //        FloatingActionButton fab = ((MainActivity) context).getFab();
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -162,8 +166,10 @@ public class HomeFragment extends Fragment {
             String data = ((new WeatherHttpClient()).getWeatherData(params[0]));
             Log.d("Task", data);
             try {
+                // Get Weather Data
                 weather = JSONWeatherParser.getWeather(data);
-
+                // Get Weather Icon
+                weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -173,11 +179,11 @@ public class HomeFragment extends Fragment {
         @Override
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
-
-//            if (weather.iconData != null && weather.iconData.length > 0) {
-//                Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
-//                imgView.setImageBitmap(img);
-//            }
+            // TODO
+            if (weather.iconData != null && weather.iconData.length > 0) {
+                Bitmap image = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
+                weatherImage.setImageBitmap(image);
+            }
 
             locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
             float tempC = Math.round((weather.temperature.getTemp() - 273.15));

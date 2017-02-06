@@ -27,8 +27,12 @@ public class JSONWeatherParser {
         // Get Weather info (array)
         JSONArray jsonArray = jsonObject.getJSONArray("weather");
 
-//        JSONObject JSONWeather = jsonArray.getJSONObject(0);
+        // Conditions
+        JSONObject JSONWeather = jsonArray.getJSONObject(0);
+        weather.currentCondition.setIcon(getString("icon", JSONWeather));
+        weather.currentCondition.setDescription(getString("description", JSONWeather));
 
+        // Temperature
         JSONObject mainObj = getObject("main", jsonObject);
         weather.temperature.setMaxTemp(getFloat("temp_max", mainObj));
         weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
