@@ -27,7 +27,7 @@ import edu.rosehulman.schaffll.weathertowear.fragments.LoginFragment;
 import edu.rosehulman.schaffll.weathertowear.fragments.PreferencesFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnStartPressedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, HomeFragment.OnStartPressedListener {
 
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -48,13 +48,6 @@ public class MainActivity extends AppCompatActivity
         initializeListeners();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
         fab.setVisibility(View.GONE);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -65,29 +58,20 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        if (savedInstanceState == null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.content_main, new HomeFragment());
-            ft.commit();
-        }
     }
 
-    private void initializeListeners(){
+    private void initializeListeners() {
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null){
-                    //Util.setCurrentUser(MainActivity.this, user.getUid());
+                if (user != null) {
                     Log.d("PB", "user isn't null, would login");
-                    //switchToPicListFragment("users/" + user.getUid());
                     mUser = user.getUid();
                     switchToHomeFragment("users/" + user.getUid(), user.getUid());
 
-                }
-                else{
+                } else {
                     switchToLoginFragment();
                 }
 
@@ -96,7 +80,7 @@ public class MainActivity extends AppCompatActivity
         mOnCompleteListener = new OnCompleteListener() {
             @Override
             public void onComplete(@NonNull Task task) {
-                if (!task.isSuccessful()){
+                if (!task.isSuccessful()) {
                     showLoginError("Login failed");
                 }
             }
@@ -104,7 +88,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthStateListener);
     }
@@ -112,7 +96,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
-        if (mAuthStateListener != null){
+        if (mAuthStateListener != null) {
             mAuth.removeAuthStateListener(mAuthStateListener);
         }
     }
@@ -136,9 +120,14 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
     }
 
-    public void onLogin(String email, String password){
+    public void onLogin(String email, String password) {
         Log.d("PB", "inside of onLogin");
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mOnCompleteListener);
+    }
+
+    @Override
+    public void onRosefireLogin() {
+        // TODO
     }
 
     private void showLoginError(String message) {
@@ -210,7 +199,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_new_outfits) {
 
-        } else if (id == R.id.nav_logout){
+        } else if (id == R.id.nav_logout) {
             onLogout();
             //switchTo = new LoginFragment();
             tag = "login";
@@ -229,7 +218,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onStartPressed(){
+    public void onStartPressed() {
         //
     }
 

@@ -9,8 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import edu.rosehulman.schaffll.weathertowear.R;
 
@@ -26,8 +31,8 @@ public class HomeFragment extends Fragment {
     private DatabaseReference mUserRef;
     private OnStartPressedListener mListener;
     private Toolbar mToolbar;
-    //    TextView cityText;
-//    TextView tempText;
+    private TextView cityText;
+    private TextView tempText;
     String zipcode;
 
 
@@ -41,9 +46,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         Context context = getContext();
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-//        String firebasePath = getArguments().getString(FIREBASE_PATH);
-//        mUser = getArguments().getString(FIREBASE_USER_ID);
-//        mUserRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
+        String firebasePath = getArguments().getString(FIREBASE_PATH);
+        mUser = getArguments().getString(FIREBASE_USER_ID);
+        mUserRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
 
 
 //        cityText = (TextView) view.findViewById(R.id.cityTextView);
@@ -51,17 +56,17 @@ public class HomeFragment extends Fragment {
 
 
 
-//        mUserRef.child("zipcode").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                zipcode = dataSnapshot.getValue().toString();
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getCode());
-//            }
-//        });
+        mUserRef.child("zipcode").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                zipcode = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
 
 //        JSONWeatherTask task = new JSONWeatherTask();
 //        task.execute(new String[]{zipcode});
