@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,13 +22,16 @@ import edu.rosehulman.schaffll.weathertowear.R;
 
 /**
  * A simple {@link Fragment} subclass.
- */public class PreferencesFragment extends Fragment implements View.OnClickListener{
+ */
+public class PreferencesFragment extends Fragment implements View.OnClickListener {
 
     public static final String FIREBASE_PATH = "FIREBASE_PATH";
     public static final String FIREBASE_USER_ID = "FIREBASE_USER_ID";
     String mUser;
     private DatabaseReference mUserRef;
     private EditText zipCode;
+    private Spinner hotSpinner;
+    private Spinner coldSpinner;
     private Button saveButton;
 
     public PreferencesFragment() {
@@ -55,8 +59,10 @@ import edu.rosehulman.schaffll.weathertowear.R;
         View view = inflater.inflate(R.layout.fragment_preferences, container, false);
         saveButton = (Button) view.findViewById(R.id.buttonPreferences);
         zipCode = (EditText) view.findViewById(R.id.zipCodeEditText);
-
+        hotSpinner = (Spinner) view.findViewById(R.id.spinnerHot);
+        coldSpinner = (Spinner) view.findViewById(R.id.spinnerCold);
         saveButton.setOnClickListener(this);
+
         mUserRef.child("zipcode").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -68,10 +74,37 @@ import edu.rosehulman.schaffll.weathertowear.R;
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+
+        mUserRef.child("hotTemp").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+//                hotSpinner.set
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+
+            }
+        });
+
+        mUserRef.child("coldTemp").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+
+            }
+        });
+
+
         return view;
 
     }
-
 
 
     @Override

@@ -20,52 +20,10 @@ import java.util.ArrayList;
 public class ClosetAdapter extends RecyclerView.Adapter<ClosetAdapter.ViewHolder> {
 
     private ArrayList<String> mClothingItems;
-    //    private ArrayList<ClothingItem> mClothingItems;
-    private DatabaseReference mClothingItemsRef;
 
     public ClosetAdapter(Context context) {
-
-
         mClothingItems = new ArrayList<>();
-//        mClothingItemsRef = FirebaseDatabase.getInstance().getReference().child("clothingItems");
-//        mClothingItemsRef.addChildEventListener(new ClothesChildEventListener());
     }
-
-//    class ClothesChildEventListener implements ChildEventListener{
-//
-//        @Override
-//        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-////            ClothingItem clothingItem = dataSnapshot.getValue(ClothingItem.class);
-////            clothingItem.setKey(dataSnapshot.getKey());
-////            mClothingItems.add(0, clothingItem);
-//            String str = (String) dataSnapshot.getValue();
-//            mClothingItems.add(0,str);
-//            notifyDataSetChanged();
-//        }
-//
-//        @Override
-//        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//            // empty at the moment
-//        }
-//
-//        @Override
-//        public void onChildRemoved(DataSnapshot dataSnapshot) {
-//            String key = dataSnapshot.getKey();
-////            for (ClothingItem c : mClothingItems) {
-////
-////            }
-//        }
-//
-//        @Override
-//        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//            // empty
-//        }
-//
-//        @Override
-//        public void onCancelled(DatabaseError databaseError) {
-//            // empty
-//        }
-//    }
 
     @Override
     public ClosetAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -81,7 +39,6 @@ public class ClosetAdapter extends RecyclerView.Adapter<ClosetAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-//        return mClosetItems.size();
         return mClothingItems.size();
     }
 
@@ -93,32 +50,22 @@ public class ClosetAdapter extends RecyclerView.Adapter<ClosetAdapter.ViewHolder
             mTitleTextView = (TextView) itemView.findViewById(R.id.clothesTypeTextView);
         }
     }
-//
-//    public void addClothingItem(ClothingItem item) {
-//
-//    }
-//
-//    public void removeClothingItem(ClothingItem item) {
-//
-//    }
 
+    public void addItem(String item) {
+        if(!mClothingItems.contains(item)) {
+            mClothingItems.add(item);
+            notifyItemInserted(0);
+            notifyItemRangeChanged(0, mClothingItems.size());
+        }
 
-//    public void addItem(String item) {
-//        if (!mClosetItems.contains(item)) {
-//            mClothingItemsRef.push().setValue(item);
-//            notifyItemInserted(0);
-//            notifyItemRangeChanged(0, mClosetItems.size());
-//        }
-//    }
+    }
 
-//    public void removeItem(String item) {
+    public void removeItem(String item) {
+        int index = mClothingItems.indexOf(item);
+        mClothingItems.remove(item);
+        notifyItemRemoved(index);
+        notifyItemRangeChanged(0, mClothingItems.size());
 
-//        mClothingItemsRef.child()
-//        int index = mClosetItems.indexOf(item);
-//        mClosetItems.remove(item);
-//        notifyItemRemoved(index);
-//        notifyItemRangeChanged(0, mClosetItems.size());
-
-//    }
+    }
 }
 

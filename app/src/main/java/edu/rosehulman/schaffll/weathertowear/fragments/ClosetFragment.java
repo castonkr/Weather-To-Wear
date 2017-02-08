@@ -7,12 +7,19 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import edu.rosehulman.schaffll.weathertowear.ClosetAdapter;
 import edu.rosehulman.schaffll.weathertowear.R;
@@ -23,18 +30,29 @@ import edu.rosehulman.schaffll.weathertowear.R;
  */
 public class ClosetFragment extends Fragment {
 
+    public static final String FIREBASE_PATH = "FIREBASE_PATH";
+
     private MenuItem add;
     private ClosetAdapter mAdapter;
     private String[] mClothingItems;
+    private DatabaseReference mBooleanRef;
 //    private ArrayList<ClothingItem> mClothingItems;
 //    private DatabaseReference mClothingItemsRef;
 //    private DatabaseReference mClothingArrayRef;
     private boolean mBoolList[];
 
-
+    // Make set list of ClothingItems
 
     public ClosetFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+        String firebasePath = getArguments().getString(FIREBASE_PATH);
+        mBooleanRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("booleanArray");
     }
 
     @Override
@@ -45,18 +63,45 @@ public class ClosetFragment extends Fragment {
         view.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new ClosetAdapter(getContext());
         view.setAdapter(mAdapter);
-//        mClothingItems = mAdapter.
         mClothingItems = getResources().getStringArray(R.array.clothing_list);
         mBoolList = new boolean[mClothingItems.length];
 
+        mBooleanRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                // Empty
+                int position = Integer.parseInt(dataSnapshot.getKey());
+                mBoolList[position] = (boolean) dataSnapshot.getValue();
+                if (mBoolList[position]) {
+                    mAdapter.addItem(mClothingItems[position]);
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                // Empty
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                // Empty
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                // Empty
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
         return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -84,9 +129,11 @@ public class ClosetFragment extends Fragment {
             public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
                 if (isChecked) {
                     mBoolList[indexSelected] = true;
+                    mBooleanRef.child(""+indexSelected).setValue(true);
 
                 } else {
                     mBoolList[indexSelected] = false;
+                    mBooleanRef.child(""+indexSelected).setValue(false);
                 }
             }
         });
@@ -105,10 +152,9 @@ public class ClosetFragment extends Fragment {
                 for (int i = 0; i < mBoolList.length; i++) {
                     // Not add everytime
                     if (mBoolList[i] == true) {
-//                        mAdapter.addClothingItem();
-//                        mAdapter.addItem(mClothingItems[i]);
+                        mAdapter.addItem(mClothingItems[i]);
                     } else {
-//                        mAdapter.removeItem(mClothingItems[i]);
+                        mAdapter.removeItem(mClothingItems[i]);
                     }
                 }
                 dialog.dismiss();

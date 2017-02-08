@@ -84,17 +84,27 @@
     </string-array>
 
     <string-array name="clothing_list">
-        <item> T-Shirt </item>
-        <item> Jeans </item>
-        <item> Sweatpants </item>
-        <item> Sweater </item>
+        <item> Blouse </item>
         <item> Boots </item>
-        <item> Hat </item>
-        <item> Dress </item>
-        <item> Skirt </item>
-        <item> Shorts </item>
-        <item> Umbrella </item>
-        <item> Jacket </item>
+        <item> Cardigan </item>
+        <item> Dress</item>
+        <item> Gloves</item>
+        <item> Hat</item>
+        <item> Hoody</item>
+        <item> Jacket</item>
+        <item> Jeans</item>
+        <item> Sandals</item>
+        <item> Scarf</item>
+        <item> Shorts</item>
+        <item> Skirt</item>
+        <item> Sneakers</item>
+        <item> Sweater</item>
+        <item> Sweatshirt</item>
+        <item> Sweatpants</item>
+        <item> T-Shirt</item>
+        <item> Tanktop</item>
+        <item> Umbrella</item>
+        <item> Winter Coat</item>
     </string-array>
 
 

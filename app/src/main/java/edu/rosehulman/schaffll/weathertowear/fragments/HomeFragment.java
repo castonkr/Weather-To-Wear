@@ -169,7 +169,7 @@ public class HomeFragment extends Fragment {
                 // Get Weather Data
                 weather = JSONWeatherParser.getWeather(data);
                 // Get Weather Icon
-                weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+//                weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -180,18 +180,15 @@ public class HomeFragment extends Fragment {
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
             // TODO
-            if (weather.iconData != null && weather.iconData.length > 0) {
-                Bitmap image = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
-                weatherImage.setImageBitmap(image);
-            }
+//            if (weather.iconData != null && weather.iconData.length > 0) {
+//                Bitmap image = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
+//                weatherImage.setImageBitmap(image);
+//            }
 
             locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
             float tempC = Math.round((weather.temperature.getTemp() - 273.15));
             float tempF = Math.round(tempC * 1.8) + 32;
             tempText.setText("" + tempF + " *F");
-
-
-
         }
 
     }
