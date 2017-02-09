@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -33,6 +35,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private Spinner hotSpinner;
     private Spinner coldSpinner;
     private Button saveButton;
+    private int hotTemp;
+    private int coldTemp;
 
     public PreferencesFragment() {
         // Required empty public constructor
@@ -61,6 +65,35 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         zipCode = (EditText) view.findViewById(R.id.zipCodeEditText);
         hotSpinner = (Spinner) view.findViewById(R.id.spinnerHot);
         coldSpinner = (Spinner) view.findViewById(R.id.spinnerCold);
+        hotSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                hotTemp = Integer.parseInt(adapterView.getItemAtPosition(pos).toString());
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+
+            }
+        });
+
+        coldSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                coldTemp = Integer.parseInt(adapterView.getItemAtPosition(pos).toString());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+
+            }
+        });
+
         saveButton.setOnClickListener(this);
 
         mUserRef.child("zipcode").addValueEventListener(new ValueEventListener() {
@@ -75,33 +108,6 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
             }
         });
 
-        mUserRef.child("hotTemp").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-//                hotSpinner.set
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-
-            }
-        });
-
-        mUserRef.child("coldTemp").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-
-            }
-        });
-
-
         return view;
 
     }
@@ -112,7 +118,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         switch (view.getId()) {
             case R.id.buttonPreferences:
                 mUserRef.child("zipcode").setValue(zipCode.getText().toString());
-
+                mUserRef.child("hotTemp").setValue(hotTemp);
+                mUserRef.child("coldTemp").setValue(coldTemp);
         }
     }
 }

@@ -9,12 +9,24 @@ public class Weather {
     public Location location;
     public CurrentCondition currentCondition = new CurrentCondition();
     public Temperature temperature = new Temperature();
+    public Rain rain = new Rain();
+    public Snow snow = new Snow()	;
+    public Clouds clouds = new Clouds();
 
     public byte[] iconData;
 
     public class CurrentCondition {
         private String icon;
+        private String condition;
         private String description;
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public void setCondition(String condition) {
+            this.condition = condition;
+        }
 
         public String getDescription() {
             return description;
@@ -60,6 +72,59 @@ public class Weather {
         public void setMaxTemp(float maxTemp) {
             this.maxTemp = maxTemp;
         }
+    }
+
+    public  class Rain {
+        private String time;
+        private float ammount;
+
+        public String getTime() {
+            return time;
+        }
+        public void setTime(String time) {
+            this.time = time;
+        }
+        public float getAmmount() {
+            return ammount;
+        }
+        public void setAmmount(float ammount) {
+            this.ammount = ammount;
+        }
+    }
+
+    public  class Snow {
+        private String time;
+        private float ammount;
+
+        public String getTime() {
+            return time;
+        }
+        public void setTime(String time) {
+            this.time = time;
+        }
+        public float getAmmount() {
+            return ammount;
+        }
+        public void setAmmount(float ammount) {
+            this.ammount = ammount;
+        }
+    }
+
+    public  class Clouds {
+        private int perc;
+
+        public int getPerc() {
+            return perc;
+        }
+
+        public void setPerc(int perc) {
+            this.perc = perc;
+        }
+
 
     }
+
+
+
+
 }

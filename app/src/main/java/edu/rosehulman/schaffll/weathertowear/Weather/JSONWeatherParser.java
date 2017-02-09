@@ -31,6 +31,7 @@ public class JSONWeatherParser {
         JSONObject JSONWeather = jsonArray.getJSONObject(0);
         weather.currentCondition.setIcon(getString("icon", JSONWeather));
         weather.currentCondition.setDescription(getString("description", JSONWeather));
+        weather.currentCondition.setCondition(getString("main", JSONWeather));
 
         // Temperature
         JSONObject mainObj = getObject("main", jsonObject);

@@ -60,14 +60,22 @@
         android:background="#1a17a2"/>
 
     <TextView
-        android:text="Temp"
+        android:text="Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/locationTextView"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/descriptionTextView" />
+
+    <TextView
+        android:text="32 *F"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tempTextView"
-        android:textSize="30sp"
-        android:layout_below="@+id/locationTextView"
-        android:layout_alignRight="@+id/weatherImageView"
-        android:layout_alignEnd="@+id/weatherImageView" />
+        android:textSize="50sp"
+        android:textColor="@color/colorDegree"
+        android:layout_below="@+id/descriptionTextView"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

@@ -14,7 +14,6 @@ public class ClothingItem implements Parcelable{
     private int clothingType;
     private int clothingTemp;
     private int clothingCond;
-    private int isChecked;
     private String key;
 
     // For clothingType
@@ -50,12 +49,11 @@ public class ClothingItem implements Parcelable{
         // Empty Constructor
     }
 
-    public ClothingItem(String name, int type, int temp, int cond, int isChecked) {
+    public ClothingItem(String name, int type, int temp, int cond) {
         this.clothingName = name;
         this.clothingType = type;
         this.clothingTemp = temp;
         this.clothingCond = cond;
-        this.isChecked = isChecked;
     }
 
 
@@ -64,7 +62,6 @@ public class ClothingItem implements Parcelable{
         clothingType = in.readInt();
         clothingTemp = in.readInt();
         clothingCond = in.readInt();
-        isChecked = in.readInt();
     }
 
     public static final Creator<ClothingItem> CREATOR = new Creator<ClothingItem>() {
@@ -111,14 +108,6 @@ public class ClothingItem implements Parcelable{
         this.clothingCond = clothingCond;
     }
 
-    public int getIsChecked() {
-        return isChecked;
-    }
-
-    public void setIsChecked(int isChecked) {
-        this.isChecked = isChecked;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -130,7 +119,6 @@ public class ClothingItem implements Parcelable{
         parcel.writeInt(clothingType);
         parcel.writeInt(clothingTemp);
         parcel.writeInt(clothingCond);
-        parcel.writeInt(isChecked);
     }
 
     @Exclude
