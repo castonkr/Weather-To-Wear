@@ -108,6 +108,44 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
             }
         });
 
+        mUserRef.child("hotTemp").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String[] hotTemps = getResources().getStringArray(R.array.hot_spinner);
+                int pos = 0;
+                for (int i = 0; i < hotTemps.length; i++) {
+                    if (dataSnapshot.getValue().toString().equals(hotTemps[i])) {
+                        pos = i;
+                    }
+                }
+                hotSpinner.setSelection(pos);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+        mUserRef.child("coldTemp").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String[] coldTemps = getResources().getStringArray(R.array.cold_spinner);
+                int pos = 0;
+                for (int i = 0; i < coldTemps.length; i++) {
+                    if (dataSnapshot.getValue().toString().equals(coldTemps[i])) {
+                        pos = i;
+                    }
+                }
+                coldSpinner.setSelection(pos);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
         return view;
 
     }

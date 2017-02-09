@@ -169,7 +169,7 @@ public class HomeFragment extends Fragment {
                 // Get Weather Data
                 weather = JSONWeatherParser.getWeather(data);
                 // Get Weather Icon
-                weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+//                weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

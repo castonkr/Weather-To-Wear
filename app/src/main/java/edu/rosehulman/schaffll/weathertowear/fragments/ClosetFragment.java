@@ -36,9 +36,6 @@ public class ClosetFragment extends Fragment {
     private ClosetAdapter mAdapter;
     private String[] mClothingItems;
     private DatabaseReference mBooleanRef;
-//    private ArrayList<ClothingItem> mClothingItems;
-//    private DatabaseReference mClothingItemsRef;
-//    private DatabaseReference mClothingArrayRef;
     private boolean mBoolList[];
 
     // Make set list of ClothingItems
