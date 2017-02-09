@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.rosehulman.schaffll.weathertowear.ClosetAdapter;
+import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
 import edu.rosehulman.schaffll.weathertowear.R;
 
 
@@ -37,6 +38,7 @@ public class ClosetFragment extends Fragment {
     private String[] mClothingItems;
     private DatabaseReference mBooleanRef;
     private boolean mBoolList[];
+    private ClothingItemList mClothingItemList;
 
     // Make set list of ClothingItems
 
@@ -60,8 +62,10 @@ public class ClosetFragment extends Fragment {
         view.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new ClosetAdapter(getContext());
         view.setAdapter(mAdapter);
+        mClothingItemList = new ClothingItemList();
         mClothingItems = getResources().getStringArray(R.array.clothing_list);
         mBoolList = new boolean[mClothingItems.length];
+
 
         mBooleanRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -71,6 +75,7 @@ public class ClosetFragment extends Fragment {
                 mBoolList[position] = (boolean) dataSnapshot.getValue();
                 if (mBoolList[position]) {
                     mAdapter.addItem(mClothingItems[position]);
+                    mClothingItemList.add(position);
                 }
 
             }
@@ -150,8 +155,10 @@ public class ClosetFragment extends Fragment {
                     // Not add everytime
                     if (mBoolList[i] == true) {
                         mAdapter.addItem(mClothingItems[i]);
+                        mClothingItemList.add(i);
                     } else {
                         mAdapter.removeItem(mClothingItems[i]);
+                        mClothingItemList.remove(i);
                     }
                 }
                 dialog.dismiss();
