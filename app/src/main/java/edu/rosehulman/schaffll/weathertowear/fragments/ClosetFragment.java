@@ -75,7 +75,7 @@ public class ClosetFragment extends Fragment {
                 mBoolList[position] = (boolean) dataSnapshot.getValue();
                 if (mBoolList[position]) {
                     mAdapter.addItem(mClothingItems[position]);
-                    mClothingItemList.add(position);
+                    //mClothingItemList.add(position);
                 }
 
             }
@@ -155,10 +155,10 @@ public class ClosetFragment extends Fragment {
                     // Not add everytime
                     if (mBoolList[i] == true) {
                         mAdapter.addItem(mClothingItems[i]);
-                        mClothingItemList.add(i);
+                        //mClothingItemList.add(i);
                     } else {
                         mAdapter.removeItem(mClothingItems[i]);
-                        mClothingItemList.remove(i);
+                        //mClothingItemList.remove(i);
                     }
                 }
                 dialog.dismiss();
