@@ -219,7 +219,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_saved_outfits) {
 
         } else if (id == R.id.nav_new_outfits) {
-
+            switchTo = new ClosetFragment();
+            tag = "newoutfits";
         } else if (id == R.id.nav_logout) {
             onLogout();
             //switchTo = new LoginFragment();

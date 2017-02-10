@@ -23,18 +23,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import edu.rosehulman.schaffll.weathertowear.ClosetAdapter;
 import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
+import edu.rosehulman.schaffll.weathertowear.OutfitAdapter;
 import edu.rosehulman.schaffll.weathertowear.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ClosetFragment extends Fragment {
+public class NewOutfitFragment extends Fragment {
 
     public static final String FIREBASE_PATH = "FIREBASE_PATH";
 
     private MenuItem add;
-    private ClosetAdapter mAdapter;
+    private OutfitAdapter mAdapter;
     private String[] mClothingItems;
     private DatabaseReference mBooleanRef;
     private boolean mBoolList[];
@@ -42,7 +43,7 @@ public class ClosetFragment extends Fragment {
 
     // Make set list of ClothingItems
 
-    public ClosetFragment() {
+    public NewOutfitFragment() {
         // Required empty public constructor
     }
 
@@ -58,9 +59,9 @@ public class ClosetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_closet, container, false);
+        RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_new_outfit, container, false);
         view.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new ClosetAdapter(getContext());
+        mAdapter = new OutfitAdapter(getContext());
         view.setAdapter(mAdapter);
         mClothingItemList = new ClothingItemList();
         mClothingItems = getResources().getStringArray(R.array.clothing_list);
