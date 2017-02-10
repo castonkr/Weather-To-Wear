@@ -6,7 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -249,6 +251,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onOutfitSelected(OutfitItem outfitItem) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+//        Slide slideTransition = new Slide(Gravity.RIGHT);
+//        slideTransition.setDuration(200);
+//        fragment.setEnterTransition(slideTransition);
+
         ft.replace(R.id.content_main, new NewOutfitDetailFragment().newInstance(outfitItem));
         ft.addToBackStack("detail");
         ft.commit();

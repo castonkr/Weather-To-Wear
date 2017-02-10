@@ -59,7 +59,7 @@
         android:layout_alignStart="@+id/textAccessory1" />
 
     <TextView
-        android:text="Swipe for more outfits"
+        android:text="Swipe backwards for more outfits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textMore"
