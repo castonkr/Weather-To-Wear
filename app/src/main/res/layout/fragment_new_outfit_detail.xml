@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.rosehulman.schaffll.weathertowear.fragments.NewOutfitDetailFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+</FrameLayout>-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="Outfit Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
+        android:id="@+id/textOutfitTitle" />
+
+    <TextView
+        android:id="@+id/textShoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textBottoms"
+        android:layout_alignStart="@+id/textBottoms"
+        android:layout_below="@+id/textBottoms"
+        android:layout_marginTop="70dp"
+        android:text="Shoes" />
+
+    <TextView
+        android:id="@+id/textJacket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textAccessory1"
+        android:layout_alignEnd="@+id/textAccessory1"
+        android:layout_alignRight="@+id/textAccessory1"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:text="Jacket" />
+
+    <TextView
+        android:id="@+id/textAccessory2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accessory 2"
+        android:layout_alignBaseline="@+id/textShoes"
+        android:layout_alignBottom="@+id/textShoes"
+        android:layout_alignLeft="@+id/textAccessory1"
+        android:layout_alignStart="@+id/textAccessory1" />
+
+    <TextView
+        android:text="Swipe for more outfits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textMore"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp" />
+
+    <TextView
+        android:id="@+id/textBottoms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bottoms"
+        android:layout_alignBaseline="@+id/textAccessory1"
+        android:layout_alignBottom="@+id/textAccessory1"
+        android:layout_toRightOf="@+id/textMore"
+        android:layout_toEndOf="@+id/textMore" />
+
+    <TextView
+        android:id="@+id/textTops"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tops"
+        android:layout_alignBaseline="@+id/textJacket"
+        android:layout_alignBottom="@+id/textJacket"
+        android:layout_alignLeft="@+id/textBottoms"
+        android:layout_alignStart="@+id/textBottoms" />
+
+    <TextView
+        android:id="@+id/textAccessory1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accessory 1"
+        android:layout_marginLeft="69dp"
+        android:layout_marginStart="69dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+
+
+</RelativeLayout>

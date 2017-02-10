@@ -28,10 +28,12 @@ import edu.rosehulman.rosefire.RosefireResult;
 import edu.rosehulman.schaffll.weathertowear.fragments.HomeFragment;
 import edu.rosehulman.schaffll.weathertowear.fragments.ClosetFragment;
 import edu.rosehulman.schaffll.weathertowear.fragments.LoginFragment;
+import edu.rosehulman.schaffll.weathertowear.fragments.NewOutfitDetailFragment;
+import edu.rosehulman.schaffll.weathertowear.fragments.NewOutfitFragment;
 import edu.rosehulman.schaffll.weathertowear.fragments.PreferencesFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, HomeFragment.OnStartPressedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, HomeFragment.OnStartPressedListener, NewOutfitFragment.Callback {
 
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -219,7 +221,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_saved_outfits) {
 
         } else if (id == R.id.nav_new_outfits) {
-            switchTo = new ClosetFragment();
+            switchTo = new NewOutfitFragment();
             tag = "newoutfits";
         } else if (id == R.id.nav_logout) {
             onLogout();
@@ -242,6 +244,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onStartPressed() {
         //
+    }
+
+    @Override
+    public void onOutfitSelected(OutfitItem outfitItem) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_main, new NewOutfitDetailFragment().newInstance(outfitItem));
+        ft.addToBackStack("detail");
+        ft.commit();
     }
 
 }

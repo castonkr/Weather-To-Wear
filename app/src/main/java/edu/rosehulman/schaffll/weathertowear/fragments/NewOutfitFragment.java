@@ -1,6 +1,7 @@
 package edu.rosehulman.schaffll.weathertowear.fragments;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import edu.rosehulman.schaffll.weathertowear.ClosetAdapter;
 import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
 import edu.rosehulman.schaffll.weathertowear.OutfitAdapter;
+import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
 
 
@@ -40,6 +42,7 @@ public class NewOutfitFragment extends Fragment {
     private DatabaseReference mBooleanRef;
     private boolean mBoolList[];
     private ClothingItemList mClothingItemList;
+    private Callback mCallback;
 
     // Make set list of ClothingItems
 
@@ -61,112 +64,136 @@ public class NewOutfitFragment extends Fragment {
         // Inflate the layout for this fragment
         RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_new_outfit, container, false);
         view.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new OutfitAdapter(getContext());
+        mAdapter = new OutfitAdapter(getContext(), mCallback);
         view.setAdapter(mAdapter);
         mClothingItemList = new ClothingItemList();
         mClothingItems = getResources().getStringArray(R.array.clothing_list);
-        mBoolList = new boolean[mClothingItems.length];
+        //mBoolList = new boolean[mClothingItems.length];
 
 
-        mBooleanRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                // Empty
-                int position = Integer.parseInt(dataSnapshot.getKey());
-                mBoolList[position] = (boolean) dataSnapshot.getValue();
-                if (mBoolList[position]) {
-                    mAdapter.addItem(mClothingItems[position]);
-                    mClothingItemList.add(position);
-                }
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                // Empty
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                // Empty
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                // Empty
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
+//        mBooleanRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                // Empty
+//                int position = Integer.parseInt(dataSnapshot.getKey());
+//                mBoolList[position] = (boolean) dataSnapshot.getValue();
+//                if (mBoolList[position]) {
+//                    mAdapter.addItem(mClothingItems[position]);
+//                    mClothingItemList.add(position);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//                // Empty
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//                // Empty
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//                // Empty
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getCode());
+//            }
+//        });
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Callback) {
+            mCallback = (Callback) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement NewOutfitFragment.Callback");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallback = null;
+    }
+
+    public interface Callback {
+        // TODO: Update argument type and name
+        void onOutfitSelected(OutfitItem outfitItem);
     }
 
 
 
+
+/*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         add = menu.add("add");
         add.setIcon(android.R.drawable.ic_menu_add);
         add.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         super.onCreateOptionsMenu(menu, inflater);
-    }
+    }*/
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        showDialog();
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        showDialog();
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//    private void showDialog() {
+//
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        builder.setTitle(R.string.add_clothing_title);
+//
+//
+//        builder.setMultiChoiceItems(mClothingItems, mBoolList, new DialogInterface.OnMultiChoiceClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
+//                if (isChecked) {
+//                    mBoolList[indexSelected] = true;
+//                    mBooleanRef.child(""+indexSelected).setValue(true);
+//
+//                } else {
+//                    mBoolList[indexSelected] = false;
+//                    mBooleanRef.child(""+indexSelected).setValue(false);
+//                }
+//            }
+//        });
+//
+//        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int i) {
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        builder.setPositiveButton("APPLY", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int k) {
+//                // Show selected clothing items
+//                for (int i = 0; i < mBoolList.length; i++) {
+//                    // Not add everytime
+//                    if (mBoolList[i] == true) {
+//                        mAdapter.addItem(mClothingItems[i]);
+//                        mClothingItemList.add(i);
+//                    } else {
+//                        mAdapter.removeItem(mClothingItems[i]);
+//                        mClothingItemList.remove(i);
+//                    }
+//                }
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        builder.create().show();
 
-    private void showDialog() {
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.add_clothing_title);
-
-
-        builder.setMultiChoiceItems(mClothingItems, mBoolList, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
-                if (isChecked) {
-                    mBoolList[indexSelected] = true;
-                    mBooleanRef.child(""+indexSelected).setValue(true);
-
-                } else {
-                    mBoolList[indexSelected] = false;
-                    mBooleanRef.child(""+indexSelected).setValue(false);
-                }
-            }
-        });
-
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                dialog.dismiss();
-            }
-        });
-
-        builder.setPositiveButton("APPLY", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int k) {
-                // Show selected clothing items
-                for (int i = 0; i < mBoolList.length; i++) {
-                    // Not add everytime
-                    if (mBoolList[i] == true) {
-                        mAdapter.addItem(mClothingItems[i]);
-                        mClothingItemList.add(i);
-                    } else {
-                        mAdapter.removeItem(mClothingItems[i]);
-                        mClothingItemList.remove(i);
-                    }
-                }
-                dialog.dismiss();
-            }
-        });
-
-        builder.create().show();
-
-    }
+//    }
 }
