@@ -21,15 +21,10 @@ import edu.rosehulman.schaffll.weathertowear.R;
  * create an instance of this fragment.
  */
 public class NewOutfitDetailFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_OUTFIT = "outfit";
 
 
-    // TODO: Rename and change types of parameters
     private String mOutfitItem;
-    //private String mParam2;
-
     //private OnFragmentInteractionListener mListener;
 
     public NewOutfitDetailFragment() {
@@ -44,7 +39,6 @@ public class NewOutfitDetailFragment extends Fragment {
      * @param
      * @return A new instance of fragment NewOutfitDetailFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static NewOutfitDetailFragment newInstance(OutfitItem outfitItem) {
         NewOutfitDetailFragment fragment = new NewOutfitDetailFragment();
         Bundle args = new Bundle();

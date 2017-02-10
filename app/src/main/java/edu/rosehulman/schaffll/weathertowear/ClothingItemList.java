@@ -57,7 +57,6 @@ public class ClothingItemList {
         allClothingItemList.add(tanktop);
         allClothingItemList.add(umbrella);
         allClothingItemList.add(wintercoat);
-
     }
 
     public ClothingItemList() {

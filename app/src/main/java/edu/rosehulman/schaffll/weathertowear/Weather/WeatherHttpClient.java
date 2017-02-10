@@ -67,8 +67,6 @@ public class WeatherHttpClient {
             Log.d("TRY", "in image");
             connection = (HttpURLConnection) ( new URL(IMG_URL + imageCode + ".png")).openConnection();
             connection.setRequestMethod("GET");
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
             connection.connect();
 
             // Let's read the response

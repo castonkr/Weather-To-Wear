@@ -125,7 +125,6 @@ public class NewOutfitFragment extends Fragment {
     }
 
     public interface Callback {
-        // TODO: Update argument type and name
         void onOutfitSelected(OutfitItem outfitItem);
     }
 
