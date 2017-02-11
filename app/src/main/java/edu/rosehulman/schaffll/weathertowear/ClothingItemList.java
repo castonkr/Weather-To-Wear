@@ -13,7 +13,7 @@ public class ClothingItemList {
 
     public List allClothingItemList = new ArrayList<>();
     private List mClothingItemList = new ArrayList<>();
-    private boolean[] mBooleanClothingItems;
+    private List<Boolean> mBooleanClothingItems;
     private List returnClothingItemList = new ArrayList<>();
 
     {
@@ -63,11 +63,23 @@ public class ClothingItemList {
         allClothingItemList.add(wintercoat);
     }
 
-    public ClothingItemList(boolean[] clothingItemsinFirebase) {
+    public ClothingItemList(List<Boolean> clothingItemsinFirebase) {
         Log.d("test", "in the constructor");
         mBooleanClothingItems = clothingItemsinFirebase;
         for (int i = 0; i < allClothingItemList.size(); i++){
-            if(mBooleanClothingItems[i] == false){
+                    boolean b = mBooleanClothingItems.get(i);
+                    String k;
+                    if (b == true){
+                        k = "true";
+                    }
+                    if (b == false){
+                        k = "faslse";
+                    }
+                    else{
+                        k = "null";
+                    }
+            Log.d("help!", k);
+            if(mBooleanClothingItems.get(i) != false){
                 Log.d("test", "clothing item has been added at " + i + " pos");
                 returnClothingItemList.add(allClothingItemList.get(i));
             }

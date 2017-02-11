@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.rosehulman.schaffll.weathertowear.ClothingItem;
@@ -30,6 +31,7 @@ public class Calculations {
     private List mClothingItems;
     private boolean mBoolList[] = new boolean[21];
     private List<ClothingItem> userClothingItems;
+    private List<Boolean> mFinalBool = new ArrayList<>();
 
     private DatabaseReference mUserRef;
 
@@ -84,17 +86,33 @@ public class Calculations {
                 mBoolList[position] = (boolean) dataSnapshot.getValue();
                 boolean temp = (boolean) dataSnapshot.getValue();
                 //        boolean b = mBoolList[0];
-        String k;
-        if (temp){
-            k = "true";
-        }
-        if (temp == false){
-            k = "faslse";
-        }
-        else{
-            k = "null";
-        }
-                Log.d("test2", k);
+                //setBooleanList(temp, position);
+                if (temp != false){
+                    mBoolList[position] = true;
+                    Log.d("help3", "not false" + position + "");
+                    setBooleanList(true, position);
+                }
+                else{
+                    setBooleanList(false, position);
+                }
+                Log.d("helppppp", "has occured");
+                               // temp = mBoolList[position];
+//                if(temp){
+//                    String k = "true";
+//                    Log.d("help3", k);
+//                }
+
+//        String k;
+//        if (temp){
+//            k = "true";
+//        }
+//        if (temp == false){
+//            k = "faslse";
+//        }
+//        else{
+//            k = "null";
+//        }
+               // Log.d("test2", k);
 //                if (mBoolList[position]) {
 //                    //mAdapter.addItem(mClothingItems[position]);
 //                    //mClothingItemList.add(position);
@@ -136,8 +154,9 @@ public class Calculations {
 //        }
 
        // Log.d("test", k);
-        ClothingItemList mClothingItems = new ClothingItemList(mBoolList);
-        userClothingItems = mClothingItems.getReturnClothingItemList();
+//        ClothingItemList mClothingItems = new ClothingItemList(mBoolList);
+//        userClothingItems = mClothingItems.getReturnClothingItemList();
+//        createNewOutfits();
 
       //  Log.d("clothing item 1 test", userClothingItems.get(0).getClothingName());
 
@@ -148,7 +167,25 @@ public class Calculations {
 
     }
 
+    public void setBooleanList(boolean t, int position){
+        if (t != false){
+            mFinalBool.add(position, true);
+            Log.d("boolean", "BOOLEAN DOESN't EQUAL FALSE");
+        }
+        else{
+            mFinalBool.add(position,false);
+        }
+    }
+//
+//    public boolean[] getBooleanList(){
+//        return mFinalBool;
+//    }
+
+
     public void createNewOutfits() {
+
+        ClothingItemList mClothingItems = new ClothingItemList(mFinalBool);
+        userClothingItems = mClothingItems.getReturnClothingItemList();
         //use the available clothing items list
         Log.d("create outfit", "create outfit is used");
     }
