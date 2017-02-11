@@ -16,6 +16,8 @@ import java.util.List;
 import edu.rosehulman.schaffll.weathertowear.ClothingItem;
 import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
 
+import static edu.rosehulman.schaffll.weathertowear.ClothingItemList.getReturnClothingItemList;
+
 /**
  * Created by Kiana on 2/11/17.
  */
@@ -32,6 +34,7 @@ public class Calculations {
     private boolean mBoolList[] = new boolean[21];
     private List<ClothingItem> userClothingItems;
     private List<Boolean> mFinalBool = new ArrayList<>();
+    private ClothingItemList cil;
 
     private DatabaseReference mUserRef;
 
@@ -41,6 +44,7 @@ public class Calculations {
         mCurrentTemp = currentTemp;
         mWeatherID = weatherID;
         mUserRef = userRef;
+        cil = new ClothingItemList();
 //        mBoolList = new boolean[21];
 
         int medianTemp = (coldTemp + hotTemp) / 2;
@@ -85,6 +89,7 @@ public class Calculations {
                 int position = Integer.parseInt(dataSnapshot.getKey());
                 mBoolList[position] = (boolean) dataSnapshot.getValue();
                 boolean temp = (boolean) dataSnapshot.getValue();
+                cil.addBoolean(temp, position);
                 //        boolean b = mBoolList[0];
                 //setBooleanList(temp, position);
                 if (temp != false){
@@ -154,6 +159,12 @@ public class Calculations {
 //        }
 
        // Log.d("test", k);
+        boolean[] callBooleanList = mBoolList;
+        userClothingItems = getReturnClothingItemList();
+        //getReturnClothingItemList();
+        int i = userClothingItems.size();
+        Log.d("tst", "idk: "+ i);
+        //cil.getReturnClothingItemList();
 //        ClothingItemList mClothingItems = new ClothingItemList(mBoolList);
 //        userClothingItems = mClothingItems.getReturnClothingItemList();
 //        createNewOutfits();
@@ -173,7 +184,11 @@ public class Calculations {
             Log.d("boolean", "BOOLEAN DOESN't EQUAL FALSE");
         }
         else{
-            mFinalBool.add(position,false);
+            mFinalBool.add(position, true);
+        }
+        boolean te = mFinalBool.get(position);
+        if (te){
+            Log.d("t", "set to true");
         }
     }
 //
@@ -183,9 +198,19 @@ public class Calculations {
 
 
     public void createNewOutfits() {
+        userClothingItems = getReturnClothingItemList();
+        int i = userClothingItems.size();
 
-        ClothingItemList mClothingItems = new ClothingItemList(mFinalBool);
-        userClothingItems = mClothingItems.getReturnClothingItemList();
+
+        Log.d("tst", "idk: "+ i);
+//        for(int i = 0; i < mFinalBool.size(); i++){
+//            if (mFinalBool.get(i) == true){
+//                Log.d("yes", "true!");
+//            }
+//        }
+//
+//        ClothingItemList mClothingItems = new ClothingItemList(mBoolList);
+        //userClothingItems = mClothingItems.getReturnClothingItemList();
         //use the available clothing items list
         Log.d("create outfit", "create outfit is used");
     }
