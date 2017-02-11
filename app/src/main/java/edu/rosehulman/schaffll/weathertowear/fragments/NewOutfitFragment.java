@@ -8,21 +8,17 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import edu.rosehulman.schaffll.weathertowear.ClosetAdapter;
 import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
 import edu.rosehulman.schaffll.weathertowear.OutfitAdapter;
 import edu.rosehulman.schaffll.weathertowear.OutfitItem;
@@ -36,7 +32,7 @@ public class NewOutfitFragment extends Fragment {
 
     public static final String FIREBASE_PATH = "FIREBASE_PATH";
 
-    private MenuItem add;
+    private MenuItem save;
     private OutfitAdapter mAdapter;
     private String[] mClothingItems;
     private DatabaseReference mBooleanRef;
@@ -131,28 +127,33 @@ public class NewOutfitFragment extends Fragment {
 
 
 
-/*
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        add = menu.add("add");
-        add.setIcon(android.R.drawable.ic_menu_add);
-        add.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        save = menu.add("save");
+        save.setIcon(android.R.drawable.ic_menu_save);
+        save.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         super.onCreateOptionsMenu(menu, inflater);
-    }*/
+    }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        showDialog();
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    private void showDialog() {
-//
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.setTitle(R.string.add_clothing_title);
-//
-//
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        showDialog();
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showDialog() {
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.save_outfit);
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View view = inflater.inflate(R.layout.dialog_save_outfit, null);
+        final EditText editOutfitName = (EditText) view.findViewById(R.id.saveOutfitEditText);
+        builder.setView(view);
+
+
 //        builder.setMultiChoiceItems(mClothingItems, mBoolList, new DialogInterface.OnMultiChoiceClickListener() {
 //            @Override
 //            public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
@@ -166,18 +167,18 @@ public class NewOutfitFragment extends Fragment {
 //                }
 //            }
 //        });
-//
-//        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int i) {
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        builder.setPositiveButton("APPLY", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int k) {
-//                // Show selected clothing items
+
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.setPositiveButton("APPLY", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int k) {
+                // Show selected clothing items
 //                for (int i = 0; i < mBoolList.length; i++) {
 //                    // Not add everytime
 //                    if (mBoolList[i] == true) {
@@ -188,11 +189,12 @@ public class NewOutfitFragment extends Fragment {
 //                        mClothingItemList.remove(i);
 //                    }
 //                }
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        builder.create().show();
+                //TODO: save outfit name to firebase and saved outfit adapter here
+                dialog.dismiss();
+            }
+        });
 
-//    }
+        builder.create().show();
+
+    }
 }
