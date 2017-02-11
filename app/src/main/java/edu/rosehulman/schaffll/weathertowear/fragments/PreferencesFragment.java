@@ -165,7 +165,10 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                 mUserRef.child("zipcode").setValue(zipCode.getText().toString());
                 mUserRef.child("hotTemp").setValue(hotTemp);
                 mUserRef.child("coldTemp").setValue(coldTemp);
-                Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, weatherID);
+                //also pass in mUserRef
+                Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, weatherID, mUserRef);
+                calc.createNewOutfits();
+
 
 
 

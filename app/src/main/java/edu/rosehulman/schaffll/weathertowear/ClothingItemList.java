@@ -1,5 +1,7 @@
 package edu.rosehulman.schaffll.weathertowear;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,8 @@ public class ClothingItemList {
 
     public List allClothingItemList = new ArrayList<>();
     private List mClothingItemList = new ArrayList<>();
+    private boolean[] mBooleanClothingItems;
+    private List returnClothingItemList = new ArrayList<>();
 
     {
         ClothingItem blouse = new ClothingItem("Blouse", 0, 0, 0);
@@ -59,8 +63,24 @@ public class ClothingItemList {
         allClothingItemList.add(wintercoat);
     }
 
-    public ClothingItemList() {
+    public ClothingItemList(boolean[] clothingItemsinFirebase) {
+        Log.d("test", "in the constructor");
+        mBooleanClothingItems = clothingItemsinFirebase;
+        for (int i = 0; i < allClothingItemList.size(); i++){
+            if(mBooleanClothingItems[i] == false){
+                Log.d("test", "clothing item has been added at " + i + " pos");
+                returnClothingItemList.add(allClothingItemList.get(i));
+            }
+        }
 
+    }
+
+    public ClothingItemList(){
+
+    }
+
+    public List<ClothingItem> getReturnClothingItemList(){
+        return returnClothingItemList;
     }
 
     public void add(int pos) {
