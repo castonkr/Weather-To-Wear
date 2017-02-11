@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import edu.rosehulman.schaffll.weathertowear.R;
+import edu.rosehulman.schaffll.weathertowear.Weather.Calculations;
 
 
 /**
@@ -37,6 +38,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private Button saveButton;
     private int hotTemp;
     private int coldTemp;
+    private float currentTemp;
+    private int weatherID;
 
     public PreferencesFragment() {
         // Required empty public constructor
@@ -53,6 +56,10 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 //        } else {
         mUserRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
 //        }
+        currentTemp = HomeFragment.tempF;
+        weatherID = HomeFragment.weatherID;
+
+
 
     }
 
@@ -158,6 +165,11 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                 mUserRef.child("zipcode").setValue(zipCode.getText().toString());
                 mUserRef.child("hotTemp").setValue(hotTemp);
                 mUserRef.child("coldTemp").setValue(coldTemp);
+                Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, weatherID);
+
+
+
+
         }
     }
 }

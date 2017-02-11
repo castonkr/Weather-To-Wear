@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.json.JSONException;
 
 import edu.rosehulman.schaffll.weathertowear.R;
+import edu.rosehulman.schaffll.weathertowear.Weather.Calculations;
 import edu.rosehulman.schaffll.weathertowear.Weather.JSONWeatherParser;
 import edu.rosehulman.schaffll.weathertowear.Weather.Weather;
 import edu.rosehulman.schaffll.weathertowear.Weather.WeatherHttpClient;
@@ -46,6 +47,8 @@ public class HomeFragment extends Fragment {
     private TextView tempText;
     private TextView conditionDesciption;
     private ImageView weatherImage;
+    public static float tempF;
+    public static int weatherID;
 
     String zipcode;
 
@@ -63,7 +66,6 @@ public class HomeFragment extends Fragment {
         String firebasePath = getArguments().getString(FIREBASE_PATH);
         mUser = getArguments().getString(FIREBASE_USER_ID);
         mUserRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
-
 
         locationText = (TextView) view.findViewById(R.id.locationTextView);
         tempText = (TextView) view.findViewById(R.id.tempTextView);
@@ -85,23 +87,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-//        FloatingActionButton fab = ((MainActivity) context).getFab();
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                showCourseDialog(null);
-//            }
-//        });
-//        fab.setVisibility(View.VISIBLE);
-//
-//        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
-//        mToolbar.setTitle("Home");
-//        getActivity().getMenuInflater().inflate(R.menu.main, mToolbar.getMenu());
-//        mToolbar.setOnMenuItemClickListener(this);
-//        mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
-
-
         ((Button)view.findViewById(R.id.outfitChoiceOne)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,8 +102,6 @@ public class HomeFragment extends Fragment {
             }
 
         });
-
-        // return inflater.inflate(R.layout.fragment_home, container, false);
         return view;
     }
 
@@ -140,19 +123,6 @@ public class HomeFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-//    @Override
-//    public boolean onMenuItemClick(MenuItem menuItem) {
-//        int id = menuItem.getItemId();
-//        switch (id) {
-//            case R.id.action_logout:
-//                Log.d("PK", "LOGOUT Menu Item Clicked!");
-//                mListener.onLogout();
-//                return true;
-//
-//        }
-//        return false;
-//    }
 
     public interface OnStartPressedListener {
         public void onStartPressed();
@@ -186,8 +156,9 @@ public class HomeFragment extends Fragment {
 
             locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
             float tempC = Math.round((weather.temperature.getTemp() - 273.15));
-            float tempF = Math.round(tempC * 1.8) + 32;
+            tempF = Math.round(tempC * 1.8) + 32;
             tempText.setText("" + tempF + " *F");
+            weatherID = weather.currentCondition.getWeatherId();
             conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
         }
 
