@@ -110,6 +110,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save_outfit">Save Outfit</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="are_you_sure_you_want_to_remove_this_outfit">Are you sure you want to remove this outfit?</string>
+    <string name="delete_simple">DELETE</string>
 
 
 </resources>

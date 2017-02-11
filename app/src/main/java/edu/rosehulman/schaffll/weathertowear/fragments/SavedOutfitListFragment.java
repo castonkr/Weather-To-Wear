@@ -15,25 +15,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
 
 import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
 import edu.rosehulman.schaffll.weathertowear.OutfitAdapter;
 import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
+import edu.rosehulman.schaffll.weathertowear.SavedOutfitAdapter;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewOutfitFragment extends Fragment {
+public class SavedOutfitListFragment extends Fragment{
 
     public static final String FIREBASE_PATH = "FIREBASE_PATH";
 
     //private MenuItem save;
-    private OutfitAdapter mAdapter;
+    private SavedOutfitAdapter mAdapter;
     private String[] mClothingItems;
     private DatabaseReference mBooleanRef;
     private boolean mBoolList[];
@@ -42,7 +46,7 @@ public class NewOutfitFragment extends Fragment {
 
     // Make set list of ClothingItems
 
-    public NewOutfitFragment() {
+    public SavedOutfitListFragment() {
         // Required empty public constructor
     }
 
@@ -60,7 +64,7 @@ public class NewOutfitFragment extends Fragment {
         // Inflate the layout for this fragment
         RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_new_outfit, container, false);
         view.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new OutfitAdapter(getContext(), mCallback);
+        mAdapter = new SavedOutfitAdapter(getContext(), mCallback);
 
         view.setAdapter(mAdapter);
         mClothingItemList = new ClothingItemList();
@@ -111,7 +115,7 @@ public class NewOutfitFragment extends Fragment {
             mCallback = (Callback) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement NewOutfitFragment.Callback");
+                    + " must implement SavedOutfitFragment.Callback");
         }
     }
 
@@ -122,7 +126,7 @@ public class NewOutfitFragment extends Fragment {
     }
 
     public interface Callback {
-        void onOutfitSelected(OutfitItem outfitItem);
+        void onSavedOutfitSelected(OutfitItem outfitItem);
     }
 
 
@@ -145,10 +149,10 @@ public class NewOutfitFragment extends Fragment {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.save_outfit);
+        builder.setTitle(R.string.delete_item);
         LayoutInflater inflater = LayoutInflater.from(getActivity());
-        View view = inflater.inflate(R.layout.dialog_save_outfit, null);
-        final EditText editOutfitName = (EditText) view.findViewById(R.id.saveOutfitEditText);
+        View view = inflater.inflate(R.layout.dialog_delete_outfit, null);
+        final TextView deleteOutfit = (TextView) view.findViewById(R.id.deleteOutfitTextView);
         builder.setView(view);
 
 

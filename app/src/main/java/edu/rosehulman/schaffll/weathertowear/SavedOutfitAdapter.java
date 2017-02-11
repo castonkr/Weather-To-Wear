@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,15 +21,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 import edu.rosehulman.schaffll.weathertowear.fragments.NewOutfitFragment;
+import edu.rosehulman.schaffll.weathertowear.fragments.SavedOutfitListFragment;
 
 
-public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder> {
+public class SavedOutfitAdapter extends RecyclerView.Adapter<SavedOutfitAdapter.ViewHolder> {
 
     private ArrayList<OutfitItem> mOutfitItems;
-    private NewOutfitFragment.Callback mCallback;
+    private SavedOutfitListFragment.Callback mCallback;
     LayoutInflater mInflater;
 
-    public OutfitAdapter(Context context, NewOutfitFragment.Callback callback) {
+    public SavedOutfitAdapter(Context context, SavedOutfitListFragment.Callback callback) {
         mOutfitItems = new ArrayList<>();
         mInflater = LayoutInflater.from(context);
         mOutfitItems.add(0, new OutfitItem(new ClothingItem("top", 2, 30, 2)));
@@ -38,36 +38,24 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
     }
 
     @Override
-    public OutfitAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SavedOutfitAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_new_outfit_view, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(OutfitAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(SavedOutfitAdapter.ViewHolder holder, int position) {
         final OutfitItem outfitItem = mOutfitItems.get(position);
         holder.mTitleTextView.setText(outfitItem.getOutfitItemName(position));
-//        holder.mTitleTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d("WTW", "outfit has been clicked on");
-//                mCallback.onOutfitSelected(outfitItem);
-//            }
-//        });
-//        holder.mTitleTextView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                Log.d("adapter", "outfit has been long clicked on");
-//                //showDialog();
-//                return false;
-//            }
-//        });
+        holder.mTitleTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("WTW", "saved outfit has been clicked on");
+                mCallback.onSavedOutfitSelected(outfitItem);
+            }
+        });
 
     }
-
-//    public void showDialog(){
-//
-//    }
 
     @Override
     public int getItemCount() {
@@ -96,8 +84,8 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 //                    builder.create().show();
                     final OutfitItem outfitItem = mOutfitItems.get(getAdapterPosition());
 
-                    final View contentView = mInflater.inflate(R.layout.dialog_save_outfit, null, false);
-                    final EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
+                    final View contentView = mInflater.inflate(R.layout.dialog_delete_outfit, null, false);
+                    //final TextView editOutfitName = (EditText) contentView.findViewById(R.id.deleteOutfitTextView);
 
 //                    final EditText serviceView = (EditText) contentView.findViewById(R.id.service);
 //                    final EditText usernameView = (EditText) contentView.findViewById(R.id.username);
@@ -108,10 +96,10 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
                     //passwordView.setText(password.getPassword());
 
                     final Dialog dialog = new AlertDialog.Builder(mInflater.getContext())
-                            .setTitle(R.string.save_outfit)
+                            .setTitle("Delete Outfit")
                             .setView(contentView)
                             .setNegativeButton(android.R.string.cancel, null)
-                            .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+                            .setPositiveButton(R.string.delete_simple, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 //                                    password.setService(serviceView.getText().toString());
@@ -131,10 +119,9 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
                 @Override
                 public void onClick(View view) {
                     Log.d("adapter", "item has been clicked");
-                    mCallback.onOutfitSelected(mOutfitItems.get(getAdapterPosition()));
+                    mCallback.onSavedOutfitSelected(mOutfitItems.get(getAdapterPosition()));
                 }
             });
-
         }
     }
 

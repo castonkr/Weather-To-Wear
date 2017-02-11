@@ -33,9 +33,11 @@ import edu.rosehulman.schaffll.weathertowear.fragments.LoginFragment;
 import edu.rosehulman.schaffll.weathertowear.fragments.NewOutfitDetailFragment;
 import edu.rosehulman.schaffll.weathertowear.fragments.NewOutfitFragment;
 import edu.rosehulman.schaffll.weathertowear.fragments.PreferencesFragment;
+import edu.rosehulman.schaffll.weathertowear.fragments.SavedOutfitDetailFragment;
+import edu.rosehulman.schaffll.weathertowear.fragments.SavedOutfitListFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, HomeFragment.OnStartPressedListener, NewOutfitFragment.Callback {
+        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, HomeFragment.OnStartPressedListener, NewOutfitFragment.Callback, SavedOutfitListFragment.Callback {
 
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -221,6 +223,8 @@ public class MainActivity extends AppCompatActivity
             switchTo = new ClosetFragment();
             tag = "closet";
         } else if (id == R.id.nav_saved_outfits) {
+            switchTo = new SavedOutfitListFragment();
+            tag = "savedoutfits";
 
         } else if (id == R.id.nav_new_outfits) {
             switchTo = new NewOutfitFragment();
@@ -257,6 +261,19 @@ public class MainActivity extends AppCompatActivity
 //        fragment.setEnterTransition(slideTransition);
 
         ft.replace(R.id.content_main, new NewOutfitDetailFragment().newInstance(outfitItem));
+        ft.addToBackStack("detail");
+        ft.commit();
+    }
+
+    @Override
+    public void onSavedOutfitSelected(OutfitItem outfitItem) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//
+////        Slide slideTransition = new Slide(Gravity.RIGHT);
+////        slideTransition.setDuration(200);
+////        fragment.setEnterTransition(slideTransition);
+//
+        ft.replace(R.id.content_main, new SavedOutfitDetailFragment().newInstance(outfitItem));
         ft.addToBackStack("detail");
         ft.commit();
     }
