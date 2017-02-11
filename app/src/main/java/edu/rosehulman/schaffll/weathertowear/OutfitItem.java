@@ -32,6 +32,7 @@ public class OutfitItem implements Parcelable{
     }
 
     protected OutfitItem(Parcel in) {
+
     }
 
     public static final Creator<OutfitItem> CREATOR = new Creator<OutfitItem>() {

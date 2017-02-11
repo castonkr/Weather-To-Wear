@@ -59,7 +59,7 @@ public class NewOutfitFragment extends Fragment {
         String firebasePath = getArguments().getString(FIREBASE_PATH);
         Log.d("fb", firebasePath);
         mBooleanRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("booleanArray");
-        mSavedOutfitRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("savedOutfits");
+        mSavedOutfitRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("savedOutfit");
     }
 
     @Override
