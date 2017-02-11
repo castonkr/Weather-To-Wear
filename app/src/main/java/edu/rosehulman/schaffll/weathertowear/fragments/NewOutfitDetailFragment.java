@@ -24,7 +24,7 @@ public class NewOutfitDetailFragment extends Fragment {
     private static final String ARG_OUTFIT = "outfit";
 
 
-    private String mOutfitItem;
+    private OutfitItem mOutfitItem;
     //private OnFragmentInteractionListener mListener;
 
     public NewOutfitDetailFragment() {
@@ -50,10 +50,10 @@ public class NewOutfitDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mOutfitItem = getArguments().getParcelable(ARG_OUTFIT);
-//
-//        }
+        if (getArguments() != null) {
+            mOutfitItem = getArguments().getParcelable(ARG_OUTFIT);
+
+        }
     }
 
     @Override
@@ -62,25 +62,32 @@ public class NewOutfitDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_new_outfit_detail, container, false);
 
         TextView outfitTitleView = (TextView) view.findViewById(R.id.textOutfitTitle);
-        outfitTitleView.setText("test outfit");
+        outfitTitleView.setText(mOutfitItem.getOutfitItemName(0));
 
         TextView jacketView = (TextView) view.findViewById(R.id.textJacket);
         jacketView.setText("test jacket");
+        //jacketView.setText(mOutfitItem.getJacket());
 
         TextView topView = (TextView) view.findViewById(R.id.textTops);
         topView.setText("test tops");
+        //topView.setText(mOutfitItem.getTop());
+
 
         TextView accessoryOneView = (TextView) view.findViewById(R.id.textAccessory1);
         accessoryOneView.setText("test accessory 1");
+        //accessoryOneView.setText(mOutfitItem.getAccessoryOne();
 
         TextView bottomView = (TextView) view.findViewById(R.id.textBottoms);
         bottomView.setText("test bottom");
+        //bottomView.setText(mOutfitItem.getBottom());
 
         TextView accessoryTwoView = (TextView) view.findViewById(R.id.textAccessory2);
         accessoryTwoView.setText("test accessory 2");
+        //accessoryTwoView.setText(mOutfitItem.getAccessoryTwo());
 
         TextView shoesView = (TextView) view.findViewById(R.id.textShoes);
         shoesView.setText("test shoes");
+        //shoesView.setText(mOutfitItem.getShoes());
 
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_new_outfit_detail, container, false);

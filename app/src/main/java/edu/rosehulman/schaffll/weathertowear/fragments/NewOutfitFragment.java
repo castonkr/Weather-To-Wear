@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,6 +27,7 @@ import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
 import edu.rosehulman.schaffll.weathertowear.OutfitAdapter;
 import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
+import edu.rosehulman.schaffll.weathertowear.SavedOutfitAdapter;
 
 
 /**
@@ -36,6 +41,7 @@ public class NewOutfitFragment extends Fragment {
     private OutfitAdapter mAdapter;
     private String[] mClothingItems;
     private DatabaseReference mBooleanRef;
+    private DatabaseReference mSavedOutfitRef;
     private boolean mBoolList[];
     private ClothingItemList mClothingItemList;
     private Callback mCallback;
@@ -51,7 +57,9 @@ public class NewOutfitFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         String firebasePath = getArguments().getString(FIREBASE_PATH);
+        Log.d("fb", firebasePath);
         mBooleanRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("booleanArray");
+        mSavedOutfitRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("savedOutfits");
     }
 
     @Override
@@ -60,24 +68,23 @@ public class NewOutfitFragment extends Fragment {
         // Inflate the layout for this fragment
         RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_new_outfit, container, false);
         view.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new OutfitAdapter(getContext(), mCallback);
-
+        mAdapter = new OutfitAdapter(getContext(), mCallback, mSavedOutfitRef);
         view.setAdapter(mAdapter);
         mClothingItemList = new ClothingItemList();
         mClothingItems = getResources().getStringArray(R.array.clothing_list);
         //mBoolList = new boolean[mClothingItems.length];
 
 
-//        mBooleanRef.addChildEventListener(new ChildEventListener() {
+//        mSavedOutfitRef.addChildEventListener(new ChildEventListener() {
 //            @Override
 //            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 //                // Empty
-//                int position = Integer.parseInt(dataSnapshot.getKey());
-//                mBoolList[position] = (boolean) dataSnapshot.getValue();
-//                if (mBoolList[position]) {
-//                    mAdapter.addItem(mClothingItems[position]);
-//                    mClothingItemList.add(position);
-//                }
+////                int position = Integer.parseInt(dataSnapshot.getKey());
+//                //mBoolList[position] = (boolean) dataSnapshot.getValue();
+////                if (mBoolList[position]) {
+////                    mAdapter.addItem(mClothingItems[position]);
+////                    mClothingItemList.add(position);
+////                }
 //
 //            }
 //
@@ -176,6 +183,8 @@ public class NewOutfitFragment extends Fragment {
         builder.setPositiveButton("APPLY", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int k) {
+//                mAdapter.firebasePush();
+                Log.d("project", "outfit changes have been applied here");
                 // Show selected clothing items
 //                for (int i = 0; i < mBoolList.length; i++) {
 //                    // Not add everytime

@@ -24,17 +24,19 @@ import java.util.ArrayList;
 import edu.rosehulman.schaffll.weathertowear.fragments.NewOutfitFragment;
 
 
-public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder> {
+public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder> implements ChildEventListener{
 
     private ArrayList<OutfitItem> mOutfitItems;
     private NewOutfitFragment.Callback mCallback;
-    LayoutInflater mInflater;
+    private LayoutInflater mInflater;
+    private DatabaseReference mOutfitsRef;
 
-    public OutfitAdapter(Context context, NewOutfitFragment.Callback callback) {
+    public OutfitAdapter(Context context, NewOutfitFragment.Callback callback, DatabaseReference firebaseDatabase) {
         mOutfitItems = new ArrayList<>();
         mInflater = LayoutInflater.from(context);
         mOutfitItems.add(0, new OutfitItem(new ClothingItem("top", 2, 30, 2)));
         mCallback = callback;
+        mOutfitsRef = firebaseDatabase;
     }
 
     @Override
@@ -72,6 +74,31 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return mOutfitItems.size();
+    }
+
+    @Override
+    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+    }
+
+    @Override
+    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+    }
+
+    @Override
+    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+    }
+
+    @Override
+    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -118,7 +145,7 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 //                                    password.setPassword(passwordView.getText().toString());
 //                                    String username = usernameView.getText().toString();
 //                                    password.setUsername(username.isEmpty() ? null : username);
-//                                    firebaseUpdate(password);
+                                     firebasePush(outfitItem);
                                 }
                             })
                             .create();
@@ -137,6 +164,23 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 
         }
     }
+
+    public void firebasePush(OutfitItem outfitItem) {
+        mOutfitsRef.push().setValue(outfitItem);
+    }
+
+//    public void firebaseUpdate(Password pw) {
+//        mPasswordRef.child(pw.getKey()).setValue(pw);
+//    }
+//
+//    public void firebaseRemove(Password password) {
+//        mPasswordRef.child(password.getKey()).removeValue();
+//    }
+//
+//    public void insert(Password password, int position) {
+//        mPasswords.add(position, password);
+//        notifyItemInserted(position);
+//    }
 
 //    public void addItem(String item) {
 //        if(!mClothingItems.contains(item)) {
