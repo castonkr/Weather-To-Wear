@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import edu.rosehulman.schaffll.weathertowear.fragments.NewOutfitFragment;
 
 
-public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder> implements ChildEventListener{
+public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder>{
 
     private ArrayList<OutfitItem> mOutfitItems;
     private NewOutfitFragment.Callback mCallback;
@@ -37,6 +37,7 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
         mOutfitItems.add(0, new OutfitItem(new ClothingItem("top", 2, 30, 2)));
         mCallback = callback;
         mOutfitsRef = firebaseDatabase;
+        mOutfitsRef.addChildEventListener(new NewOutfitsChildEventListener());
     }
 
     @Override
@@ -67,39 +68,69 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 
     }
 
-//    public void showDialog(){
-//
-//    }
-
     @Override
     public int getItemCount() {
         return mOutfitItems.size();
     }
 
-    @Override
-    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//    public void showDialog(){
+//
+//    }
 
+
+    class NewOutfitsChildEventListener implements ChildEventListener{
+
+        @Override
+        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//            Pic pic = dataSnapshot.getValue(Pic.class);
+//            pic.setKey(dataSnapshot.getKey());
+//            mPics.add(0,pic);
+//            notifyDataSetChanged();
+        }
+
+        @Override
+        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//            Log.d("PK", "on child changed called");
+//            String key = dataSnapshot.getKey();
+//            Pic updatePic = dataSnapshot.getValue(Pic.class);
+//            Log.d("PK", updatePic.getCaption());
+//            for (Pic p : mPics){
+//                if (p.getKey().equals(key)){
+//                    p.setCaption(updatePic.getCaption());
+//                    p.setUrl(updatePic.getUrl());
+//                    p.setValues(updatePic);
+//                    notifyDataSetChanged();
+//                    return;
+//                }
+//            }
+        }
+
+        @Override
+        public void onChildRemoved(DataSnapshot dataSnapshot) {
+//            String keyToRemove = dataSnapshot.getKey();
+//            for(int i = 0; i < mPics.size();i++){
+//                if(keyToRemove.equals(mPics.get(i).getKey())){
+//                    mPics.remove(i);
+//                    notifyDataSetChanged();
+//                    return;
+//                }
+//            }
+        }
+
+        @Override
+        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            Log.e("P", databaseError.getMessage());
+        }
     }
-
-    @Override
-    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-    }
-
-    @Override
-    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-    }
-
-    @Override
-    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-    }
-
-    @Override
-    public void onCancelled(DatabaseError databaseError) {
-
-    }
+//    @Override
+//    public void onCancelled(DatabaseError databaseError) {
+//
+//    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView mTitleTextView;
