@@ -4,7 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -22,6 +26,7 @@ import edu.rosehulman.schaffll.weathertowear.R;
  */
 public class NewOutfitDetailFragment extends Fragment {
     private static final String ARG_OUTFIT = "outfit";
+    private OnFlingListener mListener;
 
 
     private OutfitItem mOutfitItem;
@@ -94,6 +99,17 @@ public class NewOutfitDetailFragment extends Fragment {
         return view;
     }
 
+    // TODO: Create a custom GestureDetector
+    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent event1, MotionEvent event2,
+                               float velocityX, float velocityY) {
+            Log.d("wtw", "onFling: " + event1.toString() + event2.toString());
+            mListener.onSwipe();
+            return true;
+        }
+    }
+
 //    // TODO: Rename method, update argument and hook method into UI event
 //    public void onButtonPressed(Uri uri) {
 //        if (mListener != null) {
@@ -132,4 +148,8 @@ public class NewOutfitDetailFragment extends Fragment {
 //        // TODO: Update argument type and name
 //        void onFragmentInteraction(Uri uri);
 //    }
+    // This will be used with a Fling gesture.
+    public interface OnFlingListener {
+        void onSwipe();
+    }
 }

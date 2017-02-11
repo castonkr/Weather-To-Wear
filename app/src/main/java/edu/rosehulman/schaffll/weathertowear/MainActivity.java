@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.transition.Slide;
 import android.util.Log;
@@ -37,7 +38,7 @@ import edu.rosehulman.schaffll.weathertowear.fragments.SavedOutfitDetailFragment
 import edu.rosehulman.schaffll.weathertowear.fragments.SavedOutfitListFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, HomeFragment.OnStartPressedListener, NewOutfitFragment.Callback, SavedOutfitListFragment.Callback {
+        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, HomeFragment.OnStartPressedListener, NewOutfitFragment.Callback, SavedOutfitListFragment.Callback, NewOutfitDetailFragment.OnFlingListener{
 
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -275,6 +276,14 @@ public class MainActivity extends AppCompatActivity
 //
         ft.replace(R.id.content_main, new SavedOutfitDetailFragment().newInstance(outfitItem));
         ft.addToBackStack("detail");
+        ft.commit();
+    }
+
+    @Override
+    public void onSwipe() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        fm.popBackStackImmediate();
         ft.commit();
     }
 
