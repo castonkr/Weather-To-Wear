@@ -50,10 +50,17 @@ public class ClothingItem implements Parcelable{
     }
 
     public ClothingItem(String name, int type, int temp, int cond) {
-        this.clothingName = name;
-        this.clothingType = type;
-        this.clothingTemp = temp;
-        this.clothingCond = cond;
+        if (name.equals("null")){
+            this.clothingName = "None";
+            this.clothingType = 16;
+            this.clothingTemp = 16;
+            this.clothingCond = 16;
+        }else {
+            this.clothingName = name;
+            this.clothingType = type;
+            this.clothingTemp = temp;
+            this.clothingCond = cond;
+        }
     }
 
 

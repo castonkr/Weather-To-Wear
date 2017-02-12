@@ -9,6 +9,68 @@ import android.os.Parcelable;
 
 public class OutfitItem implements Parcelable{
 
+    private ClothingItem mType1;
+    private ClothingItem mType2;
+    private ClothingItem mType3;
+    private ClothingItem mType4;
+    private ClothingItem mType5;
+    private ClothingItem mType6;
+
+
+    public ClothingItem getmType1() {
+        if (mType1 == null){
+            mType1 = new ClothingItem("null", 0, 0, 0);
+        }
+
+        return mType1;
+    }
+
+    public void setmType1(ClothingItem mType1) {
+        this.mType1 = mType1;
+    }
+
+    public ClothingItem getmType2() {
+        return mType2;
+    }
+
+    public void setmType2(ClothingItem mType2) {
+        this.mType2 = mType2;
+    }
+
+    public ClothingItem getmType3() {
+        return mType3;
+    }
+
+    public void setmType3(ClothingItem mType3) {
+        this.mType3 = mType3;
+    }
+
+    public ClothingItem getmType4() {
+        return mType4;
+    }
+
+    public void setmType4(ClothingItem mType4) {
+        this.mType4 = mType4;
+    }
+
+    public ClothingItem getmType5() {
+        return mType5;
+    }
+
+    public void setmType5(ClothingItem mType5) {
+        this.mType5 = mType5;
+    }
+
+    public ClothingItem getmType6() {
+        return mType6;
+    }
+
+    public void setmType6(ClothingItem mType6) {
+        this.mType6 = mType6;
+    }
+
+
+
     // For clothingType
     // 0 = top layer 1
     // 1 = top layer 2
@@ -26,6 +88,51 @@ public class OutfitItem implements Parcelable{
 //                        ClothingItem dress, ClothingItem shoes, ClothingItem hat, ClothingItem scarf, ClothingItem accessory ) {
 //
 //    }
+    public OutfitItem(ClothingItem type1, ClothingItem type2, ClothingItem type3, ClothingItem type4, ClothingItem type5,
+                  ClothingItem type6) {
+        if (mType1 == null){
+            mType1 = new ClothingItem("null", 0, 0, 0);
+        }
+        else {
+            mType1 = type1;
+        }
+
+        if (mType2 == null){
+            mType2 = new ClothingItem("null", 0, 0, 0);
+        }
+        else{
+            mType2 = type2;
+        }
+
+        if (mType3 == null){
+            mType3 = new ClothingItem("null", 0, 0, 0);
+        }
+        else {
+            mType3 = type3;
+        }
+
+        if (mType4 == null){
+            mType4 = new ClothingItem("null", 0, 0, 0);
+        }
+        else {
+            mType4 = type4;
+        }
+
+        if (mType5 == null){
+            mType5 = new ClothingItem("null", 0, 0, 0);
+        }
+        else {
+            mType5 = type5;
+        }
+
+        if (mType6 == null){
+            mType6 = new ClothingItem("null", 0, 0, 0);
+        }
+        else {
+            mType6 = type6;
+        }
+
+    }
 
     public OutfitItem(ClothingItem topLayer1) {
 
@@ -34,6 +141,7 @@ public class OutfitItem implements Parcelable{
     protected OutfitItem(Parcel in) {
 
     }
+
 
     public static final Creator<OutfitItem> CREATOR = new Creator<OutfitItem>() {
         @Override
@@ -59,4 +167,6 @@ public class OutfitItem implements Parcelable{
     @Override
     public void writeToParcel(Parcel parcel, int i) {
     }
+
+
 }
