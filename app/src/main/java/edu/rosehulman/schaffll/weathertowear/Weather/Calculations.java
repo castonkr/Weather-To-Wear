@@ -73,9 +73,7 @@ public class Calculations {
 
     }
 
-
-
-    public void createNewOutfits() {
+    public List<OutfitItem> createNewOutfits() {
         ClothingItemList mClothes = new ClothingItemList(mBoolList);
         userClothingItems = mClothes.getReturnClothingItemList();
         List<ClothingItem> availableClothesTemp = new ArrayList<>();
@@ -108,8 +106,8 @@ public class Calculations {
                 availableClothesTemp.add(userClothingItems.get(i));
             }
         }
-          Log.d("OUTFIT_new outfit", ""+weatherNum);
-          Log.d("OUTFIT_new outfit", String.valueOf(availableClothesTemp.size()));
+        Log.d("OUTFIT_new outfit", ""+weatherNum);
+        Log.d("OUTFIT_new outfit", String.valueOf(availableClothesTemp.size()));
         Log.d("OUTFIT_new outfit", "0" + availableClothesTemp.get(0).getClothingName());
         Log.d("OUTFIT_new outfit", "1" + availableClothesTemp.get(1).getClothingName());
         Log.d("OUTFIT_new outfit", "2" + availableClothesTemp.get(2).getClothingName());
@@ -138,13 +136,13 @@ public class Calculations {
                 type6Clothes.add(availableClothesTemp.get(i));
             }
         }
-
-        Log.d("TYPE", "1: " + type1Clothes.size());
-        Log.d("TYPE", "2: " + type2Clothes.size());
-        Log.d("TYPE", "3: " + type3Clothes.size());
-        Log.d("TYPE", "4: " + type4Clothes.size());
-        Log.d("TYPE", "5: " + type5Clothes.size());
-        Log.d("TYPE", "6: " + type6Clothes.size());
+//
+//        Log.d("TYPE", "1: " + type1Clothes.size());
+//        Log.d("TYPE", "2: " + type2Clothes.size());
+//        Log.d("TYPE", "3: " + type3Clothes.size());
+//        Log.d("TYPE", "4: " + type4Clothes.size());
+//        Log.d("TYPE", "5: " + type5Clothes.size());
+//        Log.d("TYPE", "6: " + type6Clothes.size());
 
 
 
@@ -220,19 +218,25 @@ public class Calculations {
                 }
             }
         }
-        Log.d("OPtions", ""+outfitOptions.size());
-        Log.d("OPtions", outfitOptions.get(0).getmType1().getClothingName());
-        Log.d("OPtions", outfitOptions.get(0).getmType2().getClothingName());
-        Log.d("OPtions", outfitOptions.get(0).getmType3().getClothingName());
-        Log.d("OPtions", outfitOptions.get(0).getmType4().getClothingName());
-        Log.d("OPtions", outfitOptions.get(0).getmType5().getClothingName());
-        Log.d("OPtions", outfitOptions.get(0).getmType6().getClothingName());
-        Log.d("OPtions", outfitOptions.get(1).getmType1().getClothingName());
-        Log.d("OPtions", outfitOptions.get(1).getmType2().getClothingName());
-        Log.d("OPtions", outfitOptions.get(1).getmType3().getClothingName());
-        Log.d("OPtions", outfitOptions.get(1).getmType4().getClothingName());
-        Log.d("OPtions", outfitOptions.get(1).getmType5().getClothingName());
-        Log.d("OPtions", outfitOptions.get(1).getmType6().getClothingName());
+//        Log.d("OPtions", ""+outfitOptions.size());
+//        Log.d("OPtions", outfitOptions.get(0).getmType1().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(0).getmType2().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(0).getmType3().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(0).getmType4().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(0).getmType5().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(0).getmType6().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(1).getmType1().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(1).getmType2().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(1).getmType3().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(1).getmType4().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(1).getmType5().getClothingName());
+//        Log.d("OPtions", outfitOptions.get(1).getmType6().getClothingName());
+
+        if (outfitOptions.size() > 5){
+            outfitOptions = outfitOptions.subList(0,5);
+        }
+
+//        Log.d("tag", "" + outfitOptions.size());
 
 //
 //        Log.d("TYPE", "1: " + type1Clothes.size());
@@ -241,6 +245,10 @@ public class Calculations {
 //        Log.d("TYPE", "4: " + type4Clothes.size());
 //        Log.d("TYPE", "5: " + type5Clothes.size());
 //        Log.d("TYPE", "6: " + type6Clothes.size());
+
+        return outfitOptions;
+
+
 
 
 

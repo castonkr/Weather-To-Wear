@@ -20,21 +20,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.rosehulman.schaffll.weathertowear.fragments.NewOutfitFragment;
+import edu.rosehulman.schaffll.weathertowear.fragments.PreferencesFragment;
 
 
 public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder>{
 
-    private ArrayList<OutfitItem> mOutfitItems;
+    private List<OutfitItem> mOutfitItems;
     private NewOutfitFragment.Callback mCallback;
     private LayoutInflater mInflater;
     private DatabaseReference mOutfitsRef;
 
     public OutfitAdapter(Context context, NewOutfitFragment.Callback callback, DatabaseReference firebaseDatabase) {
-        mOutfitItems = new ArrayList<>();
+        mOutfitItems = PreferencesFragment.userClothingOptions;
         mInflater = LayoutInflater.from(context);
-        mOutfitItems.add(0, new OutfitItem(new ClothingItem("top", 2, 30, 2)));
+        Log.d("check", ""+mOutfitItems.size());
+        //mOutfitItems.add(0, new OutfitItem(new ClothingItem("top", 2, 30, 2)));
         mCallback = callback;
         mOutfitsRef = firebaseDatabase;
         mOutfitsRef.addChildEventListener(new NewOutfitsChildEventListener());

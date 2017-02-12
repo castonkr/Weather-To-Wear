@@ -20,6 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
+import edu.rosehulman.schaffll.weathertowear.OutfitAdapter;
+import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
 import edu.rosehulman.schaffll.weathertowear.Weather.Calculations;
 
@@ -42,6 +46,9 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private float currentTemp;
     private int weatherID;
     private boolean mBooleanArray[] = new boolean[21];
+    public static List<OutfitItem> userClothingOptions;
+    //private OutfitAdapter mAdapter;
+
 
     public PreferencesFragment() {
         // Required empty public constructor
@@ -57,9 +64,11 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
             mUserRef = FirebaseDatabase.getInstance().getReference();
         } else {
         mUserRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
-         }
+        }
         currentTemp = HomeFragment.tempF;
         weatherID = HomeFragment.weatherID;
+
+
 
 
         DatabaseReference booleanRef = mUserRef.child("booleanArray");
@@ -196,7 +205,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                 mUserRef.child("hotTemp").setValue(hotTemp);
                 mUserRef.child("coldTemp").setValue(coldTemp);
                 Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, weatherID, mBooleanArray);
-                calc.createNewOutfits();
+                userClothingOptions = calc.createNewOutfits();
 
 
         }
