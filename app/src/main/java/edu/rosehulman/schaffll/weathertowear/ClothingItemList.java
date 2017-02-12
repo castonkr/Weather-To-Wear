@@ -63,50 +63,19 @@ public class ClothingItemList {
         allClothingItemList.add(wintercoat);
     }
 
-<<<<<<< HEAD
     public ClothingItemList(boolean[] clothingItemsinFirebase) {
         Log.d("test", "in the constructor");
         mBooleanClothingItems = clothingItemsinFirebase;
 
-        for (int i = 0; i < allClothingItemList.size(); i++){
+        for (int i = 0; i < allClothingItemList.size(); i++) {
             Log.d("LIST", String.valueOf(clothingItemsinFirebase[i]));
-            if(mBooleanClothingItems[i]){
+            if (mBooleanClothingItems[i]) {
                 Log.d("test", "clothing item has been added at " + i + " pos");
                 returnClothingItemList.add(allClothingItemList.get(i));
             }
         }
-=======
-//    public ClothingItemList(boolean[] clothingItemsinFirebase) {
-//        Log.d("test", "in the constructor");
-//        mBooleanClothingItems = clothingItemsinFirebase;
-////        if (mBooleanClothingItems.size() == 0){
-////            Log.d("error", "too small");
-////        }
-//        for (int i = 0; i < allClothingItemList.size(); i++){
-//                    boolean b = mBooleanClothingItems[i];
-//                    String k;
-//                    if (b == true){
-//                        k = "true";
-//                    }
-//                    if (b == false){
-//                        k = "faslse";
-//                    }
-//                    else{
-//                        k = "null";
-//                    }
-//            Log.d("help!", k);
-//            if(mBooleanClothingItems[i] != false){
-//                Log.d("test", "clothing item has been added at " + i + " pos");
-//                returnClothingItemList.add(allClothingItemList.get(i));
-//            }
-//        }
-//
-//    }
-
-    public ClothingItemList(){
->>>>>>> origin/master
-
     }
+
 
     public void addBoolean(boolean b, int position){
         if (b != false){
