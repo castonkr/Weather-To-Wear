@@ -17,27 +17,19 @@ public class ClothingItem implements Parcelable{
     private String key;
 
     // For clothingType
-    // 0 = top layer 1
-    // 1 = top layer 2
-    // 2 = top layer 3
-    // 3 = bottom short
-    // 4 = bottom long
-    // 5 = dress
-    // 6 = shoes
-    // 7 = hat
-    // 8 = gloves
-    // 9 = scarf
-    // 10 = accessory
-
+    // 1 = top
+    // 2 = bottom
+    // 3 = shoes
+    // 4 = jacket
+    // 5 = accessory1
+    // 6 = accessory2
 
     // For clothingTemp
-    // -3 = very cold
     // -2 = cold
     // -1 = cool
     // 0 = neutral
     // 1 = warm
     // 2 = hot
-    // 3 = very hot
 
     // For clothingCond
     // 0 = clear
