@@ -84,7 +84,25 @@ public class Calculations {
         Log.d("OUTFIT_TEST", "2" + userClothingItems.get(2).getClothingName());
         Log.d("OUTFIT_TEST", "3" + userClothingItems.get(3).getClothingName());
         Log.d("OUTFIT_TEST", "4" + userClothingItems.get(4).getClothingName());
+        Log.d("OUTFIT_TEST", "5" + userClothingItems.get(5).getClothingName());
+        Log.d("OUTFIT_TEST", "6" + userClothingItems.get(6).getClothingName());
+        Log.d("OUTFIT_TEST", "7" + userClothingItems.get(7).getClothingName());
         Log.d("OUTFIT_SIZE", String.valueOf(userClothingItems.size()));
+
+        for(int i = 0; i < userClothingItems.size();i++){
+            if (userClothingItems.get(i).getClothingTemp() != (weatherNum) ||
+                    userClothingItems.get(i).getClothingTemp() != (weatherNum + 1) ||
+                    userClothingItems.get(i).getClothingTemp() != (weatherNum - 1)){
+                userClothingItems.remove(i);
+            }
+        }
+        Log.d("OUTFIT_new outfit", ""+weatherNum);
+        Log.d("OUTFIT_new outfit", String.valueOf(userClothingItems.size()));
+        Log.d("OUTFIT_new outfit", "0" + userClothingItems.get(0).getClothingName());
+        Log.d("OUTFIT_new outfit", "1" + userClothingItems.get(1).getClothingName());
+        Log.d("OUTFIT_new outfit", "2" + userClothingItems.get(2).getClothingName());
+        Log.d("OUTFIT_new outfit", "3" + userClothingItems.get(3).getClothingName());
+
     }
 
 
