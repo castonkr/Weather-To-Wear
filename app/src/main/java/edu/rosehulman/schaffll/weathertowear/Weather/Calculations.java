@@ -171,39 +171,40 @@ public class Calculations {
 
         if (type1Clothes.size() > 0){
             iter1 = type1Clothes.size();
+            Log.d("tag", "correct size set");
         }
         else{
-            type1Clothes.add(null);
+            type1Clothes.add(new ClothingItem("null", 0, 0, 0));
         }
         if (type2Clothes.size() > 0){
             iter2 = type2Clothes.size();
         }
         else{
-            type2Clothes.add(null);
+            type2Clothes.add(new ClothingItem("null", 0, 0, 0));
         }
         if (type3Clothes.size() > 0){
             iter3 = type3Clothes.size();
         }
         else{
-            type3Clothes.add(null);
+            type3Clothes.add(new ClothingItem("null", 0, 0, 0));
         }
         if (type4Clothes.size() > 0){
             iter4 = type4Clothes.size();
         }
         else{
-            type4Clothes.add(null);
+            type4Clothes.add(new ClothingItem("null", 0, 0, 0));
         }
         if (type5Clothes.size() > 0){
             iter5 = type5Clothes.size();
         }
         else{
-            type5Clothes.add(null);
+            type5Clothes.add(new ClothingItem("null", 0, 0, 0));
         }
         if (type6Clothes.size() > 0){
             iter6 = type6Clothes.size();
         }
         else{
-            type6Clothes.add(null);
+            type6Clothes.add(new ClothingItem("null", 0, 0, 0));
         }
         for (int i = 0; i < iter1; i++){
             for (int j = 0; j < iter2; j++){

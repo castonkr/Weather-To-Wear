@@ -2,6 +2,7 @@ package edu.rosehulman.schaffll.weathertowear;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 /**
  * Created by Kiana on 2/9/17.
@@ -90,42 +91,44 @@ public class OutfitItem implements Parcelable{
 //    }
     public OutfitItem(ClothingItem type1, ClothingItem type2, ClothingItem type3, ClothingItem type4, ClothingItem type5,
                   ClothingItem type6) {
-        if (mType1 == null){
+        if (type1 == null){
             mType1 = new ClothingItem("null", 0, 0, 0);
+            Log.d("tag", "shouldn't be null");
         }
         else {
             mType1 = type1;
+            Log.d("tag", "is null..shoudln't be");
         }
 
-        if (mType2 == null){
+        if (type2 == null){
             mType2 = new ClothingItem("null", 0, 0, 0);
         }
         else{
             mType2 = type2;
         }
 
-        if (mType3 == null){
+        if (type3 == null){
             mType3 = new ClothingItem("null", 0, 0, 0);
         }
         else {
             mType3 = type3;
         }
 
-        if (mType4 == null){
+        if (type4 == null){
             mType4 = new ClothingItem("null", 0, 0, 0);
         }
         else {
             mType4 = type4;
         }
 
-        if (mType5 == null){
+        if (type5 == null){
             mType5 = new ClothingItem("null", 0, 0, 0);
         }
         else {
             mType5 = type5;
         }
 
-        if (mType6 == null){
+        if (type6 == null){
             mType6 = new ClothingItem("null", 0, 0, 0);
         }
         else {
