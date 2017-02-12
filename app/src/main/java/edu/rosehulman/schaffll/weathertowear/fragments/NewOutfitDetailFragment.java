@@ -70,29 +70,29 @@ public class NewOutfitDetailFragment extends Fragment {
         outfitTitleView.setText(mOutfitItem.getOutfitItemName(0));
 
         TextView jacketView = (TextView) view.findViewById(R.id.textJacket);
-        jacketView.setText("test jacket");
-        //jacketView.setText(mOutfitItem.getJacket());
+        //jacketView.setText("test jacket");
+        jacketView.setText(mOutfitItem.getmType1().getClothingName());
 
         TextView topView = (TextView) view.findViewById(R.id.textTops);
-        topView.setText("test tops");
-        //topView.setText(mOutfitItem.getTop());
+        //topView.setText("test tops");
+        topView.setText(mOutfitItem.getmType2().getClothingName());
 
 
         TextView accessoryOneView = (TextView) view.findViewById(R.id.textAccessory1);
-        accessoryOneView.setText("test accessory 1");
-        //accessoryOneView.setText(mOutfitItem.getAccessoryOne();
+        //accessoryOneView.setText("test accessory 1");
+        accessoryOneView.setText(mOutfitItem.getmType3().getClothingName());
 
         TextView bottomView = (TextView) view.findViewById(R.id.textBottoms);
-        bottomView.setText("test bottom");
-        //bottomView.setText(mOutfitItem.getBottom());
+        //bottomView.setText("test bottom");
+        bottomView.setText(mOutfitItem.getmType4().getClothingName());
 
         TextView accessoryTwoView = (TextView) view.findViewById(R.id.textAccessory2);
-        accessoryTwoView.setText("test accessory 2");
-        //accessoryTwoView.setText(mOutfitItem.getAccessoryTwo());
+        //accessoryTwoView.setText("test accessory 2");
+        accessoryTwoView.setText(mOutfitItem.getmType5().getClothingName());
 
         TextView shoesView = (TextView) view.findViewById(R.id.textShoes);
-        shoesView.setText("test shoes");
-        //shoesView.setText(mOutfitItem.getShoes());
+        //shoesView.setText("test shoes");
+        shoesView.setText(mOutfitItem.getmType6().getClothingName());
 
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_new_outfit_detail, container, false);
