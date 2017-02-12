@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +41,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private int coldTemp;
     private float currentTemp;
     private int weatherID;
+    private boolean mBooleanArray[] = new boolean[21];
 
     public PreferencesFragment() {
         // Required empty public constructor
@@ -51,15 +53,43 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         Log.d("FP", firebasePath);
         mUser = getArguments().getString(FIREBASE_USER_ID);
         Log.d("PK", mUser);
-//        if (firebasePath == null || firebasePath.isEmpty()) {
-//            mUserRef = FirebaseDatabase.getInstance().getReference();
-//        } else {
+        if (firebasePath == null || firebasePath.isEmpty()) {
+            mUserRef = FirebaseDatabase.getInstance().getReference();
+        } else {
         mUserRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
-//        }
+         }
         currentTemp = HomeFragment.tempF;
         weatherID = HomeFragment.weatherID;
 
 
+        DatabaseReference booleanRef = mUserRef.child("booleanArray");
+        booleanRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                int position = Integer.parseInt(dataSnapshot.getKey());
+                mBooleanArray[position] = (boolean) dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -165,12 +195,8 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                 mUserRef.child("zipcode").setValue(zipCode.getText().toString());
                 mUserRef.child("hotTemp").setValue(hotTemp);
                 mUserRef.child("coldTemp").setValue(coldTemp);
-                //also pass in mUserRef
-                Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, weatherID, mUserRef);
+                Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, weatherID, mBooleanArray);
                 calc.createNewOutfits();
-
-
-
 
 
         }

@@ -66,8 +66,10 @@ public class ClothingItemList {
     public ClothingItemList(boolean[] clothingItemsinFirebase) {
         Log.d("test", "in the constructor");
         mBooleanClothingItems = clothingItemsinFirebase;
+
         for (int i = 0; i < allClothingItemList.size(); i++){
-            if(mBooleanClothingItems[i] == false){
+            Log.d("LIST", String.valueOf(clothingItemsinFirebase[i]));
+            if(mBooleanClothingItems[i]){
                 Log.d("test", "clothing item has been added at " + i + " pos");
                 returnClothingItemList.add(allClothingItemList.get(i));
             }
