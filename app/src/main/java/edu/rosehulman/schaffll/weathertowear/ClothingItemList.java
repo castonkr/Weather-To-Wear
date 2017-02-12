@@ -14,7 +14,7 @@ public class ClothingItemList {
     public List<ClothingItem> allClothingItemList = new ArrayList<>();
     private List mClothingItemList = new ArrayList<>();
     private boolean [] mBooleanClothingItems;
-    public static List<ClothingItem> returnClothingItemList = new ArrayList<>();
+    public List<ClothingItem> returnClothingItemList = new ArrayList<>();
 
     {
         ClothingItem blouse = new ClothingItem("Blouse", 0, 0, 0);
@@ -72,7 +72,6 @@ public class ClothingItemList {
         mBooleanClothingItems = clothingItemsinFirebase;
 
         for (int i = 0; i < allClothingItemList.size(); i++) {
-            Log.d("LIST", String.valueOf(clothingItemsinFirebase[i]));
             if (mBooleanClothingItems[i]) {
                 Log.d("test", "clothing item has been added at " + i + " pos");
                 returnClothingItemList.add(allClothingItemList.get(i));
@@ -98,7 +97,7 @@ public class ClothingItemList {
         }
     }
 
-    public static List<ClothingItem> getReturnClothingItemList(){
+    public List<ClothingItem> getReturnClothingItemList(){
 //        for (int i = 0; i < allClothingItemList.size(); i++) {
         int k = returnClothingItemList.size();
            Log.d("help!", ""+k);

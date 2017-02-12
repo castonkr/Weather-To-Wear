@@ -17,7 +17,7 @@ import edu.rosehulman.schaffll.weathertowear.ClothingItem;
 import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
 import edu.rosehulman.schaffll.weathertowear.fragments.ClosetFragment;
 
-import static edu.rosehulman.schaffll.weathertowear.ClothingItemList.getReturnClothingItemList;
+//import static edu.rosehulman.schaffll.weathertowear.ClothingItemList.getReturnClothingItemList;
 
 /**
  * Created by Kiana on 2/11/17.
@@ -68,53 +68,23 @@ public class Calculations {
             weatherNum = 2;
         }
 
-        ClothingItemList mClothingItems = new ClothingItemList(mBoolList);
-        userClothingItems = mClothingItems.getReturnClothingItemList();
-
-        userClothingItems = getReturnClothingItemList();
-        //getReturnClothingItemList();
-        int i = userClothingItems.size();
-
-
 
 
     }
 
-    public void setBooleanList(boolean t, int position){
-        if (t != false){
-            mFinalBool.add(position, true);
-            Log.d("boolean", "BOOLEAN DOESN't EQUAL FALSE");
-        }
-        else{
-            mFinalBool.add(position, true);
-        }
-        boolean te = mFinalBool.get(position);
-        if (te){
-            Log.d("t", "set to true");
-        }
-    }
-//
-//    public boolean[] getBooleanList(){
-//        return mFinalBool;
-//    }
 
 
     public void createNewOutfits() {
-        userClothingItems = getReturnClothingItemList();
-        int i = userClothingItems.size();
+        ClothingItemList mClothes = new ClothingItemList(mBoolList);
+        userClothingItems = mClothes.getReturnClothingItemList();
 
 
-        Log.d("tst", "idk: "+ i);
-//        for(int i = 0; i < mFinalBool.size(); i++){
-//            if (mFinalBool.get(i) == true){
-//                Log.d("yes", "true!");
-//            }
-//        }
-//
-//        ClothingItemList mClothingItems = new ClothingItemList(mBoolList);
-        //userClothingItems = mClothingItems.getReturnClothingItemList();
-        //use the available clothing items list
-        Log.d("create outfit", "create outfit is used");
+        Log.d("OUTFIT_TEST", "0" + userClothingItems.get(0).getClothingName());
+        Log.d("OUTFIT_TEST", "1" + userClothingItems.get(1).getClothingName());
+        Log.d("OUTFIT_TEST", "2" + userClothingItems.get(2).getClothingName());
+        Log.d("OUTFIT_TEST", "3" + userClothingItems.get(3).getClothingName());
+        Log.d("OUTFIT_TEST", "4" + userClothingItems.get(4).getClothingName());
+        Log.d("OUTFIT_SIZE", String.valueOf(userClothingItems.size()));
     }
 
 
