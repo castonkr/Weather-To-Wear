@@ -17,27 +17,27 @@ public class ClothingItemList {
     public List<ClothingItem> returnClothingItemList = new ArrayList<>();
 
     {
-        ClothingItem blouse = new ClothingItem("Blouse", 0, 0, 0);
-        ClothingItem boots = new ClothingItem("Boots", 6, -1, 1);
-        ClothingItem cardigan = new ClothingItem("Cardigan", 1, 0, 0);
-        ClothingItem dress = new ClothingItem("Dress", 5, 0, 0);
-        ClothingItem gloves = new ClothingItem("Gloves", 7, -1, 0);
-        ClothingItem hat = new ClothingItem("Hat", 0, -1, 0);
-        ClothingItem hoody = new ClothingItem("Hoody", 0, 0, 0);
-        ClothingItem jacket = new ClothingItem("Jacket", 0, -1, 0);
-        ClothingItem jeans = new ClothingItem("Jeans", 0, 0, 0);
-        ClothingItem sandals = new ClothingItem("Sandals", 0, 2, 0);
-        ClothingItem scarf = new ClothingItem("Scarf", 0, -1, 0);
-        ClothingItem shorts = new ClothingItem("Shorts", 0, 1, 0);
-        ClothingItem skirt = new ClothingItem("Skirt", 0, 0, 0);
-        ClothingItem sneakers = new ClothingItem("Sneakers", 0, 0, 0);
-        ClothingItem sweater = new ClothingItem("Sweater", 0, -1, 0);
-        ClothingItem sweatpants = new ClothingItem("Sweatpants", 0, 0, 0);
-        ClothingItem sweatshirt = new ClothingItem("Sweatshirt", 0, -1, 0);
-        ClothingItem tshirt = new ClothingItem("T-Shirt", 0, 0, 0);
-        ClothingItem tanktop = new ClothingItem("Tanktop", 0, 1, 0);
-        ClothingItem umbrella = new ClothingItem("Umbrella", 0, 0, 0);
-        ClothingItem wintercoat = new ClothingItem("Winter Coat", 0, -2, 0);
+        ClothingItem blouse = new ClothingItem("Blouse", 1, 0, 0);
+        ClothingItem boots = new ClothingItem("Boots", 3, -1, 1);
+        ClothingItem cardigan = new ClothingItem("Cardigan", 4, 0, 0);
+        ClothingItem dress = new ClothingItem("Dress", 1, 0, 0);
+        ClothingItem gloves = new ClothingItem("Gloves", 5, -1, 0);
+        ClothingItem hat = new ClothingItem("Hat", 5, -1, 0);
+        ClothingItem hoody = new ClothingItem("Hoody", 4, 0, 0);
+        ClothingItem jacket = new ClothingItem("Jacket", 4, -1, 0);
+        ClothingItem jeans = new ClothingItem("Jeans", 2, 0, 0);
+        ClothingItem sandals = new ClothingItem("Sandals", 3, 2, 0);
+        ClothingItem scarf = new ClothingItem("Scarf", 5, -1, 0);
+        ClothingItem shorts = new ClothingItem("Shorts", 2, 1, 0);
+        ClothingItem skirt = new ClothingItem("Skirt", 2, 0, 0);
+        ClothingItem sneakers = new ClothingItem("Sneakers", 3, 0, 0);
+        ClothingItem sweater = new ClothingItem("Sweater", 1, -1, 0);
+        ClothingItem sweatpants = new ClothingItem("Sweatpants", 2, 0, 0);
+        ClothingItem sweatshirt = new ClothingItem("Sweatshirt", 1, -1, 0);
+        ClothingItem tshirt = new ClothingItem("T-Shirt", 1, 0, 0);
+        ClothingItem tanktop = new ClothingItem("Tanktop", 1, 1, 0);
+        ClothingItem umbrella = new ClothingItem("Umbrella", 6, 0, 0);
+        ClothingItem wintercoat = new ClothingItem("Winter Coat", 4, -2, 0);
 
 
         allClothingItemList.add(blouse);
