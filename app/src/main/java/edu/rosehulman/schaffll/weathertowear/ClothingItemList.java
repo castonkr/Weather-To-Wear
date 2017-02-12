@@ -63,6 +63,10 @@ public class ClothingItemList {
         allClothingItemList.add(wintercoat);
     }
 
+    public ClothingItemList() {
+        //
+    }
+
     public ClothingItemList(boolean[] clothingItemsinFirebase) {
         Log.d("test", "in the constructor");
         mBooleanClothingItems = clothingItemsinFirebase;
