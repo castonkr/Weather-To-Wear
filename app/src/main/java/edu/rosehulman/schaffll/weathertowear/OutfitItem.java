@@ -141,6 +141,11 @@ public class OutfitItem implements Parcelable{
 
     }
 
+    public OutfitItem(){
+        //leave empty
+    }
+
+
     protected OutfitItem(Parcel in) {
 
     }

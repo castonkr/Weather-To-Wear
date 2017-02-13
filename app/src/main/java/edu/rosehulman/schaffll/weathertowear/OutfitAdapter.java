@@ -89,7 +89,7 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             OutfitItem outfit = dataSnapshot.getValue(OutfitItem.class);
             //outfit.setKey(dataSnapshot.getKey());
-            Log.d("kiki", dataSnapshot.getKey());
+            //Log.d("kiki", dataSnapshot.getKey());
             mOutfitItems.add(outfit);
             notifyDataSetChanged();
         }
