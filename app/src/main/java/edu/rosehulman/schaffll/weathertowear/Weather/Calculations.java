@@ -11,7 +11,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import edu.rosehulman.schaffll.weathertowear.ClothingItem;
 import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
@@ -232,8 +235,30 @@ public class Calculations {
 //        Log.d("OPtions", outfitOptions.get(1).getmType5().getClothingName());
 //        Log.d("OPtions", outfitOptions.get(1).getmType6().getClothingName());
 
+        ArrayList<Integer> random = new ArrayList<>();
+        ArrayList<OutfitItem> fiveOutfitOptions = new ArrayList<>();
+
+
         if (outfitOptions.size() > 5){
-            outfitOptions = outfitOptions.subList(0,5);
+            for (int i = 0; i < outfitOptions.size(); i++){
+                random.add(i);
+            }
+            Collections.shuffle(random);
+            fiveOutfitOptions.add(outfitOptions.get(random.get(0)));
+            fiveOutfitOptions.add(outfitOptions.get(random.get(1)));
+            fiveOutfitOptions.add(outfitOptions.get(random.get(2)));
+            fiveOutfitOptions.add(outfitOptions.get(random.get(3)));
+            fiveOutfitOptions.add(outfitOptions.get(random.get(4)));
+
+        }
+        else{
+            for (int i = 0; i < outfitOptions.size(); i++){
+                fiveOutfitOptions.add(outfitOptions.get(i));
+            }
+        }
+
+        for(int i = 0; i < fiveOutfitOptions.size(); i++){
+            fiveOutfitOptions.get(i).setOutfitName("Outfit: " + (i+1));
         }
 
 //        Log.d("tag", "" + outfitOptions.size());
@@ -246,7 +271,7 @@ public class Calculations {
 //        Log.d("TYPE", "5: " + type5Clothes.size());
 //        Log.d("TYPE", "6: " + type6Clothes.size());
 
-        return outfitOptions;
+        return fiveOutfitOptions;
 
 
 

@@ -16,6 +16,7 @@ public class OutfitItem implements Parcelable{
     private ClothingItem mType4;
     private ClothingItem mType5;
     private ClothingItem mType6;
+    private String mOutfitName;
 
 
     public ClothingItem getmType1() {
@@ -163,6 +164,14 @@ public class OutfitItem implements Parcelable{
 
     public String getOutfitItemName(int position){
         return "outfit 1";
+    }
+
+    public void setOutfitName(String outfitName){
+        mOutfitName = outfitName;
+    }
+
+    public String getOutfitName(){
+        return mOutfitName;
     }
 
     @Override

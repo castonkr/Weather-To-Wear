@@ -67,7 +67,7 @@ public class NewOutfitDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_new_outfit_detail, container, false);
 
         TextView outfitTitleView = (TextView) view.findViewById(R.id.textOutfitTitle);
-        outfitTitleView.setText(mOutfitItem.getOutfitItemName(0));
+        outfitTitleView.setText(mOutfitItem.getOutfitName());
 
         TextView jacketView = (TextView) view.findViewById(R.id.textJacket);
         //jacketView.setText("test jacket");

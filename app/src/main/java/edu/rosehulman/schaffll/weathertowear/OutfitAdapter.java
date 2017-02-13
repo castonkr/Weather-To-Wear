@@ -52,7 +52,7 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
     @Override
     public void onBindViewHolder(OutfitAdapter.ViewHolder holder, int position) {
         final OutfitItem outfitItem = mOutfitItems.get(position);
-        holder.mTitleTextView.setText(outfitItem.getOutfitItemName(position));
+        holder.mTitleTextView.setText(outfitItem.getOutfitName());
 //        holder.mTitleTextView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

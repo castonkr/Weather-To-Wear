@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity
         args.putString(FIREBASE_USER_ID, id);
         homeFragment.setArguments(args);
         ft.replace(R.id.content_main, homeFragment, "Home");
+
         ft.commit();
     }
 
