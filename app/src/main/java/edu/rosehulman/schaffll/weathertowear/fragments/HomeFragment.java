@@ -156,6 +156,11 @@ public class HomeFragment extends Fragment {
                 weatherImage.setImageBitmap(image);
             }
 
+            //if weather is null, set a default city, temp, etc.
+//            if (weather.location.getCity() == null){
+//                Log.d("wtw", "weather is null");
+//            }
+
             locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
             float tempC = Math.round((weather.temperature.getTemp() - 273.15));
             tempF = Math.round(tempC * 1.8) + 32;

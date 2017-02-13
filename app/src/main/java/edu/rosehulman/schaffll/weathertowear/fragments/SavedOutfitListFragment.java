@@ -40,6 +40,7 @@ public class SavedOutfitListFragment extends Fragment{
     private SavedOutfitAdapter mAdapter;
     private String[] mClothingItems;
     private DatabaseReference mBooleanRef;
+    private DatabaseReference mSavedOutfitRef;
     private boolean mBoolList[];
     private ClothingItemList mClothingItemList;
     private Callback mCallback;
@@ -56,6 +57,7 @@ public class SavedOutfitListFragment extends Fragment{
         setHasOptionsMenu(true);
         String firebasePath = getArguments().getString(FIREBASE_PATH);
         mBooleanRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("booleanArray");
+        mSavedOutfitRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
     }
 
     @Override
@@ -64,7 +66,7 @@ public class SavedOutfitListFragment extends Fragment{
         // Inflate the layout for this fragment
         RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_new_outfit, container, false);
         view.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new SavedOutfitAdapter(getContext(), mCallback);
+        mAdapter = new SavedOutfitAdapter(getContext(), mCallback, mSavedOutfitRef);
 
         view.setAdapter(mAdapter);
         mClothingItemList = new ClothingItemList();
