@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
 
     public static final String FIREBASE_PATH = "FIREBASE_PATH";
     public static final String FIREBASE_USER_ID = "FIREBASE_USER_ID";
-
+    private String weatherData;
     private String mUser;
     private DatabaseReference mUserRef;
     private OnStartPressedListener mListener;
@@ -133,12 +133,12 @@ public class HomeFragment extends Fragment {
 
         protected Weather doInBackground(String... params) {
             Weather weather = new Weather();
-            String data = ((new WeatherHttpClient()).getWeatherData(params[0]));
-            //I think data is null when the error occurs
-            if (data != null) {
+            weatherData = ((new WeatherHttpClient()).getWeatherData(params[0]));
+
+            if (weatherData != null) {
                 try {
                     // Get Weather Data
-                    weather = JSONWeatherParser.getWeather(data);
+                    weather = JSONWeatherParser.getWeather(weatherData);
                     // Get Weather Icon
                     weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
                 } catch (JSONException e) {
@@ -156,12 +156,14 @@ public class HomeFragment extends Fragment {
                 weatherImage.setImageBitmap(image);
             }
 
-            locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
-            float tempC = Math.round((weather.temperature.getTemp() - 273.15));
-            tempF = Math.round(tempC * 1.8) + 32;
-            tempText.setText("" + tempF + " *F");
-            weatherID = weather.currentCondition.getWeatherId();
-            conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
+            if (weatherData != null) {
+                locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
+                float tempC = Math.round((weather.temperature.getTemp() - 273.15));
+                tempF = Math.round(tempC * 1.8) + 32;
+                tempText.setText("" + tempF + " *F");
+                weatherID = weather.currentCondition.getWeatherId();
+                conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
+            }
         }
 
     }
