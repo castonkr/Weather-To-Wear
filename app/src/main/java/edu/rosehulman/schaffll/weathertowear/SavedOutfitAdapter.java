@@ -29,15 +29,12 @@ public class SavedOutfitAdapter extends RecyclerView.Adapter<SavedOutfitAdapter.
     private ArrayList<OutfitItem> mOutfitItems;
     private SavedOutfitListFragment.Callback mCallback;
     LayoutInflater mInflater;
-    private DatabaseReference mSavedOutfitsRef;
 
-    public SavedOutfitAdapter(Context context, SavedOutfitListFragment.Callback callback, DatabaseReference databaseReference) {
+    public SavedOutfitAdapter(Context context, SavedOutfitListFragment.Callback callback) {
         mOutfitItems = new ArrayList<>();
         mInflater = LayoutInflater.from(context);
-//        mOutfitItems.add(0, new OutfitItem(new ClothingItem("top", 2, 30, 2)));
+        mOutfitItems.add(0, new OutfitItem(new ClothingItem("top", 2, 30, 2)));
         mCallback = callback;
-        mSavedOutfitsRef = databaseReference;
-        mSavedOutfitsRef.addChildEventListener(new SavedOutfitsChildEventListener());
     }
 
     @Override
@@ -49,51 +46,20 @@ public class SavedOutfitAdapter extends RecyclerView.Adapter<SavedOutfitAdapter.
     @Override
     public void onBindViewHolder(SavedOutfitAdapter.ViewHolder holder, int position) {
         final OutfitItem outfitItem = mOutfitItems.get(position);
-        holder.mTitleTextView.setText(outfitItem.getOutfitName());
-//        holder.mTitleTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d("WTW", "saved outfit has been clicked on");
-//                mCallback.onSavedOutfitSelected(outfitItem);
-//            }
-//        });
+        holder.mTitleTextView.setText(outfitItem.getOutfitItemName(position));
+        holder.mTitleTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("WTW", "saved outfit has been clicked on");
+                mCallback.onSavedOutfitSelected(outfitItem);
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
         return mOutfitItems.size();
-    }
-
-
-    class SavedOutfitsChildEventListener implements ChildEventListener{
-
-        @Override
-        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-            OutfitItem outfit = dataSnapshot.getValue(OutfitItem.class);
-            mOutfitItems.add(outfit);
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-        }
-
-        @Override
-        public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-        }
-
-        @Override
-        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-            Log.e("P", databaseError.getMessage());
-        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

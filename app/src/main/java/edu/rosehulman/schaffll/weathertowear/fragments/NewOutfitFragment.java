@@ -197,6 +197,7 @@ public class NewOutfitFragment extends Fragment {
 //                        mClothingItemList.remove(i);
 //                    }
 //                }
+                //TODO: save outfit name to firebase and saved outfit adapter here
                 dialog.dismiss();
             }
         });
