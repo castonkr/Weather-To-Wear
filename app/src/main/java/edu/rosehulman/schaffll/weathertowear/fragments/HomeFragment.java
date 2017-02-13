@@ -134,14 +134,16 @@ public class HomeFragment extends Fragment {
         protected Weather doInBackground(String... params) {
             Weather weather = new Weather();
             String data = ((new WeatherHttpClient()).getWeatherData(params[0]));
-            Log.d("Task", data);
-            try {
-                // Get Weather Data
-                weather = JSONWeatherParser.getWeather(data);
-                // Get Weather Icon
-                weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
-            } catch (JSONException e) {
-                e.printStackTrace();
+            //I think data is null when the error occurs
+            if (data != null) {
+                try {
+                    // Get Weather Data
+                    weather = JSONWeatherParser.getWeather(data);
+                    // Get Weather Icon
+                    weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             return weather;
         }

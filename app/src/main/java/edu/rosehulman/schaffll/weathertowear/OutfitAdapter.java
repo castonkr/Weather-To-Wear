@@ -38,6 +38,7 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
     public OutfitAdapter(Context context, NewOutfitFragment.Callback callback, DatabaseReference firebaseDatabase) {
         //mOutfitItems = PreferencesFragment.userClothingOptions;
         mOutfitItems = new ArrayList<>();
+        mSavedOutfitsItems = new ArrayList<>();
         mInflater = LayoutInflater.from(context);
         Log.d("check", ""+mOutfitItems.size());
         Log.d("check", ""+firebaseDatabase);
@@ -47,6 +48,7 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
         mOutfitsRef.addChildEventListener(new NewOutfitsChildEventListener());
 
         mSavedOutfitsRef = firebaseDatabase.child("savedOutfits");
+        mSavedOutfitsRef.addChildEventListener(new SavedOutfitsChildEventListener());
         //mSavedOutfitsRef.addChildEventListener(new SavedOutfitsChildEventListener())
     }
 
@@ -144,6 +146,67 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
             Log.e("P", databaseError.getMessage());
         }
     }
+
+    class SavedOutfitsChildEventListener implements ChildEventListener{
+
+        @Override
+        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            OutfitItem outfit = dataSnapshot.getValue(OutfitItem.class);
+            //outfit.setKey(dataSnapshot.getKey());
+            //Log.d("kiki", dataSnapshot.getKey());
+            mSavedOutfitsItems.add(outfit);
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//            Log.d("PK", "on child changed called");
+//            String key = dataSnapshot.getKey();
+//            OutfitItem updateOutfit = dataSnapshot.getValue(OutfitItem.class);
+////            Log.d("PK", updatePic.getCaption());
+//            for (OutfitItem o : mOutfitItems){
+//                if (o.getKey().equals(key)){
+//                    o.setmType1(updateOutfit.getmType1());
+//                    o.setmType2(updateOutfit.getmType2());
+//                    o.setmType3(updateOutfit.getmType3());
+//                    o.setmType4(updateOutfit.getmType4());
+//                    o.setmType5(updateOutfit.getmType5());
+//                    o.setmType6(updateOutfit.getmType6());
+//                    o.setOutfitName(updateOutfit.getOutfitName());
+////                    p.setUrl(updatePic.getUrl());
+////                    p.setValues(updatePic);
+//                    notifyDataSetChanged();
+//                    return;
+//               }
+//            }
+        }
+
+        @Override
+        public void onChildRemoved(DataSnapshot dataSnapshot) {
+//            String keyToRemove = dataSnapshot.getKey();
+//            for(int i = 0; i < mOutfitItems.size();i++){
+//                if(keyToRemove.equals(mOutfitItems.get(i).getKey())){
+//                    mOutfitItems.remove(i);
+//                    notifyDataSetChanged();
+//                    return;
+//               }
+//            }
+        }
+
+        @Override
+        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            Log.e("P", databaseError.getMessage());
+        }
+    }
+
+
+
+
 //    @Override
 //    public void onCancelled(DatabaseError databaseError) {
 //
@@ -170,20 +233,17 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 //
 //                    builder.create().show();
                     final OutfitItem outfitItem = mOutfitItems.get(getAdapterPosition());
-                    outfitItem.setmType1(mOutfitItems.get(getAdapterPosition()).getmType1());
-                    outfitItem.setmType2(mOutfitItems.get(getAdapterPosition()).getmType2());
-                    outfitItem.setmType3(mOutfitItems.get(getAdapterPosition()).getmType3());
-                    outfitItem.setmType4(mOutfitItems.get(getAdapterPosition()).getmType4());
-                    outfitItem.setmType5(mOutfitItems.get(getAdapterPosition()).getmType5());
-                    outfitItem.setmType6(mOutfitItems.get(getAdapterPosition()).getmType6());
-                    outfitItem.setOutfitName(mOutfitItems.get(getAdapterPosition()).getOutfitName());
+//                    outfitItem.setmType1(mOutfitItems.get(getAdapterPosition()).getmType1());
+//                    outfitItem.setmType2(mOutfitItems.get(getAdapterPosition()).getmType2());
+//                    outfitItem.setmType3(mOutfitItems.get(getAdapterPosition()).getmType3());
+//                    outfitItem.setmType4(mOutfitItems.get(getAdapterPosition()).getmType4());
+//                    outfitItem.setmType5(mOutfitItems.get(getAdapterPosition()).getmType5());
+//                    outfitItem.setmType6(mOutfitItems.get(getAdapterPosition()).getmType6());
+//                    outfitItem.setOutfitName(mOutfitItems.get(getAdapterPosition()).getOutfitName());
 
-                   // Log.d("adapter", "" + outfitItem.getOutfitName());
+                    Log.d("adapter", "" + outfitItem.getOutfitName());
                     final View contentView = mInflater.inflate(R.layout.dialog_save_outfit, null, false);
                     final EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
-
-
-
 
 
 //                    final EditText serviceView = (EditText) contentView.findViewById(R.id.service);
@@ -208,9 +268,12 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
                                      //firebasePush(outfitItem);
                                     //OutfitItem outfitItem1 = mOutfitItems.get(getAdapterPosition());
                                     //EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
-                                    outfitItem.setOutfitName(editOutfitName.getText().toString());
+                                    //OutfitItem temp = outfitItem;
+                                    //temp.setOutfitName(editOutfitName.getText().toString());
+                                    mOutfitItems.remove(getAdapterPosition());
+                                    //outfitItem.setOutfitName(editOutfitName.getText().toString());
                                     mSavedOutfitsItems.add(outfitItem);
-                                    mSavedOutfitsRef.child("savedOutfits").setValue(mSavedOutfitsItems);
+                                    mSavedOutfitsRef.setValue(mSavedOutfitsItems);
 
                                 }
                             })
