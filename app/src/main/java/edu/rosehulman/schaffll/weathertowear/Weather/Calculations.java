@@ -111,11 +111,11 @@ public class Calculations {
         }
         Log.d("OUTFIT_new outfit", ""+weatherNum);
         Log.d("OUTFIT_new outfit", String.valueOf(availableClothesTemp.size()));
-        Log.d("OUTFIT_new outfit", "0" + availableClothesTemp.get(0).getClothingName());
-        Log.d("OUTFIT_new outfit", "1" + availableClothesTemp.get(1).getClothingName());
-        Log.d("OUTFIT_new outfit", "2" + availableClothesTemp.get(2).getClothingName());
-        Log.d("OUTFIT_new outfit", "3" + availableClothesTemp.get(3).getClothingName());
-        Log.d("OUTFIT_new outfit", "4" + availableClothesTemp.get(4).getClothingName());
+//        Log.d("OUTFIT_new outfit", "0" + availableClothesTemp.get(0).getClothingName());
+//        Log.d("OUTFIT_new outfit", "1" + availableClothesTemp.get(1).getClothingName());
+//        Log.d("OUTFIT_new outfit", "2" + availableClothesTemp.get(2).getClothingName());
+//        Log.d("OUTFIT_new outfit", "3" + availableClothesTemp.get(3).getClothingName());
+//        Log.d("OUTFIT_new outfit", "4" + availableClothesTemp.get(4).getClothingName());
 
 
         for (int i = 0; i < availableClothesTemp.size(); i++){

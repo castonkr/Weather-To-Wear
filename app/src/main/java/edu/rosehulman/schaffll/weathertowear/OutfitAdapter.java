@@ -29,9 +29,11 @@ import edu.rosehulman.schaffll.weathertowear.fragments.PreferencesFragment;
 public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder>{
 
     private List<OutfitItem> mOutfitItems;
+    private List<OutfitItem> mSavedOutfitsItems;
     private NewOutfitFragment.Callback mCallback;
     private LayoutInflater mInflater;
     private DatabaseReference mOutfitsRef;
+    private DatabaseReference mSavedOutfitsRef;
 
     public OutfitAdapter(Context context, NewOutfitFragment.Callback callback, DatabaseReference firebaseDatabase) {
         //mOutfitItems = PreferencesFragment.userClothingOptions;
@@ -41,8 +43,11 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
         Log.d("check", ""+firebaseDatabase);
         //mOutfitItems.add(0, new OutfitItem(new ClothingItem("top", 2, 30, 2)));
         mCallback = callback;
-        mOutfitsRef = firebaseDatabase;
+        mOutfitsRef = firebaseDatabase.child("newOutfits");
         mOutfitsRef.addChildEventListener(new NewOutfitsChildEventListener());
+
+        mSavedOutfitsRef = firebaseDatabase.child("savedOutfits");
+        //mSavedOutfitsRef.addChildEventListener(new SavedOutfitsChildEventListener())
     }
 
     @Override
@@ -164,10 +169,12 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 //                    builder.setView(view);
 //
 //                    builder.create().show();
-                    final OutfitItem outfitItem = mOutfitItems.get(getAdapterPosition());
-
+                    //final OutfitItem outfitItem = mOutfitItems.get(getAdapterPosition());
+                   // Log.d("adapter", "" + outfitItem.getOutfitName());
                     final View contentView = mInflater.inflate(R.layout.dialog_save_outfit, null, false);
-                    final EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
+                    //final EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
+
+
 
 
 
@@ -190,7 +197,13 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 //                                    password.setPassword(passwordView.getText().toString());
 //                                    String username = usernameView.getText().toString();
 //                                    password.setUsername(username.isEmpty() ? null : username);
-                                     firebasePush(outfitItem);
+                                     //firebasePush(outfitItem);
+                                    OutfitItem outfitItem1 = mOutfitItems.get(getAdapterPosition());
+                                    EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
+                                    //outfitItem1.setOutfitName(editOutfitName.getText().toString());
+                                    mSavedOutfitsItems.add(outfitItem1);
+                                    mSavedOutfitsRef.child("savedOutfits").setValue(mSavedOutfitsItems);
+
                                 }
                             })
                             .create();
