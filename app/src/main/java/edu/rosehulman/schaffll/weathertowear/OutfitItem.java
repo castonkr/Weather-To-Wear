@@ -16,6 +16,7 @@ public class OutfitItem implements Parcelable{
     private ClothingItem mType4;
     private ClothingItem mType5;
     private ClothingItem mType6;
+    //private String key;
     private String mOutfitName;
 
 
@@ -173,6 +174,14 @@ public class OutfitItem implements Parcelable{
     public String getOutfitName(){
         return mOutfitName;
     }
+//
+//    public void setKey(String key) {
+//        this.key = key;
+//    }
+//
+//    public String getKey(){
+//        return this.getKey();
+//    }
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
