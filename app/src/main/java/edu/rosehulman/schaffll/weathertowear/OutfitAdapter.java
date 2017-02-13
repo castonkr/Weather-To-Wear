@@ -169,10 +169,18 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 //                    builder.setView(view);
 //
 //                    builder.create().show();
-                    //final OutfitItem outfitItem = mOutfitItems.get(getAdapterPosition());
+                    final OutfitItem outfitItem = mOutfitItems.get(getAdapterPosition());
+                    outfitItem.setmType1(mOutfitItems.get(getAdapterPosition()).getmType1());
+                    outfitItem.setmType2(mOutfitItems.get(getAdapterPosition()).getmType2());
+                    outfitItem.setmType3(mOutfitItems.get(getAdapterPosition()).getmType3());
+                    outfitItem.setmType4(mOutfitItems.get(getAdapterPosition()).getmType4());
+                    outfitItem.setmType5(mOutfitItems.get(getAdapterPosition()).getmType5());
+                    outfitItem.setmType6(mOutfitItems.get(getAdapterPosition()).getmType6());
+                    outfitItem.setOutfitName(mOutfitItems.get(getAdapterPosition()).getOutfitName());
+
                    // Log.d("adapter", "" + outfitItem.getOutfitName());
                     final View contentView = mInflater.inflate(R.layout.dialog_save_outfit, null, false);
-                    //final EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
+                    final EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
 
 
 
@@ -198,11 +206,19 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 //                                    String username = usernameView.getText().toString();
 //                                    password.setUsername(username.isEmpty() ? null : username);
                                      //firebasePush(outfitItem);
+
                                     OutfitItem outfitItem = mOutfitItems.get(getAdapterPosition());
                                     EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
                                     outfitItem.setOutfitName(editOutfitName.getText().toString());
                                     mSavedOutfitsItems.add(outfitItem);
                                     mSavedOutfitsRef.setValue(mSavedOutfitsItems);
+
+                                    //OutfitItem outfitItem1 = mOutfitItems.get(getAdapterPosition());
+                                    //EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
+//                                    outfitItem.setOutfitName(editOutfitName.getText().toString());
+//                                    mSavedOutfitsItems.add(outfitItem);
+//                                    mSavedOutfitsRef.child("savedOutfits").setValue(mSavedOutfitsItems);
+
 
                                 }
                             })
