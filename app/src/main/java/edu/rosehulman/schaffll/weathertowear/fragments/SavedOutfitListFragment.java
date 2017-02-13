@@ -36,10 +36,10 @@ public class SavedOutfitListFragment extends Fragment{
 
     public static final String FIREBASE_PATH = "FIREBASE_PATH";
 
-    //private MenuItem save;
     private SavedOutfitAdapter mAdapter;
     private String[] mClothingItems;
     private DatabaseReference mBooleanRef;
+    private DatabaseReference mSavedOutfitsRef;
     private boolean mBoolList[];
     private ClothingItemList mClothingItemList;
     private Callback mCallback;
@@ -56,6 +56,7 @@ public class SavedOutfitListFragment extends Fragment{
         setHasOptionsMenu(true);
         String firebasePath = getArguments().getString(FIREBASE_PATH);
         mBooleanRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("booleanArray");
+        mSavedOutfitsRef = FirebaseDatabase.getInstance().getReference().child("savedOutfits");
     }
 
     @Override
@@ -64,7 +65,7 @@ public class SavedOutfitListFragment extends Fragment{
         // Inflate the layout for this fragment
         RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_new_outfit, container, false);
         view.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new SavedOutfitAdapter(getContext(), mCallback);
+        mAdapter = new SavedOutfitAdapter(getContext(), mCallback, mSavedOutfitsRef);
 
         view.setAdapter(mAdapter);
         mClothingItemList = new ClothingItemList();
@@ -191,7 +192,6 @@ public class SavedOutfitListFragment extends Fragment{
 //                        mClothingItemList.remove(i);
 //                    }
 //                }
-                //TODO: save outfit name to firebase and saved outfit adapter here
                 dialog.dismiss();
             }
         });
