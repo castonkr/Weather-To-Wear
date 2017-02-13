@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +25,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.rosehulman.schaffll.weathertowear.OutfitAdapter;
+import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
 import edu.rosehulman.schaffll.weathertowear.Weather.Calculations;
 import edu.rosehulman.schaffll.weathertowear.Weather.JSONWeatherParser;
@@ -34,21 +40,25 @@ import edu.rosehulman.schaffll.weathertowear.Weather.WeatherHttpClient;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener{
 
     public static final String FIREBASE_PATH = "FIREBASE_PATH";
     public static final String FIREBASE_USER_ID = "FIREBASE_USER_ID";
     private String weatherData;
     private String mUser;
     private DatabaseReference mUserRef;
+    private DatabaseReference mOutfitsRef;
     private OnStartPressedListener mListener;
     private Toolbar mToolbar;
     private TextView locationText;
     private TextView tempText;
     private TextView conditionDesciption;
     private ImageView weatherImage;
+    private Button buttonOutfit1;
+    private Button buttonOutfit2;
     public static float tempF;
     public static int weatherID;
+    public List<OutfitItem> mSavedOutfitsItems;
 
     String zipcode;
 
@@ -67,10 +77,22 @@ public class HomeFragment extends Fragment {
         mUser = getArguments().getString(FIREBASE_USER_ID);
         mUserRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
 
+        mOutfitsRef = mUserRef.child("newOutfits");
+        mOutfitsRef.addChildEventListener(new NewOutfitsChildEventListener());
+
+        mSavedOutfitsItems = new ArrayList<>();
+
+
         locationText = (TextView) view.findViewById(R.id.locationTextView);
         tempText = (TextView) view.findViewById(R.id.tempTextView);
         conditionDesciption = (TextView) view.findViewById(R.id.descriptionTextView);
         weatherImage = (ImageView) view.findViewById(R.id.weatherImageView);
+        buttonOutfit1 = (Button) view.findViewById(R.id.outfitChoiceOne);
+        buttonOutfit2 = (Button) view.findViewById(R.id.outfitChoiceTwo);
+
+
+
+
 
         mUserRef.child("zipcode").addValueEventListener(new ValueEventListener() {
             @Override
@@ -87,24 +109,86 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ((Button)view.findViewById(R.id.outfitChoiceOne)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mListener.onStartPressed();
-            }
+        buttonOutfit1.setOnClickListener(this);
+        buttonOutfit2.setOnClickListener(this);
 
-        });
-
-        ((Button)view.findViewById(R.id.outfitChoiceTwo)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mListener.onStartPressed();
-            }
-
-        });
+//        view.findViewById(R.id.outfitChoiceOne).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mListener.onStartPressed();
+//                Log.d("click", "button 1 pressed, yes");
+//            }
+//
+//        });
+//
+//        view.findViewById(R.id.outfitChoiceTwo).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mListener.onStartPressed();
+//                Log.d("click", "button 2 pressed, yes");
+//            }
+//
+//        });
         return view;
     }
 
+
+    class NewOutfitsChildEventListener implements ChildEventListener {
+
+        @Override
+        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            OutfitItem outfit = dataSnapshot.getValue(OutfitItem.class);
+            //outfit.setKey(dataSnapshot.getKey());
+            //Log.d("kiki", dataSnapshot.getKey());
+            mSavedOutfitsItems.add(outfit);
+            //notifyDataSetChanged();
+        }
+
+        @Override
+        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//            Log.d("PK", "on child changed called");
+//            String key = dataSnapshot.getKey();
+//            OutfitItem updateOutfit = dataSnapshot.getValue(OutfitItem.class);
+////            Log.d("PK", updatePic.getCaption());
+//            for (OutfitItem o : mOutfitItems){
+//                if (o.getKey().equals(key)){
+//                    o.setmType1(updateOutfit.getmType1());
+//                    o.setmType2(updateOutfit.getmType2());
+//                    o.setmType3(updateOutfit.getmType3());
+//                    o.setmType4(updateOutfit.getmType4());
+//                    o.setmType5(updateOutfit.getmType5());
+//                    o.setmType6(updateOutfit.getmType6());
+//                    o.setOutfitName(updateOutfit.getOutfitName());
+////                    p.setUrl(updatePic.getUrl());
+////                    p.setValues(updatePic);
+//                    notifyDataSetChanged();
+//                    return;
+//               }
+//            }
+        }
+
+        @Override
+        public void onChildRemoved(DataSnapshot dataSnapshot) {
+//            String keyToRemove = dataSnapshot.getKey();
+//            for(int i = 0; i < mOutfitItems.size();i++){
+//                if(keyToRemove.equals(mOutfitItems.get(i).getKey())){
+//                    mOutfitItems.remove(i);
+//                    notifyDataSetChanged();
+//                    return;
+//               }
+//            }
+        }
+
+        @Override
+        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            Log.e("P", databaseError.getMessage());
+        }
+    }
 
 
     @Override
@@ -124,8 +208,23 @@ public class HomeFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.outfitChoiceOne:
+                OutfitItem temp = mSavedOutfitsItems.get(0);
+                mListener.onStartPressed(temp);
+                Log.d("click", "outfit one has been clicked");
+                break;
+            case R.id.outfitChoiceTwo:
+                OutfitItem temp2 = mSavedOutfitsItems.get(1);
+                mListener.onStartPressed(temp2);
+                Log.d("click", "outfit two has been clicked");
+        }
+    }
+
     public interface OnStartPressedListener {
-        public void onStartPressed();
+        void onStartPressed(OutfitItem o);
         void onLogout();
     }
 

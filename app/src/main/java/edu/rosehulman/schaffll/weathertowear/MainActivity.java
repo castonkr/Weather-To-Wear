@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import edu.rosehulman.rosefire.Rosefire;
 import edu.rosehulman.rosefire.RosefireResult;
@@ -250,8 +251,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onStartPressed() {
+    public void onStartPressed(OutfitItem i) {
+
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, new NewOutfitDetailFragment().newInstance(i));
+            ft.addToBackStack("detail");
+            ft.commit();
+
+
         //
+        Log.d("click", "a button has been pressed");
     }
 
     @Override
