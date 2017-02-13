@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_weather_to_wear"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -20,14 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MySavedOutfits"
-            android:label="@string/title_activity_my_saved_outfits"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MyNewOutfits"
-            android:label="@string/title_activity_my_new_outfits"
-            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>
