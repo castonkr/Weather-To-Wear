@@ -156,20 +156,7 @@ public class HomeFragment extends Fragment {
                 weatherImage.setImageBitmap(image);
             }
 
-<<<<<<< HEAD
-            //if weather is null, set a default city, temp, etc.
-//            if (weather.location.getCity() == null){
-//                Log.d("wtw", "weather is null");
-//            }
-
-            locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
-            float tempC = Math.round((weather.temperature.getTemp() - 273.15));
-            tempF = Math.round(tempC * 1.8) + 32;
-            tempText.setText("" + tempF + " *F");
-            weatherID = weather.currentCondition.getWeatherId();
-            conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
-=======
-            if (weatherData != null) {
+  if (weatherData != null) {
                 locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
                 float tempC = Math.round((weather.temperature.getTemp() - 273.15));
                 tempF = Math.round(tempC * 1.8) + 32;
@@ -177,7 +164,6 @@ public class HomeFragment extends Fragment {
                 weatherID = weather.currentCondition.getWeatherId();
                 conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
             }
->>>>>>> origin/master
         }
 
     }
