@@ -44,11 +44,11 @@ public class Calculations {
 
     private DatabaseReference mUserRef;
 
-    public Calculations(int hotTemp, int coldTemp, float currentTemp, int weatherID, boolean boolList[]) {
+    public Calculations(int hotTemp, int coldTemp, float currentTemp, boolean boolList[]) {
         mHotTemp = hotTemp;
         mColdTemp = coldTemp;
         mCurrentTemp = currentTemp;
-        mWeatherID = weatherID;
+        //mWeatherID = weatherID;
         mBoolList = boolList;
 
         int medianTemp = (coldTemp + hotTemp) / 2;

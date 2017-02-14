@@ -69,7 +69,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         mUserRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
         }
         currentTemp = HomeFragment.tempF;
-        weatherID = HomeFragment.weatherID;
+        //weatherID = HomeFragment.weatherID;
         //weatherCond = HomeFragment.
 
 
@@ -208,7 +208,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                 mUserRef.child("zipcode").setValue(zipCode.getText().toString());
                 mUserRef.child("hotTemp").setValue(hotTemp);
                 mUserRef.child("coldTemp").setValue(coldTemp);
-                Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, weatherID, mBooleanArray);
+                Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, mBooleanArray);
                 userClothingOptions = calc.createNewOutfits();
                 Log.d("linde", userClothingOptions.get(0).getKey());
                 mUserRef.child("newOutfits").setValue(userClothingOptions);

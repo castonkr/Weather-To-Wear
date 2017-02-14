@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private ImageButton buttonOutfit1;
     private ImageButton buttonOutfit2;
     public static int tempF;
-    public static int weatherID;
+    //public static int weatherID;
     public static String weatherCond;
     public List<OutfitItem> mSavedOutfitsItems;
     public TextView welcomeText;
@@ -266,21 +266,34 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             super.onPostExecute(weather);
             if (weather.iconData != null && weather.iconData.length > 0) {
                 Bitmap image = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
+//                Log.d("weather", ""+weather.iconData);
+//                Log.d("weather", ""+weather.iconData.length);
                 weatherImage.setImageBitmap(image);
             }
 
-  if (weatherData != null) {
+
+            if (weatherData != null) {
                 locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
                 float tempC = Math.round((weather.temperature.getTemp() - 273.15));
                 tempF = (int) (tempC * 1.8 + 32);
                 tempText.setText("" + tempF + " *F");
-                weatherID = weather.currentCondition.getWeatherId();
+                //weatherID = weather.currentCondition.getWeatherId();
                 weatherCond = weather.currentCondition.getCondition();
                 Log.d("rain?", weatherCond);
                 conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
             }
+            else{
+                locationText.setText("Terre Haute, US");
+                tempF = 50;
+                tempText.setText("" + tempF + " *F");
+                weatherCond = "Clear";
+                conditionDesciption.setText("Clear (default)");
+
+
+            }
         }
 
     }
+
 
 }
