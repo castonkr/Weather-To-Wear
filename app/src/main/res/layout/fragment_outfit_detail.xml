@@ -18,29 +18,6 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textJacket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textAccessory1"
-        android:layout_alignLeft="@+id/textAccessory1"
-        android:layout_alignStart="@+id/textAccessory1"
-        android:layout_marginBottom="57dp"
-        android:text="Jacket"
-        android:textColor="@color/colorMainText"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textOutfitTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textJacket"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="62dp"
-        android:text="Outfit Title"
-        android:textColor="@color/colorMainText"
-        android:textSize="40sp" />
-
-    <TextView
         android:id="@+id/textTops"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,20 +55,6 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textAccessory1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textBottoms"
-        android:layout_alignBottom="@+id/textBottoms"
-        android:layout_alignEnd="@+id/textMore"
-        android:layout_alignRight="@+id/textMore"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
-        android:text="Accessory 1"
-        android:textColor="@color/colorMainText"
-        android:textSize="20sp" />
-
-    <TextView
         android:id="@+id/textAccessory2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,6 +65,43 @@
         android:text="Accessory 2"
         android:textColor="@color/colorMainText"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textOutfitTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Outfit Title"
+        android:textColor="@color/colorMainText"
+        android:textSize="40sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp" />
+
+    <TextView
+        android:id="@+id/textJacket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:text="Jacket"
+        android:textColor="@color/colorMainText"
+        android:textSize="20sp"
+        android:layout_above="@+id/textAccessory1"
+        android:layout_toRightOf="@+id/textMore"
+        android:layout_toEndOf="@+id/textMore"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp" />
+
+    <TextView
+        android:id="@+id/textAccessory1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accessory 1"
+        android:textColor="@color/colorMainText"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textBottoms"
+        android:layout_alignBottom="@+id/textBottoms"
+        android:layout_alignLeft="@+id/textJacket"
+        android:layout_alignStart="@+id/textJacket" />
 
 
 </RelativeLayout>

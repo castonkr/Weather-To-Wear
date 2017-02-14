@@ -86,11 +86,9 @@ public class OutfitItem implements Parcelable{
                   ClothingItem type6) {
         if (type1 == null){
             mType1 = new ClothingItem("null", 0, 0, 0);
-            //Log.d("tag", "shouldn't be null");
         }
         else {
             mType1 = type1;
-            //Log.d("tag", "is null..shoudln't be");
         }
 
         if (type2 == null){
