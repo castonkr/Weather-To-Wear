@@ -69,30 +69,59 @@ public class SavedOutfitDetailFragment extends Fragment {
         TextView outfitTitleView = (TextView) view.findViewById(R.id.textOutfitTitle);
         outfitTitleView.setText(mOutfitItem.getOutfitName());
 
-        TextView jacketView = (TextView) view.findViewById(R.id.textJacket);
-        //jacketView.setText("test jacket");
-        jacketView.setText(mOutfitItem.getmType1().getClothingName());
+        // Tops Text View
+        TextView topsView = (TextView) view.findViewById(R.id.textTops);
+        if (!mOutfitItem.getmType1().getClothingName().equals("None")) {
+            topsView.setText(mOutfitItem.getmType1().getClothingName());
+        }
+        else{
+            topsView.setVisibility(View.INVISIBLE);
+        }
 
-        TextView topView = (TextView) view.findViewById(R.id.textTops);
-        //topView.setText("test tops");
-        topView.setText(mOutfitItem.getmType2().getClothingName());
+        // Bottoms Text VIew
+        TextView bottomsView = (TextView) view.findViewById(R.id.textBottoms);
+        if (!mOutfitItem.getmType2().getClothingName().equals("None")) {
+            bottomsView.setText(mOutfitItem.getmType2().getClothingName());
+        }
+        else{
+            bottomsView.setVisibility(View.INVISIBLE);
+        }
 
-
-        TextView accessoryOneView = (TextView) view.findViewById(R.id.textAccessory1);
-        //accessoryOneView.setText("test accessory 1");
-        accessoryOneView.setText(mOutfitItem.getmType3().getClothingName());
-
-        TextView bottomView = (TextView) view.findViewById(R.id.textBottoms);
-        //bottomView.setText("test bottom");
-        bottomView.setText(mOutfitItem.getmType4().getClothingName());
-
-        TextView accessoryTwoView = (TextView) view.findViewById(R.id.textAccessory2);
-        //accessoryTwoView.setText("test accessory 2");
-        accessoryTwoView.setText(mOutfitItem.getmType5().getClothingName());
-
+        // Shoes Text View
         TextView shoesView = (TextView) view.findViewById(R.id.textShoes);
-        //shoesView.setText("test shoes");
-        shoesView.setText(mOutfitItem.getmType6().getClothingName());
+        if (!mOutfitItem.getmType3().getClothingName().equals("None")) {
+            shoesView.setText(mOutfitItem.getmType3().getClothingName());
+        }
+        else{
+            shoesView.setVisibility(View.INVISIBLE);
+        }
+
+        // Jacket Text View
+        TextView jacketView = (TextView) view.findViewById(R.id.textJacket);
+        if (!mOutfitItem.getmType4().getClothingName().equals("None")) {
+            jacketView.setText(mOutfitItem.getmType4().getClothingName());
+        }
+        else{
+            jacketView.setVisibility(View.INVISIBLE);
+        }
+
+        // Accessory1 Text View
+        TextView accessory1View = (TextView) view.findViewById(R.id.textAccessory1);
+        if (!mOutfitItem.getmType5().getClothingName().equals("None")) {
+            accessory1View.setText(mOutfitItem.getmType5().getClothingName());
+        }
+        else{
+            accessory1View.setVisibility(View.INVISIBLE);
+        }
+
+        //Accessory2 Text View
+        TextView accessory2View = (TextView) view.findViewById(R.id.textAccessory2);
+        if (!mOutfitItem.getmType6().getClothingName().equals("None")) {
+            accessory2View.setText(mOutfitItem.getmType6().getClothingName());
+        }
+        else{
+            accessory2View.setVisibility(View.INVISIBLE);
+        }
 
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override

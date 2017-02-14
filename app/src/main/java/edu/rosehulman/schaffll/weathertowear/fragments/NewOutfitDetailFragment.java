@@ -28,7 +28,6 @@ public class NewOutfitDetailFragment extends Fragment {
     private OnFlingListener mListener;
     private OutfitItem mOutfitItem;
     private GestureDetectorCompat mGestureDetector;
-    //private OnFragmentInteractionListener mListener;
     public NewOutfitDetailFragment() {
         // Required empty public constructor
     }
@@ -66,24 +65,59 @@ public class NewOutfitDetailFragment extends Fragment {
         TextView outfitTitleView = (TextView) view.findViewById(R.id.textOutfitTitle);
         outfitTitleView.setText(mOutfitItem.getOutfitName());
 
-        TextView jacketView = (TextView) view.findViewById(R.id.textTops);
-        jacketView.setText(mOutfitItem.getmType1().getClothingName());
+        // Tops Text View
+        TextView topsView = (TextView) view.findViewById(R.id.textTops);
+        if (!mOutfitItem.getmType1().getClothingName().equals("None")) {
+            topsView.setText(mOutfitItem.getmType1().getClothingName());
+        }
+        else{
+            topsView.setVisibility(View.INVISIBLE);
+        }
 
-        TextView topView = (TextView) view.findViewById(R.id.textBottoms);
-        topView.setText(mOutfitItem.getmType2().getClothingName());
+        // Bottoms Text VIew
+        TextView bottomsView = (TextView) view.findViewById(R.id.textBottoms);
+        if (!mOutfitItem.getmType2().getClothingName().equals("None")) {
+            bottomsView.setText(mOutfitItem.getmType2().getClothingName());
+        }
+        else{
+            bottomsView.setVisibility(View.INVISIBLE);
+        }
 
+        // Shoes Text View
+        TextView shoesView = (TextView) view.findViewById(R.id.textShoes);
+        if (!mOutfitItem.getmType3().getClothingName().equals("None")) {
+            shoesView.setText(mOutfitItem.getmType3().getClothingName());
+        }
+        else{
+            shoesView.setVisibility(View.INVISIBLE);
+        }
 
-        TextView accessoryOneView = (TextView) view.findViewById(R.id.textShoes);
-        accessoryOneView.setText(mOutfitItem.getmType3().getClothingName());
+        // Jacket Text View
+        TextView jacketView = (TextView) view.findViewById(R.id.textJacket);
+        if (!mOutfitItem.getmType4().getClothingName().equals("None")) {
+            jacketView.setText(mOutfitItem.getmType4().getClothingName());
+        }
+        else{
+            jacketView.setVisibility(View.INVISIBLE);
+        }
 
-        TextView bottomView = (TextView) view.findViewById(R.id.textJacket);
-        bottomView.setText(mOutfitItem.getmType4().getClothingName());
+        // Accessory1 Text View
+        TextView accessory1View = (TextView) view.findViewById(R.id.textAccessory1);
+        if (!mOutfitItem.getmType5().getClothingName().equals("None")) {
+            accessory1View.setText(mOutfitItem.getmType5().getClothingName());
+        }
+        else{
+            accessory1View.setVisibility(View.INVISIBLE);
+        }
 
-        TextView accessoryTwoView = (TextView) view.findViewById(R.id.textAccessory1);
-        accessoryTwoView.setText(mOutfitItem.getmType5().getClothingName());
-
-        TextView shoesView = (TextView) view.findViewById(R.id.textAccessory2);
-        shoesView.setText(mOutfitItem.getmType6().getClothingName());
+        //Accessory2 Text View
+        TextView accessory2View = (TextView) view.findViewById(R.id.textAccessory2);
+        if (!mOutfitItem.getmType6().getClothingName().equals("None")) {
+            accessory2View.setText(mOutfitItem.getmType6().getClothingName());
+        }
+        else{
+            accessory2View.setVisibility(View.INVISIBLE);
+        }
 
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -106,12 +140,6 @@ public class NewOutfitDetailFragment extends Fragment {
         }
     }
 
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
 
     @Override
     public void onAttach(Context context) {
@@ -123,7 +151,7 @@ public class NewOutfitDetailFragment extends Fragment {
                     + " must implement OnFlingListener");
         }
     }
-//
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -140,10 +168,6 @@ public class NewOutfitDetailFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
     // This will be used with a Fling gesture.
     public interface OnFlingListener {
         void onSwipe();
