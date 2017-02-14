@@ -189,7 +189,9 @@ public class Calculations {
 
         ClothingItem umbrella = new ClothingItem("Umbrella", 6, 0, 0);
 
-        if (HomeFragment.weatherCond == "Rain"){
+        Log.d("rain", "before checking weather cond");
+
+        if (HomeFragment.weatherCond.equals("Rain")){
             for (int i = 0; i < outfitOptions.size();i++){
                 if (outfitOptions.get(i).getmType6() != umbrella) {
                     Log.d("rain", "umbrella doesn't exist in the outfit");

@@ -276,7 +276,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 tempText.setText("" + tempF + " *F");
                 weatherID = weather.currentCondition.getWeatherId();
                 weatherCond = weather.currentCondition.getCondition();
-                //Log.d("rain?", weatherCond);
+                Log.d("rain?", weatherCond);
                 conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
             }
         }
