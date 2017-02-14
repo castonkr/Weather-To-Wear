@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import com.google.firebase.database.Exclude;
+
 /**
  * Created by Kiana on 2/9/17.
  */
@@ -16,7 +18,7 @@ public class OutfitItem implements Parcelable{
     private ClothingItem mType4;
     private ClothingItem mType5;
     private ClothingItem mType6;
-    //private String key;
+    private String key;
     private String mOutfitName;
 
 
@@ -172,6 +174,8 @@ public class OutfitItem implements Parcelable{
 //        return "outfit 1";
 //    }
 
+
+
     public void setOutfitName(String outfitName){
         mOutfitName = outfitName;
     }
@@ -180,17 +184,22 @@ public class OutfitItem implements Parcelable{
         return mOutfitName;
     }
 //
-//    public void setKey(String key) {
-//        this.key = key;
-//    }
-//
-//    public String getKey(){
-//        return this.getKey();
-//    }
+
+
+
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
     }
 
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+
+    public String getKey(){
+        return this.getKey();
+    }
 
 }

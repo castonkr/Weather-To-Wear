@@ -259,6 +259,7 @@ public class Calculations {
 
         for(int i = 0; i < fiveOutfitOptions.size(); i++){
             fiveOutfitOptions.get(i).setOutfitName("Outfit: " + (i+1));
+            fiveOutfitOptions.get(i).setKey(""+i);
         }
 
 //        Log.d("tag", "" + outfitOptions.size());
