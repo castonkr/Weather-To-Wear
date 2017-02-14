@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,9 +58,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private TextView tempText;
     private TextView conditionDesciption;
     private ImageView weatherImage;
-    private Button buttonOutfit1;
-    private Button buttonOutfit2;
-    public static float tempF;
+    private ImageButton buttonOutfit1;
+    private ImageButton buttonOutfit2;
+    public static int tempF;
     public static int weatherID;
     public List<OutfitItem> mSavedOutfitsItems;
     public TextView welcomeText;
@@ -111,13 +112,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             welcomeText.setText("Good Night!");
         }
 
-        buttonOutfit1 = (Button) view.findViewById(R.id.outfitChoiceOne);
-        buttonOutfit2 = (Button) view.findViewById(R.id.outfitChoiceTwo);
-
-        //tempText.setText(formattedDate);
-
-        //view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-
+        buttonOutfit1 = (ImageButton) view.findViewById(R.id.outfitChoiceOne);
+        buttonOutfit2 = (ImageButton) view.findViewById(R.id.outfitChoiceTwo);
 
 
         mUserRef.child("zipcode").addValueEventListener(new ValueEventListener() {
@@ -296,7 +292,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
   if (weatherData != null) {
                 locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
                 float tempC = Math.round((weather.temperature.getTemp() - 273.15));
-                tempF = Math.round(tempC * 1.8) + 32;
+                tempF = (int) (tempC * 1.8 + 32);
                 //tempRange: < 32, 32-60, 60+
 //                if (tempF < 32){
 //                    setBackgroundColor(getResources().getColor(R.color.colorCold));
