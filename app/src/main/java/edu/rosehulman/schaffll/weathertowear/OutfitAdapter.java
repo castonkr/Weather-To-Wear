@@ -276,6 +276,8 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
                                     outfitItem.setOutfitName(editOutfitName.getText().toString());
                                     mOutfitItems.remove(getAdapterPosition());
                                     removeOutfitItem(outfitItem);
+
+                                    outfitItem.setKey(Integer.toString(mSavedOutfitsItems.size()));
                                     mSavedOutfitsItems.add(outfitItem);
                                     mSavedOutfitsRef.setValue(mSavedOutfitsItems);
 

@@ -172,7 +172,7 @@ public class SavedOutfitAdapter extends RecyclerView.Adapter<SavedOutfitAdapter.
 //                                    String username = usernameView.getText().toString();
 //                                    password.setUsername(username.isEmpty() ? null : username);
 //                                    firebaseUpdate(password);
-                                    mOutfitItems.remove(getAdapterPosition());
+                                    //mOutfitItems.remove(getAdapterPosition());
                                     removeOutfitItem(outfitItem);
                                 }
                             })
