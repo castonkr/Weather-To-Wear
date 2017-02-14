@@ -20,6 +20,7 @@ import edu.rosehulman.schaffll.weathertowear.ClothingItem;
 import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
 import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.fragments.ClosetFragment;
+import edu.rosehulman.schaffll.weathertowear.fragments.HomeFragment;
 
 //import static edu.rosehulman.schaffll.weathertowear.ClothingItemList.getReturnClothingItemList;
 
@@ -182,8 +183,21 @@ public class Calculations {
             }
         }
 
+
         ArrayList<Integer> random = new ArrayList<>();
         ArrayList<OutfitItem> fiveOutfitOptions = new ArrayList<>();
+
+        ClothingItem umbrella = new ClothingItem("Umbrella", 6, 0, 0);
+
+        if (HomeFragment.weatherCond == "Rain"){
+            for (int i = 0; i < outfitOptions.size();i++){
+                if (outfitOptions.get(i).getmType6() != umbrella) {
+                    Log.d("rain", "umbrella doesn't exist in the outfit");
+                    outfitOptions.get(i).setmType6(umbrella);
+                }
+            }
+        }
+
 
 
         if (outfitOptions.size() > 5){
@@ -207,7 +221,6 @@ public class Calculations {
         for(int i = 0; i < fiveOutfitOptions.size(); i++){
             fiveOutfitOptions.get(i).setOutfitName("Outfit: " + (i+1));
             fiveOutfitOptions.get(i).setKey(""+i);
-
         }
 
 

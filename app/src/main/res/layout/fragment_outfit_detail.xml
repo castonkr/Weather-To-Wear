@@ -13,7 +13,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="56dp"
-        android:text="Swipe right for more outfits"
+        android:text=""
         android:textColor="@color/colorMainText"
         android:textSize="20sp" />
 

@@ -47,6 +47,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private int coldTemp;
     private float currentTemp;
     private int weatherID;
+    private int weatherCond;
     private boolean mBooleanArray[] = new boolean[21];
     private List<OutfitItem> userClothingOptions;
     //private OutfitAdapter mAdapter;
@@ -69,6 +70,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         }
         currentTemp = HomeFragment.tempF;
         weatherID = HomeFragment.weatherID;
+        //weatherCond = HomeFragment.
 
 
 

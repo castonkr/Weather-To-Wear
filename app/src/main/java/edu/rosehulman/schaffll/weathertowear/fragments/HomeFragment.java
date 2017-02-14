@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private ImageButton buttonOutfit2;
     public static int tempF;
     public static int weatherID;
+    public static String weatherCond;
     public List<OutfitItem> mSavedOutfitsItems;
     public TextView welcomeText;
 
@@ -274,6 +275,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 tempF = (int) (tempC * 1.8 + 32);
                 tempText.setText("" + tempF + " *F");
                 weatherID = weather.currentCondition.getWeatherId();
+                weatherCond = weather.currentCondition.getCondition();
+                //Log.d("rain?", weatherCond);
                 conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
             }
         }
