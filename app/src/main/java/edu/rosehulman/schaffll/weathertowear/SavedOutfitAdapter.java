@@ -34,7 +34,6 @@ public class SavedOutfitAdapter extends RecyclerView.Adapter<SavedOutfitAdapter.
     public SavedOutfitAdapter(Context context, SavedOutfitListFragment.Callback callback, DatabaseReference firebaseDatabase) {
         mOutfitItems = new ArrayList<>();
         mInflater = LayoutInflater.from(context);
-        //mOutfitItems.add(0, new OutfitItem(new ClothingItem("top", 2, 30, 2)));
         mCallback = callback;
 
         mSavedOutfitsRef = firebaseDatabase.child("savedOutfits");

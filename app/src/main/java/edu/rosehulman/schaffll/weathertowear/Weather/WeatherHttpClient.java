@@ -9,16 +9,17 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import edu.rosehulman.schaffll.weathertowear.Constants;
+
+import static edu.rosehulman.schaffll.weathertowear.Constants.API_KEY;
+import static edu.rosehulman.schaffll.weathertowear.Constants.IMG_URL;
+import static edu.rosehulman.schaffll.weathertowear.Constants.WEATHER_URL;
+
 /**
  * Created by Kiana on 2/5/17.
  */
 
 public class WeatherHttpClient {
-
-    private static String BASE_URL = "http://api.openweathermap.org/data/2.5/weather?zip=";
-    private static String END_URL = ",us&appid=4a476f2a27660f270fc55157a2b4247c";
-    private static String IMG_URL = "http://openweathermap.org/img/w/";
-
 
     // Get Weather Data
     public String getWeatherData(String zipcode) {
@@ -26,7 +27,7 @@ public class WeatherHttpClient {
         InputStream inputStream = null;
 
         try {
-            connection = (HttpURLConnection) (new URL(BASE_URL + zipcode + END_URL)).openConnection();
+            connection = (HttpURLConnection) (new URL(WEATHER_URL + zipcode + API_KEY)).openConnection();
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
             connection.setDoOutput(true);

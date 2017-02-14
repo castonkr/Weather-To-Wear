@@ -15,6 +15,8 @@ import android.widget.TextView;
 import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
 
+import static edu.rosehulman.schaffll.weathertowear.Constants.ARG_OUTFIT;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -24,13 +26,10 @@ import edu.rosehulman.schaffll.weathertowear.R;
  * create an instance of this fragment.
  */
 public class SavedOutfitDetailFragment extends Fragment {
-    private static final String ARG_OUTFIT = "outfit";
-
 
     private OutfitItem mOutfitItem;
     private OnFlingListenerSavedOutfit mListener;
     private GestureDetectorCompat mGestureDetector;
-    //private OnFragmentInteractionListener mListener;
 
     public SavedOutfitDetailFragment() {
         // Required empty public constructor
@@ -64,6 +63,8 @@ public class SavedOutfitDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Inflate the layout
         View view = inflater.inflate(R.layout.fragment_outfit_detail, container, false);
 
         TextView outfitTitleView = (TextView) view.findViewById(R.id.textOutfitTitle);
@@ -131,17 +132,9 @@ public class SavedOutfitDetailFragment extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_outfit_detail, container, false);
         return view;
     }
 
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
 class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
     @Override
     public boolean onFling(MotionEvent event1, MotionEvent event2,
@@ -180,11 +173,6 @@ class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
-
     public interface OnFlingListenerSavedOutfit {
         void onSwipeSavedOutfit();
     }

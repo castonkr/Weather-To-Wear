@@ -29,11 +29,6 @@ import edu.rosehulman.schaffll.weathertowear.fragments.HomeFragment;
  */
 
 public class Calculations {
-
-    private int mHotTemp;
-    private int mColdTemp;
-    private float mCurrentTemp;
-    private int mWeatherID;
     private int weatherNum;
     private List alLClothingItemList;
     private List mClothingItems;
@@ -45,10 +40,7 @@ public class Calculations {
     private DatabaseReference mUserRef;
 
     public Calculations(int hotTemp, int coldTemp, float currentTemp, boolean boolList[]) {
-        mHotTemp = hotTemp;
-        mColdTemp = coldTemp;
-        mCurrentTemp = currentTemp;
-        //mWeatherID = weatherID;
+
         mBoolList = boolList;
 
         int medianTemp = (coldTemp + hotTemp) / 2;

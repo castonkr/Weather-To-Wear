@@ -15,6 +15,8 @@ import android.widget.TextView;
 import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
 
+import static edu.rosehulman.schaffll.weathertowear.Constants.ARG_OUTFIT;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -24,7 +26,6 @@ import edu.rosehulman.schaffll.weathertowear.R;
  * create an instance of this fragment.
  */
 public class NewOutfitDetailFragment extends Fragment {
-    private static final String ARG_OUTFIT = "outfit";
     private OnFlingListener mListener;
     private OutfitItem mOutfitItem;
     private GestureDetectorCompat mGestureDetector;

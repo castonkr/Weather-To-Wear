@@ -24,15 +24,14 @@ import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
 import edu.rosehulman.schaffll.weathertowear.SavedOutfitAdapter;
 
+import static edu.rosehulman.schaffll.weathertowear.Constants.FIREBASE_PATH;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SavedOutfitListFragment extends Fragment{
 
-    public static final String FIREBASE_PATH = "FIREBASE_PATH";
-
-    //private MenuItem save;
     private SavedOutfitAdapter mAdapter;
     private String[] mClothingItems;
     private DatabaseReference mBooleanRef;

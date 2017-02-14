@@ -29,14 +29,15 @@ import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
 import edu.rosehulman.schaffll.weathertowear.Weather.Calculations;
 
+import static edu.rosehulman.schaffll.weathertowear.Constants.FIREBASE_PATH;
+import static edu.rosehulman.schaffll.weathertowear.Constants.FIREBASE_USER_ID;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PreferencesFragment extends Fragment implements View.OnClickListener {
 
-    public static final String FIREBASE_PATH = "FIREBASE_PATH";
-    public static final String FIREBASE_USER_ID = "FIREBASE_USER_ID";
     String mUser;
     private DatabaseReference mUserRef;
     private EditText zipCode;
@@ -50,8 +51,6 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private int weatherCond;
     private boolean mBooleanArray[] = new boolean[21];
     private List<OutfitItem> userClothingOptions;
-    //private OutfitAdapter mAdapter;
-
 
     public PreferencesFragment() {
         // Required empty public constructor

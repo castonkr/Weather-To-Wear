@@ -36,21 +36,14 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
     private DatabaseReference mSavedOutfitsRef;
 
     public OutfitAdapter(Context context, NewOutfitFragment.Callback callback, DatabaseReference firebaseDatabase) {
-        //mOutfitItems = PreferencesFragment.userClothingOptions;
         mOutfitItems = new ArrayList<>();
         mSavedOutfitsItems = new ArrayList<>();
         mInflater = LayoutInflater.from(context);
-        Log.d("check", ""+mOutfitItems.size());
-        Log.d("check", ""+firebaseDatabase);
-        //mOutfitItems.add(0, new OutfitItem(new ClothingItem("top", 2, 30, 2)));
         mCallback = callback;
         mOutfitsRef = firebaseDatabase.child("newOutfits");
         mOutfitsRef.addChildEventListener(new NewOutfitsChildEventListener());
-
         mSavedOutfitsRef = firebaseDatabase.child("savedOutfits");
         mSavedOutfitsRef.addChildEventListener(new SavedOutfitsChildEventListener());
-        //Log.d("firebase", mSavedOutfitsRef.toString());
-        //mSavedOutfitsRef.addChildEventListener(new SavedOutfitsChildEventListener())
     }
 
     @Override
@@ -63,21 +56,6 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
     public void onBindViewHolder(OutfitAdapter.ViewHolder holder, int position) {
         final OutfitItem outfitItem = mOutfitItems.get(position);
         holder.mTitleTextView.setText(outfitItem.getOutfitName());
-//        holder.mTitleTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d("WTW", "outfit has been clicked on");
-//                mCallback.onOutfitSelected(outfitItem);
-//            }
-//        });
-//        holder.mTitleTextView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                Log.d("adapter", "outfit has been long clicked on");
-//                //showDialog();
-//                return false;
-//            }
-//        });
 
     }
 
@@ -85,10 +63,6 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
     public int getItemCount() {
         return mOutfitItems.size();
     }
-
-//    public void showDialog(){
-//
-//    }
 
 
     class NewOutfitsChildEventListener implements ChildEventListener{
@@ -104,10 +78,8 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 
         @Override
         public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//            Log.d("PK", "on child changed called");
             String key = dataSnapshot.getKey();
             OutfitItem updateOutfit = dataSnapshot.getValue(OutfitItem.class);
-////            Log.d("PK", updatePic.getCaption());
             for (OutfitItem o : mOutfitItems){
                 if (o.getKey().equals(key)){
                     o.setmType1(updateOutfit.getmType1());
@@ -117,8 +89,6 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
                     o.setmType5(updateOutfit.getmType5());
                     o.setmType6(updateOutfit.getmType6());
                     o.setOutfitName(updateOutfit.getOutfitName());
-////                    p.setUrl(updatePic.getUrl());
-////                    p.setValues(updatePic);
                     notifyDataSetChanged();
                     return;
                }
@@ -155,7 +125,6 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             OutfitItem outfit = dataSnapshot.getValue(OutfitItem.class);
             outfit.setKey(dataSnapshot.getKey());
-            //Log.d("kiki", dataSnapshot.getKey());
             mSavedOutfitsItems.add(outfit);
             notifyDataSetChanged();
         }

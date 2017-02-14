@@ -25,13 +25,13 @@ import edu.rosehulman.schaffll.weathertowear.ClosetAdapter;
 import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
 import edu.rosehulman.schaffll.weathertowear.R;
 
+import static edu.rosehulman.schaffll.weathertowear.Constants.FIREBASE_PATH;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ClosetFragment extends Fragment {
-
-    public static final String FIREBASE_PATH = "FIREBASE_PATH";
 
     private MenuItem add;
     private ClosetAdapter mAdapter;

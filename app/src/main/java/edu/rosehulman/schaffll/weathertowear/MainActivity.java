@@ -38,13 +38,14 @@ import edu.rosehulman.schaffll.weathertowear.fragments.PreferencesFragment;
 import edu.rosehulman.schaffll.weathertowear.fragments.SavedOutfitDetailFragment;
 import edu.rosehulman.schaffll.weathertowear.fragments.SavedOutfitListFragment;
 
+import static edu.rosehulman.schaffll.weathertowear.Constants.FIREBASE_PATH;
+import static edu.rosehulman.schaffll.weathertowear.Constants.FIREBASE_USER_ID;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, HomeFragment.OnStartPressedListener, NewOutfitFragment.Callback, SavedOutfitListFragment.Callback, NewOutfitDetailFragment.OnFlingListener, SavedOutfitDetailFragment.OnFlingListenerSavedOutfit{
 
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthStateListener;
-    public static final String FIREBASE_PATH = "FIREBASE_PATH";
-    public static final String FIREBASE_USER_ID = "FIREBASE_USER_ID";
     private OnCompleteListener mOnCompleteListener;
     private static final int RC_ROSEFIRE_LOGIN = 1;
     private String mUser;
@@ -263,11 +264,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onOutfitSelected(OutfitItem outfitItem) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-
-//        Slide slideTransition = new Slide(Gravity.RIGHT);
-//        slideTransition.setDuration(200);
-//        fragment.setEnterTransition(slideTransition);
-
         ft.replace(R.id.content_main, new NewOutfitDetailFragment().newInstance(outfitItem));
         ft.addToBackStack("detail");
         ft.commit();
@@ -276,11 +272,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onSavedOutfitSelected(OutfitItem outfitItem) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//
-////        Slide slideTransition = new Slide(Gravity.RIGHT);
-////        slideTransition.setDuration(200);
-////        fragment.setEnterTransition(slideTransition);
-//
+
         ft.replace(R.id.content_main, new SavedOutfitDetailFragment().newInstance(outfitItem));
         ft.addToBackStack("detail");
         ft.commit();

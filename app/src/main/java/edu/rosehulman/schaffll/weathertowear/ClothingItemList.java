@@ -93,9 +93,9 @@ public class ClothingItemList {
         mClothingItemList.remove(allClothingItemList.get(pos));
     }
 
-    public List getAllClothingItems(){
-        return allClothingItemList;
-    }
+//    public List getAllClothingItems(){
+//        return allClothingItemList;
+//    }
 
 
 

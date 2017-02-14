@@ -40,14 +40,16 @@ import edu.rosehulman.schaffll.weathertowear.Weather.JSONWeatherParser;
 import edu.rosehulman.schaffll.weathertowear.Weather.Weather;
 import edu.rosehulman.schaffll.weathertowear.Weather.WeatherHttpClient;
 
+import static edu.rosehulman.schaffll.weathertowear.Constants.FIREBASE_PATH;
+import static edu.rosehulman.schaffll.weathertowear.Constants.FIREBASE_USER_ID;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment implements View.OnClickListener{
 
-    public static final String FIREBASE_PATH = "FIREBASE_PATH";
-    public static final String FIREBASE_USER_ID = "FIREBASE_USER_ID";
+
     private String weatherData;
     private String mUser;
     private DatabaseReference mUserRef;
@@ -61,7 +63,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private ImageButton buttonOutfit1;
     private ImageButton buttonOutfit2;
     public static int tempF;
-    //public static int weatherID;
     public static String weatherCond;
     public List<OutfitItem> mSavedOutfitsItems;
     public TextView welcomeText;
@@ -89,7 +90,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         mSavedOutfitsItems = new ArrayList<>();
 
         String time = new SimpleDateFormat("HH").format(Calendar.getInstance().getTime());
-        //Log.d("timeforme", formattedDate);
         int intTime = Integer.parseInt(time);
 
 
@@ -160,42 +160,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         @Override
         public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//            Log.d("PK", "on child changed called");
-//            String key = dataSnapshot.getKey();
-//            OutfitItem updateOutfit = dataSnapshot.getValue(OutfitItem.class);
-////            Log.d("PK", updatePic.getCaption());
-//            for (OutfitItem o : mOutfitItems){
-//                if (o.getKey().equals(key)){
-//                    o.setmType1(updateOutfit.getmType1());
-//                    o.setmType2(updateOutfit.getmType2());
-//                    o.setmType3(updateOutfit.getmType3());
-//                    o.setmType4(updateOutfit.getmType4());
-//                    o.setmType5(updateOutfit.getmType5());
-//                    o.setmType6(updateOutfit.getmType6());
-//                    o.setOutfitName(updateOutfit.getOutfitName());
-////                    p.setUrl(updatePic.getUrl());
-////                    p.setValues(updatePic);
-//                    notifyDataSetChanged();
-//                    return;
-//               }
-//            }
+            // EMPTY
         }
 
         @Override
         public void onChildRemoved(DataSnapshot dataSnapshot) {
-//            String keyToRemove = dataSnapshot.getKey();
-//            for(int i = 0; i < mOutfitItems.size();i++){
-//                if(keyToRemove.equals(mOutfitItems.get(i).getKey())){
-//                    mOutfitItems.remove(i);
-//                    notifyDataSetChanged();
-//                    return;
-//               }
-//            }
+            // EMPTY
         }
 
         @Override
         public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+            // EMPTY
         }
 
         @Override
@@ -266,8 +241,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             super.onPostExecute(weather);
             if (weather.iconData != null && weather.iconData.length > 0) {
                 Bitmap image = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
-//                Log.d("weather", ""+weather.iconData);
-//                Log.d("weather", ""+weather.iconData.length);
                 weatherImage.setImageBitmap(image);
             }
 
@@ -277,7 +250,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 float tempC = Math.round((weather.temperature.getTemp() - 273.15));
                 tempF = (int) (tempC * 1.8 + 32);
                 tempText.setText("" + tempF + " *F");
-                //weatherID = weather.currentCondition.getWeatherId();
                 weatherCond = weather.currentCondition.getCondition();
                 Log.d("rain?", weatherCond);
                 conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
@@ -288,8 +260,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 tempText.setText("" + tempF + " *F");
                 weatherCond = "Clear";
                 conditionDesciption.setText("Clear (default)");
-
-
             }
         }
 
