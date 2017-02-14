@@ -173,7 +173,7 @@ public class SavedOutfitAdapter extends RecyclerView.Adapter<SavedOutfitAdapter.
 //                                    password.setUsername(username.isEmpty() ? null : username);
 //                                    firebaseUpdate(password);
                                     mOutfitItems.remove(getAdapterPosition());
-                                    removeOutfitItem(getAdapterPosition());
+                                    removeOutfitItem(outfitItem);
                                 }
                             })
                             .create();
@@ -192,9 +192,9 @@ public class SavedOutfitAdapter extends RecyclerView.Adapter<SavedOutfitAdapter.
         }
     }
 
-    public void removeOutfitItem(int position){
-        mSavedOutfitsRef.child(""+position).removeValue();
-        notifyDataSetChanged();
+    public void removeOutfitItem(OutfitItem outfitItem){
+        mSavedOutfitsRef.child(outfitItem.getKey()).removeValue();
+        //notifyDataSetChanged();
     }
 
 //    public void addItem(String item) {

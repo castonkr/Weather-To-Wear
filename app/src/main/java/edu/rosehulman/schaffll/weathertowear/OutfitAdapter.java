@@ -97,7 +97,7 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             OutfitItem outfit = dataSnapshot.getValue(OutfitItem.class);
             outfit.setKey(dataSnapshot.getKey());
-            //Log.d("kiki", dataSnapshot.getKey());
+            Log.d("kiki", dataSnapshot.getKey());
             mOutfitItems.add(outfit);
             notifyDataSetChanged();
         }
@@ -275,7 +275,7 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
                                     //temp.setOutfitName(editOutfitName.getText().toString());
                                     outfitItem.setOutfitName(editOutfitName.getText().toString());
                                     mOutfitItems.remove(getAdapterPosition());
-                                    removeOutfitItem(getAdapterPosition());
+                                    removeOutfitItem(outfitItem);
                                     mSavedOutfitsItems.add(outfitItem);
                                     mSavedOutfitsRef.setValue(mSavedOutfitsItems);
 
@@ -301,8 +301,8 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
     public void firebasePush(OutfitItem outfitItem) {
         mOutfitsRef.push().setValue(outfitItem);
     }
-    public void removeOutfitItem(int position){
-        mOutfitsRef.child(""+position).removeValue();
+    public void removeOutfitItem(OutfitItem outfitItem){
+        mOutfitsRef.child(outfitItem.getKey()).removeValue();
     }
 //    public void firebaseUpdate(Password pw) {
 //        mPasswordRef.child(pw.getKey()).setValue(pw);

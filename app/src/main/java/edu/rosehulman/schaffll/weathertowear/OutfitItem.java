@@ -192,14 +192,14 @@ public class OutfitItem implements Parcelable{
     public void writeToParcel(Parcel parcel, int i) {
     }
 
-
+    @Exclude
     public void setKey(String key) {
         this.key = key;
     }
 
 
     public String getKey(){
-        return this.getKey();
+        return this.key;
     }
 
 }

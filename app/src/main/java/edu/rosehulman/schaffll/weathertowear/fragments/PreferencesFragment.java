@@ -48,7 +48,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     private float currentTemp;
     private int weatherID;
     private boolean mBooleanArray[] = new boolean[21];
-    public static List<OutfitItem> userClothingOptions;
+    private List<OutfitItem> userClothingOptions;
     //private OutfitAdapter mAdapter;
 
 
@@ -208,6 +208,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                 mUserRef.child("coldTemp").setValue(coldTemp);
                 Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, weatherID, mBooleanArray);
                 userClothingOptions = calc.createNewOutfits();
+                Log.d("linde", userClothingOptions.get(0).getKey());
                 mUserRef.child("newOutfits").setValue(userClothingOptions);
 
                 hideKeyboard();
