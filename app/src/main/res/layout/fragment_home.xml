@@ -15,57 +15,34 @@
         android:background="#c0c0c0"/>-->
 
 
-
-
-    <Button
-        android:text="Outfit Option Two"
-        android:layout_width="193dp"
-        android:layout_height="180dp"
-        android:id="@+id/outfitChoiceTwo"
-        android:layout_below="@+id/lineView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Outfit Option One"
-        android:layout_width="193dp"
-        android:layout_height="180dp"
-        android:id="@+id/outfitChoiceOne"
-        android:layout_below="@+id/lineView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <TextView
+        android:text="Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionTextView"
+        android:layout_marginBottom="13dp"
+        android:layout_above="@+id/tempTextView"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="Location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:textSize="25sp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/locationTextView" />
-
-    <ImageView
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        app:srcCompat="@mipmap/ic_weather_to_wear"
-        android:id="@+id/weatherImageView"
-        android:layout_below="@+id/tempTextView"
+        android:id="@+id/locationTextView"
+        android:layout_marginBottom="11dp"
+        android:layout_above="@+id/descriptionTextView"
         android:layout_centerHorizontal="true" />
 
-    <View
-        android:id="@+id/lineView"
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:layout_below="@id/weatherImageView"
-        android:background="#1a17a2"/>
-
     <TextView
-        android:text="Description"
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/locationTextView"
+        android:layout_above="@+id/locationTextView"
         android:layout_centerHorizontal="true"
-        android:id="@+id/descriptionTextView" />
+        android:layout_marginBottom="30dp"
+        android:textSize="30sp"
+        android:id="@+id/welcomeTextView" />
 
     <TextView
         android:text="32 *F"
@@ -74,8 +51,47 @@
         android:id="@+id/tempTextView"
         android:textSize="50sp"
         android:textColor="@color/colorDegree"
-        android:layout_below="@+id/descriptionTextView"
+        android:layout_above="@+id/weatherImageView"
         android:layout_centerHorizontal="true" />
+
+    <View
+        android:id="@+id/lineView"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#1a17a2"
+        android:layout_above="@+id/outfitChoiceOne"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp" />
+
+    <Button
+        android:text="Outfit Option One"
+        android:layout_width="193dp"
+        android:layout_height="180dp"
+        android:id="@+id/outfitChoiceOne"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp" />
+
+    <Button
+        android:text="Outfit Option Two"
+        android:layout_width="193dp"
+        android:layout_height="180dp"
+        android:id="@+id/outfitChoiceTwo"
+        android:layout_alignTop="@+id/outfitChoiceOne"
+        android:layout_toRightOf="@+id/outfitChoiceOne"
+        android:layout_toEndOf="@+id/outfitChoiceOne" />
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:srcCompat="@mipmap/ic_weather_to_wear"
+        android:id="@+id/weatherImageView"
+        android:layout_above="@+id/lineView"
+        android:layout_alignLeft="@+id/descriptionTextView"
+        android:layout_alignStart="@+id/descriptionTextView"
+        android:layout_marginBottom="16dp" />
 
 
 </RelativeLayout>

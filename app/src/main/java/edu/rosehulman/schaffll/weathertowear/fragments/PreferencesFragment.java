@@ -1,12 +1,14 @@
 package edu.rosehulman.schaffll.weathertowear.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -207,6 +209,9 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                 Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, weatherID, mBooleanArray);
                 userClothingOptions = calc.createNewOutfits();
                 mUserRef.child("newOutfits").setValue(userClothingOptions);
+
+                hideKeyboard();
+
 //                mUserRef.child("newOutfits").child("Outfit2").setValue(userClothingOptions.get(0));
 //                mUserRef.child("newOutfits").child("Outfit1").child("type1").setValue(userClothingOptions.get(0).getmType1());
 //                mUserRef.child("newOutfits").child("Outfit1").child("type2").setValue(userClothingOptions.get(0).getmType2());
@@ -218,6 +223,12 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
 
         }
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(zipCode.getWindowToken(), 0);
     }
 }
 

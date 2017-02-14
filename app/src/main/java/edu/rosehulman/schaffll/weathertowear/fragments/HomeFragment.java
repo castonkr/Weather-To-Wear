@@ -25,7 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import edu.rosehulman.schaffll.weathertowear.OutfitAdapter;
@@ -59,6 +62,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     public static float tempF;
     public static int weatherID;
     public List<OutfitItem> mSavedOutfitsItems;
+    public TextView welcomeText;
 
     String zipcode;
 
@@ -82,15 +86,37 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         mSavedOutfitsItems = new ArrayList<>();
 
+        String time = new SimpleDateFormat("HH").format(Calendar.getInstance().getTime());
+        //Log.d("timeforme", formattedDate);
+        int intTime = Integer.parseInt(time);
+
+
 
         locationText = (TextView) view.findViewById(R.id.locationTextView);
         tempText = (TextView) view.findViewById(R.id.tempTextView);
         conditionDesciption = (TextView) view.findViewById(R.id.descriptionTextView);
         weatherImage = (ImageView) view.findViewById(R.id.weatherImageView);
+
+        welcomeText = (TextView) view.findViewById(R.id.welcomeTextView);
+        if (5 < intTime && intTime <= 12){
+            welcomeText.setText("Good Morning!");
+        }
+        else if (12 < intTime && intTime <= 17){
+            welcomeText.setText("Good Afternoon!");
+        }
+        else if (17 < intTime && intTime <= 21){
+            welcomeText.setText("Good Evening!");
+        }
+        else{
+            welcomeText.setText("Good Night!");
+        }
+
         buttonOutfit1 = (Button) view.findViewById(R.id.outfitChoiceOne);
         buttonOutfit2 = (Button) view.findViewById(R.id.outfitChoiceTwo);
 
+        //tempText.setText(formattedDate);
 
+        //view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 
 
 
@@ -129,6 +155,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 //            }
 //
 //        });
+
+        if (tempF < 32){
+            view.setBackgroundColor(getResources().getColor(R.color.colorCold));
+        }
+        else if (tempF < 60){
+            view.setBackgroundColor(getResources().getColor(R.color.colorMiddle));
+        }
+        else{
+            view.setBackgroundColor(getResources().getColor(R.color.colorWarm));
+        }
+
+
         return view;
     }
 
@@ -259,6 +297,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
                 float tempC = Math.round((weather.temperature.getTemp() - 273.15));
                 tempF = Math.round(tempC * 1.8) + 32;
+                //tempRange: < 32, 32-60, 60+
+//                if (tempF < 32){
+//                    setBackgroundColor(getResources().getColor(R.color.colorCold));
+//                }
+//                else if (tempF < 60){
+//                    getView().setBackgroundColor(getResources().getColor(R.color.colorMiddle));
+//                }
+//                else{
+//                    getView().setBackgroundColor(getResources().getColor(R.color.colorWarm));
+//                }
                 tempText.setText("" + tempF + " *F");
                 weatherID = weather.currentCondition.getWeatherId();
                 conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");

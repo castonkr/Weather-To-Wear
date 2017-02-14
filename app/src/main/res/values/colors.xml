@@ -8,5 +8,8 @@
     <color name="colorDegree">#972e61e2</color>
     <color name="colorBackground">#26acff</color>
     <color name="colorDarkText">#000ba7</color>
+    <color name="colorCold">#8389d6</color>
+    <color name="colorMiddle">#48e9e9</color>
+    <color name="colorWarm">#ff7e3e</color>
 
 </resources>
