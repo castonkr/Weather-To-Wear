@@ -14,8 +14,11 @@
 
         <TextView
             android:text="TextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorMainText"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAlignment="center"
             android:padding="10dp"
             android:textSize="20sp"
             android:id="@+id/outfitTypeTextView" />

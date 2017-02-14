@@ -6,45 +6,6 @@
     tools:context="edu.rosehulman.schaffll.weathertowear.fragments.HomeFragment">
 
 
-    <TextView
-        android:id="@+id/descriptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tempTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:text="Description" />
-
-    <TextView
-        android:id="@+id/locationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/descriptionTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp"
-        android:text="Location"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/welcomeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/locationTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:text="TextView"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tempTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/weatherImageView"
-        android:layout_centerHorizontal="true"
-        android:text="32 *F"
-        android:textColor="@color/colorDegree"
-        android:textSize="50sp" />
-
     <View
         android:id="@+id/lineView"
         android:layout_width="fill_parent"
@@ -64,7 +25,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="13dp"
-        android:background="@drawable/wtw_shirt" />
+        android:background="@drawable/wtw_shirt1" />
 
     <ImageButton
         android:id="@+id/outfitChoiceTwo"
@@ -73,15 +34,53 @@
         android:layout_alignTop="@+id/outfitChoiceOne"
         android:layout_toEndOf="@+id/outfitChoiceOne"
         android:layout_toRightOf="@+id/outfitChoiceOne"
-        android:background="@drawable/wtw_shirt" />
+        android:background="@drawable/wtw_shirt2" />
+
+    <TextView
+        android:id="@+id/welcomeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/locationTextView"
+        android:layout_centerHorizontal="true"
+        android:text=""
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/descriptionTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:text=""
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/tempTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/weatherImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
+        android:text=""
+        android:textColor="@color/colorDegree"
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tempTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
+        android:text="" />
 
     <ImageView
         android:id="@+id/weatherImageView"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        app:srcCompat="@mipmap/ic_weather_to_wear"
-        android:layout_above="@+id/lineView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
 
 </RelativeLayout>

@@ -52,7 +52,6 @@ public class ClosetFragment extends Fragment {
         setHasOptionsMenu(true);
         String firebasePath = getArguments().getString(FIREBASE_PATH);
         mBooleanRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("booleanArray");
-        Log.d("firebare2", mBooleanRef+"");
     }
 
     @Override

@@ -170,12 +170,6 @@ public class OutfitItem implements Parcelable{
         return 0;
     }
 
-    //public String getOutfitItemName(int position){
-//        return "outfit 1";
-//    }
-
-
-
     public void setOutfitName(String outfitName){
         mOutfitName = outfitName;
     }
@@ -183,10 +177,6 @@ public class OutfitItem implements Parcelable{
     public String getOutfitName(){
         return mOutfitName;
     }
-//
-
-
-
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
