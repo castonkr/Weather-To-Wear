@@ -39,7 +39,7 @@ import edu.rosehulman.schaffll.weathertowear.fragments.SavedOutfitDetailFragment
 import edu.rosehulman.schaffll.weathertowear.fragments.SavedOutfitListFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, HomeFragment.OnStartPressedListener, NewOutfitFragment.Callback, SavedOutfitListFragment.Callback, NewOutfitDetailFragment.OnFlingListener{
+        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, HomeFragment.OnStartPressedListener, NewOutfitFragment.Callback, SavedOutfitListFragment.Callback, NewOutfitDetailFragment.OnFlingListener, SavedOutfitDetailFragment.OnFlingListenerSavedOutfit{
 
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -288,6 +288,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onSwipe() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        fm.popBackStackImmediate();
+        ft.commit();
+    }
+
+    @Override
+    public void onSwipeSavedOutfit() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         fm.popBackStackImmediate();

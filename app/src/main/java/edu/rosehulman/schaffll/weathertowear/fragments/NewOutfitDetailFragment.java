@@ -1,7 +1,9 @@
 package edu.rosehulman.schaffll.weathertowear.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GestureDetectorCompat;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ public class NewOutfitDetailFragment extends Fragment {
     private static final String ARG_OUTFIT = "outfit";
     private OnFlingListener mListener;
     private OutfitItem mOutfitItem;
+    private GestureDetectorCompat mGestureDetector;
     //private OnFragmentInteractionListener mListener;
     public NewOutfitDetailFragment() {
         // Required empty public constructor
@@ -51,8 +54,8 @@ public class NewOutfitDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mOutfitItem = getArguments().getParcelable(ARG_OUTFIT);
-
         }
+            mGestureDetector  = new GestureDetectorCompat(getContext(), new MyGestureDetector());
     }
 
     @Override
@@ -82,6 +85,14 @@ public class NewOutfitDetailFragment extends Fragment {
         TextView shoesView = (TextView) view.findViewById(R.id.textAccessory2);
         shoesView.setText(mOutfitItem.getmType6().getClothingName());
 
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                mGestureDetector.onTouchEvent(motionEvent);
+                return true;
+            }
+        });
+
         return view;
     }
 
@@ -102,22 +113,22 @@ public class NewOutfitDetailFragment extends Fragment {
 //        }
 //    }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFlingListener) {
+            mListener = (OnFlingListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFlingListener");
+        }
+    }
 //
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
 
     /**
      * This interface must be implemented by activities that contain this

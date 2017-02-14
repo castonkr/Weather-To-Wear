@@ -1,8 +1,13 @@
 package edu.rosehulman.schaffll.weathertowear.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GestureDetectorCompat;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -23,6 +28,8 @@ public class SavedOutfitDetailFragment extends Fragment {
 
 
     private OutfitItem mOutfitItem;
+    private OnFlingListenerSavedOutfit mListener;
+    private GestureDetectorCompat mGestureDetector;
     //private OnFragmentInteractionListener mListener;
 
     public SavedOutfitDetailFragment() {
@@ -50,8 +57,8 @@ public class SavedOutfitDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mOutfitItem = getArguments().getParcelable(ARG_OUTFIT);
-
         }
+        mGestureDetector  = new GestureDetectorCompat(getContext(), new MyGestureDetector());
     }
 
     @Override
@@ -87,6 +94,14 @@ public class SavedOutfitDetailFragment extends Fragment {
         //shoesView.setText("test shoes");
         shoesView.setText(mOutfitItem.getmType6().getClothingName());
 
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                mGestureDetector.onTouchEvent(motionEvent);
+                return true;
+            }
+        });
+
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_outfit_detail, container, false);
         return view;
@@ -98,23 +113,33 @@ public class SavedOutfitDetailFragment extends Fragment {
 //            mListener.onFragmentInteraction(uri);
 //        }
 //    }
+class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+    @Override
+    public boolean onFling(MotionEvent event1, MotionEvent event2,
+                           float velocityX, float velocityY) {
+        Log.d("wtw", "onFling: " + event1.toString() + event2.toString());
+        mListener.onSwipeSavedOutfit();
+        return true;
+    }
+}
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFlingListenerSavedOutfit) {
+            mListener = (OnFlingListenerSavedOutfit) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFlingListener");
+        }
+    }
+    //
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -130,4 +155,8 @@ public class SavedOutfitDetailFragment extends Fragment {
 //        // TODO: Update argument type and name
 //        void onFragmentInteraction(Uri uri);
 //    }
+
+    public interface OnFlingListenerSavedOutfit {
+        void onSwipeSavedOutfit();
+    }
 }
