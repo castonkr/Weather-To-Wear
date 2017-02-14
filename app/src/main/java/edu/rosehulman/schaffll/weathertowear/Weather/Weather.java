@@ -13,17 +13,10 @@ public class Weather {
     public byte[] iconData;
 
     public class CurrentCondition {
-        private int weatherId;
-        private String icon;
+         private String icon;
         private String condition;
         private String description;
 
-        public int getWeatherId() {
-            return weatherId;
-        }
-        public void setWeatherId(int weatherId) {
-            this.weatherId = weatherId;
-        }
 
         public String getCondition() {
             return condition;
@@ -51,8 +44,6 @@ public class Weather {
 
     public class Temperature {
         private float temp;
-        private float minTemp;
-        private float maxTemp;
 
         public float getTemp() {
             return temp;
@@ -62,21 +53,7 @@ public class Weather {
             this.temp = temp;
         }
 
-        public float getMinTemp() {
-            return minTemp;
-        }
 
-        public void setMinTemp(float minTemp) {
-            this.minTemp = minTemp;
-        }
-
-        public float getMaxTemp() {
-            return maxTemp;
-        }
-
-        public void setMaxTemp(float maxTemp) {
-            this.maxTemp = maxTemp;
-        }
     }
 
 

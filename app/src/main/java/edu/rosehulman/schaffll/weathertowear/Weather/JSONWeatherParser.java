@@ -29,15 +29,15 @@ public class JSONWeatherParser {
 
         // Conditions
         JSONObject JSONWeather = jsonArray.getJSONObject(0);
-        weather.currentCondition.setWeatherId(getInt("id", JSONWeather));
+        //weather.currentCondition.setWeatherId(getInt("id", JSONWeather));
         weather.currentCondition.setIcon(getString("icon", JSONWeather));
         weather.currentCondition.setDescription(getString("description", JSONWeather));
         weather.currentCondition.setCondition(getString("main", JSONWeather));
 
         // Temperature
         JSONObject mainObj = getObject("main", jsonObject);
-        weather.temperature.setMaxTemp(getFloat("temp_max", mainObj));
-        weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
+//        weather.temperature.setMaxTemp(getFloat("temp_max", mainObj));
+//        weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
         weather.temperature.setTemp(getFloat("temp", mainObj));
 
         return weather;

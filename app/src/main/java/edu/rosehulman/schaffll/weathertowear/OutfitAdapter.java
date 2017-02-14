@@ -198,6 +198,7 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
                     Log.d("adapter", "" + outfitItem.getOutfitName());
                     final View contentView = mInflater.inflate(R.layout.dialog_save_outfit, null, false);
                     final EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
+                    editOutfitName.setText(outfitItem.getOutfitName());
 
 
                     final Dialog dialog = new AlertDialog.Builder(mInflater.getContext())

@@ -201,7 +201,6 @@ public class Calculations {
         }
 
 
-
         if (outfitOptions.size() > 5){
             for (int i = 0; i < outfitOptions.size(); i++){
                 random.add(i);
