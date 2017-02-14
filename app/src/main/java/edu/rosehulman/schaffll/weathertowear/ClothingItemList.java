@@ -80,32 +80,8 @@ public class ClothingItemList {
     }
 
 
-    public void addBoolean(boolean b, int position){
-        if (b != false){
-            //mBooleanClothingItems[position] = true;
-            Log.d("work", "true");
-            returnClothingItemList.add(allClothingItemList.get(position));
-            ClothingItem c = returnClothingItemList.get(returnClothingItemList.size()-1);
-            String r = c.getClothingName();
-            Log.d("name", r);
-
-        }
-        else{
-            Log.d("work", "false");
-            //mBooleanClothingItems[position] = false;
-
-        }
-    }
-
     public List<ClothingItem> getReturnClothingItemList(){
-//        for (int i = 0; i < allClothingItemList.size(); i++) {
         int k = returnClothingItemList.size();
-           Log.d("help!", ""+k);
-//            if (mBooleanClothingItems[i] != false) {
-//                Log.d("test", "clothing item has been added at " + i + " pos");
-//                returnClothingItemList.add(allClothingItemList.get(i));
-//            }
-//        }
         return returnClothingItemList;
     }
 

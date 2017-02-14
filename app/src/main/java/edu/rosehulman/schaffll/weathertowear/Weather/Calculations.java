@@ -86,20 +86,8 @@ public class Calculations {
         List<ClothingItem> type4Clothes = new ArrayList<>();
         List<ClothingItem> type5Clothes = new ArrayList<>();
         List<ClothingItem> type6Clothes = new ArrayList<>();
-//        List<Integer> sizeList = new ArrayList<>();
         List<OutfitItem> outfitOptions = new ArrayList<>();
 
-
-//
-//        Log.d("OUTFIT_TEST", "0" + userClothingItems.get(0).getClothingName());
-//        Log.d("OUTFIT_TEST", "1" + userClothingItems.get(1).getClothingName());
-//        Log.d("OUTFIT_TEST", "2" + userClothingItems.get(2).getClothingName());
-//        Log.d("OUTFIT_TEST", "3" + userClothingItems.get(3).getClothingName());
-//        Log.d("OUTFIT_TEST", "4" + userClothingItems.get(4).getClothingName());
-//        Log.d("OUTFIT_TEST", "5" + userClothingItems.get(5).getClothingName());
-//        Log.d("OUTFIT_TEST", "6" + userClothingItems.get(6).getClothingName());
-//        Log.d("OUTFIT_TEST", "7" + userClothingItems.get(7).getClothingName());
-//        Log.d("OUTFIT_SIZE", String.valueOf(userClothingItems.size()));
 
         //gets the clothing appropriate to the weather
         for(int i = 0; i < userClothingItems.size();i++){
@@ -109,15 +97,6 @@ public class Calculations {
                 availableClothesTemp.add(userClothingItems.get(i));
             }
         }
-        Log.d("OUTFIT_new outfit", ""+weatherNum);
-        Log.d("OUTFIT_new outfit", String.valueOf(availableClothesTemp.size()));
-//        Log.d("OUTFIT_new outfit", "0" + availableClothesTemp.get(0).getClothingName());
-//        Log.d("OUTFIT_new outfit", "1" + availableClothesTemp.get(1).getClothingName());
-//        Log.d("OUTFIT_new outfit", "2" + availableClothesTemp.get(2).getClothingName());
-//        Log.d("OUTFIT_new outfit", "3" + availableClothesTemp.get(3).getClothingName());
-//        Log.d("OUTFIT_new outfit", "4" + availableClothesTemp.get(4).getClothingName());
-
-
         for (int i = 0; i < availableClothesTemp.size(); i++){
             int type = availableClothesTemp.get(i).getClothingType();
             if (type == 1){
@@ -139,25 +118,6 @@ public class Calculations {
                 type6Clothes.add(availableClothesTemp.get(i));
             }
         }
-//
-//        Log.d("TYPE", "1: " + type1Clothes.size());
-//        Log.d("TYPE", "2: " + type2Clothes.size());
-//        Log.d("TYPE", "3: " + type3Clothes.size());
-//        Log.d("TYPE", "4: " + type4Clothes.size());
-//        Log.d("TYPE", "5: " + type5Clothes.size());
-//        Log.d("TYPE", "6: " + type6Clothes.size());
-
-
-
-//        sizeList.add(type1Clothes.size());
-//        sizeList.add(type2Clothes.size());
-//        sizeList.add(type3Clothes.size());
-//        sizeList.add(type4Clothes.size());
-//        sizeList.add(type5Clothes.size());
-//        sizeList.add(type6Clothes.size());
-//
-//        sizeList.ma
-
         //put size of lists in order
         //outmost loop = list with the greatest size
         //outmost2 loop = list wih the second greatest size
@@ -221,19 +181,6 @@ public class Calculations {
                 }
             }
         }
-//        Log.d("OPtions", ""+outfitOptions.size());
-//        Log.d("OPtions", outfitOptions.get(0).getmType1().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(0).getmType2().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(0).getmType3().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(0).getmType4().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(0).getmType5().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(0).getmType6().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(1).getmType1().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(1).getmType2().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(1).getmType3().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(1).getmType4().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(1).getmType5().getClothingName());
-//        Log.d("OPtions", outfitOptions.get(1).getmType6().getClothingName());
 
         ArrayList<Integer> random = new ArrayList<>();
         ArrayList<OutfitItem> fiveOutfitOptions = new ArrayList<>();
@@ -263,15 +210,6 @@ public class Calculations {
 
         }
 
-        Log.d("tag", "" + fiveOutfitOptions.size());
-
-//
-//        Log.d("TYPE", "1: " + type1Clothes.size());
-//        Log.d("TYPE", "2: " + type2Clothes.size());
-//        Log.d("TYPE", "3: " + type3Clothes.size());
-//        Log.d("TYPE", "4: " + type4Clothes.size());
-//        Log.d("TYPE", "5: " + type5Clothes.size());
-//        Log.d("TYPE", "6: " + type6Clothes.size());
 
         return fiveOutfitOptions;
 

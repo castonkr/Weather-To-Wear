@@ -162,37 +162,12 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 
         @Override
         public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//            Log.d("PK", "on child changed called");
-//            String key = dataSnapshot.getKey();
-//            OutfitItem updateOutfit = dataSnapshot.getValue(OutfitItem.class);
-//////            Log.d("PK", updatePic.getCaption());
-//            for (OutfitItem o : mSaved){
-//                if (o.getKey().equals(key)){
-//                    o.setmType1(updateOutfit.getmType1());
-//                    o.setmType2(updateOutfit.getmType2());
-//                    o.setmType3(updateOutfit.getmType3());
-//                    o.setmType4(updateOutfit.getmType4());
-//                    o.setmType5(updateOutfit.getmType5());
-//                    o.setmType6(updateOutfit.getmType6());
-//                    o.setOutfitName(updateOutfit.getOutfitName());
-////                    p.setUrl(updatePic.getUrl());
-////                    p.setValues(updatePic);
-//                    notifyDataSetChanged();
-//                    return;
-//               }
-//            }
+
         }
 
         @Override
         public void onChildRemoved(DataSnapshot dataSnapshot) {
-//            String keyToRemove = dataSnapshot.getKey();
-//            for(int i = 0; i < mOutfitItems.size();i++){
-//                if(keyToRemove.equals(mOutfitItems.get(i).getKey())){
-//                    mOutfitItems.remove(i);
-//                    notifyDataSetChanged();
-//                    return;
-//               }
-//            }
+
         }
 
         @Override
@@ -209,12 +184,6 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
 
 
 
-//    @Override
-    //hi
-//    public void onCancelled(DatabaseError databaseError) {
-//
-//    }
-
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView mTitleTextView;
 
@@ -225,37 +194,11 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
             mTitleTextView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-//                    Log.d("adapter", "item has been long clicked");
-//
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(mInflater.getContext());
-//                    builder.setTitle(R.string.save_outfit);
-//                    LayoutInflater inflater = LayoutInflater.from(mInflater.getContext());
-//                    final View contentView = inflater.inflate(R.layout.dialog_save_outfit, null, false);
-//                    final EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
-//                    builder.setView(view);
-//
-//                    builder.create().show();
                     final OutfitItem outfitItem = mOutfitItems.get(getAdapterPosition());
-//                    outfitItem.setmType1(mOutfitItems.get(getAdapterPosition()).getmType1());
-//                    outfitItem.setmType2(mOutfitItems.get(getAdapterPosition()).getmType2());
-//                    outfitItem.setmType3(mOutfitItems.get(getAdapterPosition()).getmType3());
-//                    outfitItem.setmType4(mOutfitItems.get(getAdapterPosition()).getmType4());
-//                    outfitItem.setmType5(mOutfitItems.get(getAdapterPosition()).getmType5());
-//                    outfitItem.setmType6(mOutfitItems.get(getAdapterPosition()).getmType6());
-//                    outfitItem.setOutfitName(mOutfitItems.get(getAdapterPosition()).getOutfitName());
-
                     Log.d("adapter", "" + outfitItem.getOutfitName());
                     final View contentView = mInflater.inflate(R.layout.dialog_save_outfit, null, false);
                     final EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
 
-
-//                    final EditText serviceView = (EditText) contentView.findViewById(R.id.service);
-//                    final EditText usernameView = (EditText) contentView.findViewById(R.id.username);
-//                    final EditText passwordView = (EditText) contentView.findViewById(R.id.password);
-                    //passwordView.setImeActionLabel("Save", EditorInfo.IME_NULL);
-                    //serviceView.setText(password.getService());
-                    //usernameView.setText(password.getUsername());
-                    //passwordView.setText(password.getPassword());
 
                     final Dialog dialog = new AlertDialog.Builder(mInflater.getContext())
                             .setTitle(R.string.save_outfit)
@@ -264,15 +207,6 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
                             .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-//                                    password.setService(serviceView.getText().toString());
-//                                    password.setPassword(passwordView.getText().toString());
-//                                    String username = usernameView.getText().toString();
-//                                    password.setUsername(username.isEmpty() ? null : username);
-                                     //firebasePush(outfitItem);
-                                    //OutfitItem outfitItem1 = mOutfitItems.get(getAdapterPosition());
-                                    //EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
-                                    //OutfitItem temp = outfitItem;
-                                    //temp.setOutfitName(editOutfitName.getText().toString());
                                     outfitItem.setOutfitName(editOutfitName.getText().toString());
                                     mOutfitItems.remove(getAdapterPosition());
                                     removeOutfitItem(outfitItem);
@@ -300,39 +234,7 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
         }
     }
 
-    public void firebasePush(OutfitItem outfitItem) {
-        mOutfitsRef.push().setValue(outfitItem);
-    }
-    public void removeOutfitItem(OutfitItem outfitItem){
+    public void removeOutfitItem(OutfitItem outfitItem) {
         mOutfitsRef.child(outfitItem.getKey()).removeValue();
     }
-//    public void firebaseUpdate(Password pw) {
-//        mPasswordRef.child(pw.getKey()).setValue(pw);
-//    }
-//
-//    public void firebaseRemove(Password password) {
-//        mPasswordRef.child(password.getKey()).removeValue();
-//    }
-//
-//    public void insert(Password password, int position) {
-//        mPasswords.add(position, password);
-//        notifyItemInserted(position);
-//    }
-
-//    public void addItem(String item) {
-//        if(!mClothingItems.contains(item)) {
-//            mClothingItems.add(item);
-//            notifyItemInserted(0);
-//            notifyItemRangeChanged(0, mClothingItems.size());
-//        }
-//
-//    }
-
-//    public void removeItem(String item) {
-//        int index = mClothingItems.indexOf(item);
-//        mClothingItems.remove(item);
-//        notifyItemRemoved(index);
-//        notifyItemRangeChanged(0, mClothingItems.size());
-//
-//    }
 }

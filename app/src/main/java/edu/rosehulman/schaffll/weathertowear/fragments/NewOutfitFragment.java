@@ -17,9 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,7 +24,6 @@ import edu.rosehulman.schaffll.weathertowear.ClothingItemList;
 import edu.rosehulman.schaffll.weathertowear.OutfitAdapter;
 import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
-import edu.rosehulman.schaffll.weathertowear.SavedOutfitAdapter;
 
 
 /**
@@ -67,48 +63,13 @@ public class NewOutfitFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_new_outfit, container, false);
+        RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_outfit_list, container, false);
         view.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new OutfitAdapter(getContext(), mCallback, mNewOutfitRef);
         view.setAdapter(mAdapter);
         mClothingItemList = new ClothingItemList();
         mClothingItems = getResources().getStringArray(R.array.clothing_list);
-        //mBoolList = new boolean[mClothingItems.length];
 
-
-//        mSavedOutfitRef.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                // Empty
-////                int position = Integer.parseInt(dataSnapshot.getKey());
-//                //mBoolList[position] = (boolean) dataSnapshot.getValue();
-////                if (mBoolList[position]) {
-////                    mAdapter.addItem(mClothingItems[position]);
-////                    mClothingItemList.add(position);
-////                }
-//
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//                // Empty
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//                // Empty
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//                // Empty
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getCode());
-//            }
-//        });
         return view;
     }
 
@@ -136,9 +97,6 @@ public class NewOutfitFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        save = menu.add("save");
-//        save.setIcon(android.R.drawable.ic_menu_save);
-//        save.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -159,21 +117,6 @@ public class NewOutfitFragment extends Fragment {
         final EditText editOutfitName = (EditText) view.findViewById(R.id.saveOutfitEditText);
         builder.setView(view);
 
-
-//        builder.setMultiChoiceItems(mClothingItems, mBoolList, new DialogInterface.OnMultiChoiceClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
-//                if (isChecked) {
-//                    mBoolList[indexSelected] = true;
-//                    mBooleanRef.child(""+indexSelected).setValue(true);
-//
-//                } else {
-//                    mBoolList[indexSelected] = false;
-//                    mBooleanRef.child(""+indexSelected).setValue(false);
-//                }
-//            }
-//        });
-
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
@@ -184,20 +127,7 @@ public class NewOutfitFragment extends Fragment {
         builder.setPositiveButton("APPLY", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int k) {
-//                mAdapter.firebasePush();
                 Log.d("project", "outfit changes have been applied here");
-                // Show selected clothing items
-//                for (int i = 0; i < mBoolList.length; i++) {
-//                    // Not add everytime
-//                    if (mBoolList[i] == true) {
-//                        mAdapter.addItem(mClothingItems[i]);
-//                        mClothingItemList.add(i);
-//                    } else {
-//                        mAdapter.removeItem(mClothingItems[i]);
-//                        mClothingItemList.remove(i);
-//                    }
-//                }
-                //TODO: save outfit name to firebase and saved outfit adapter here
                 dialog.dismiss();
             }
         });

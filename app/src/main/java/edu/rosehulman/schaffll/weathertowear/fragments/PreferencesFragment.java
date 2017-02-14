@@ -213,15 +213,6 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
 
                 hideKeyboard();
 
-//                mUserRef.child("newOutfits").child("Outfit2").setValue(userClothingOptions.get(0));
-//                mUserRef.child("newOutfits").child("Outfit1").child("type1").setValue(userClothingOptions.get(0).getmType1());
-//                mUserRef.child("newOutfits").child("Outfit1").child("type2").setValue(userClothingOptions.get(0).getmType2());
-//                mUserRef.child("newOutfits").child("Outfit1").child("type3").setValue(userClothingOptions.get(0).getmType3());
-//                mUserRef.child("newOutfits").child("Outfit1").child("type4").setValue(userClothingOptions.get(0).getmType4());
-//                mUserRef.child("newOutfits").child("Outfit1").child("type5").setValue(userClothingOptions.get(0).getmType5());
-//                mUserRef.child("newOutfits").child("Outfit1").child("type6").setValue(userClothingOptions.get(0).getmType6());
-
-
 
         }
     }

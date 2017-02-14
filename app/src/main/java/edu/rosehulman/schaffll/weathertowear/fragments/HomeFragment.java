@@ -134,24 +134,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         buttonOutfit1.setOnClickListener(this);
         buttonOutfit2.setOnClickListener(this);
 
-//        view.findViewById(R.id.outfitChoiceOne).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mListener.onStartPressed();
-//                Log.d("click", "button 1 pressed, yes");
-//            }
-//
-//        });
-//
-//        view.findViewById(R.id.outfitChoiceTwo).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mListener.onStartPressed();
-//                Log.d("click", "button 2 pressed, yes");
-//            }
-//
-//        });
-
         if (tempF < 32){
             view.setBackgroundColor(getResources().getColor(R.color.colorCold));
         }
@@ -172,10 +154,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             OutfitItem outfit = dataSnapshot.getValue(OutfitItem.class);
-            //outfit.setKey(dataSnapshot.getKey());
-            //Log.d("kiki", dataSnapshot.getKey());
             mSavedOutfitsItems.add(outfit);
-            //notifyDataSetChanged();
         }
 
         @Override
@@ -293,16 +272,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 locationText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
                 float tempC = Math.round((weather.temperature.getTemp() - 273.15));
                 tempF = (int) (tempC * 1.8 + 32);
-                //tempRange: < 32, 32-60, 60+
-//                if (tempF < 32){
-//                    setBackgroundColor(getResources().getColor(R.color.colorCold));
-//                }
-//                else if (tempF < 60){
-//                    getView().setBackgroundColor(getResources().getColor(R.color.colorMiddle));
-//                }
-//                else{
-//                    getView().setBackgroundColor(getResources().getColor(R.color.colorWarm));
-//                }
                 tempText.setText("" + tempF + " *F");
                 weatherID = weather.currentCondition.getWeatherId();
                 conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");

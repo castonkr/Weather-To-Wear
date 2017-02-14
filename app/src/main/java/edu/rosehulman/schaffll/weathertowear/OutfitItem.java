@@ -75,22 +75,13 @@ public class OutfitItem implements Parcelable{
     }
 
     // For clothingType
-    // 0 = top layer 1
-    // 1 = top layer 2
-    // 2 = top layer 3
-    // 3 = bottom short
-    // 4 = bottom long
-    // 5 = dress
-    // 6 = shoes
-    // 7 = hat
-    // 8 = gloves
-    // 9 = scarf
-    // 10 = accessory
+    // 1 = top
+    // 2 = bottom
+    // 3 = shoes
+    // 4 = jacket
+    // 5 = accessory1
+    // 6 = accessory2
 
-//    public OutfitItem(ClothingItem topLayer1, ClothingItem topLayer2, ClothingItem topLayer3, ClothingItem bottomShort, ClothingItem bottomLong,
-//                        ClothingItem dress, ClothingItem shoes, ClothingItem hat, ClothingItem scarf, ClothingItem accessory ) {
-//
-//    }
     public OutfitItem(ClothingItem type1, ClothingItem type2, ClothingItem type3, ClothingItem type4, ClothingItem type5,
                   ClothingItem type6) {
         if (type1 == null){

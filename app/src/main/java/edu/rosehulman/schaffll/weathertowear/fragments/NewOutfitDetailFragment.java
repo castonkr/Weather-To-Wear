@@ -24,11 +24,8 @@ import edu.rosehulman.schaffll.weathertowear.R;
 public class NewOutfitDetailFragment extends Fragment {
     private static final String ARG_OUTFIT = "outfit";
     private OnFlingListener mListener;
-
-
     private OutfitItem mOutfitItem;
     //private OnFragmentInteractionListener mListener;
-
     public NewOutfitDetailFragment() {
         // Required empty public constructor
     }
@@ -66,37 +63,28 @@ public class NewOutfitDetailFragment extends Fragment {
         TextView outfitTitleView = (TextView) view.findViewById(R.id.textOutfitTitle);
         outfitTitleView.setText(mOutfitItem.getOutfitName());
 
-        TextView jacketView = (TextView) view.findViewById(R.id.textJacket);
-        //jacketView.setText("test jacket");
+        TextView jacketView = (TextView) view.findViewById(R.id.textTops);
         jacketView.setText(mOutfitItem.getmType1().getClothingName());
 
-        TextView topView = (TextView) view.findViewById(R.id.textTops);
-        //topView.setText("test tops");
+        TextView topView = (TextView) view.findViewById(R.id.textBottoms);
         topView.setText(mOutfitItem.getmType2().getClothingName());
 
 
-        TextView accessoryOneView = (TextView) view.findViewById(R.id.textAccessory1);
-        //accessoryOneView.setText("test accessory 1");
+        TextView accessoryOneView = (TextView) view.findViewById(R.id.textShoes);
         accessoryOneView.setText(mOutfitItem.getmType3().getClothingName());
 
-        TextView bottomView = (TextView) view.findViewById(R.id.textBottoms);
-        //bottomView.setText("test bottom");
+        TextView bottomView = (TextView) view.findViewById(R.id.textJacket);
         bottomView.setText(mOutfitItem.getmType4().getClothingName());
 
-        TextView accessoryTwoView = (TextView) view.findViewById(R.id.textAccessory2);
-        //accessoryTwoView.setText("test accessory 2");
+        TextView accessoryTwoView = (TextView) view.findViewById(R.id.textAccessory1);
         accessoryTwoView.setText(mOutfitItem.getmType5().getClothingName());
 
-        TextView shoesView = (TextView) view.findViewById(R.id.textShoes);
-        //shoesView.setText("test shoes");
+        TextView shoesView = (TextView) view.findViewById(R.id.textAccessory2);
         shoesView.setText(mOutfitItem.getmType6().getClothingName());
 
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_outfit_detail, container, false);
         return view;
     }
 
-    // TODO: Create a custom GestureDetector
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent event1, MotionEvent event2,
