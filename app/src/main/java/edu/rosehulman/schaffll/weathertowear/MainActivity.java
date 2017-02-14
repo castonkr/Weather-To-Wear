@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity
         if (mAuthStateListener != null) {
             mAuth.removeAuthStateListener(mAuthStateListener);
         }
+
     }
 
     private void switchToLoginFragment() {

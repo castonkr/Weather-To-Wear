@@ -120,7 +120,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         mUserRef.child("zipcode").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                zipcode = dataSnapshot.getValue().toString();
+                try {
+                    zipcode = dataSnapshot.getValue().toString();
+                }
+                catch (NullPointerException e){
+                    zipcode = "47803";
+                }
                 JSONWeatherTask task = new JSONWeatherTask();
                 task.execute(new String[]{zipcode});
                 Log.d("ZC", zipcode);
@@ -262,6 +267,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 conditionDesciption.setText("Clear (default)");
             }
         }
+
+
 
     }
 

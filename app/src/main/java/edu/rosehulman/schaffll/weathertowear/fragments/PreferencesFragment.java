@@ -148,7 +148,12 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         mUserRef.child("zipcode").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                zipCode.setText(dataSnapshot.getValue().toString());
+                try {
+                    zipCode.setText(dataSnapshot.getValue().toString());
+                }
+                catch (NullPointerException e){
+                    zipCode.setText("47803");
+                }
             }
 
             @Override
@@ -160,11 +165,34 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         mUserRef.child("hotTemp").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String[] hotTemps = getResources().getStringArray(R.array.hot_spinner);
+                String[] hotTemps;
+                try{
+                hotTemps = getResources().getStringArray(R.array.hot_spinner);}
+                catch (IllegalStateException e){
+                    Log.d("rosefire", "working on exception is handled");
+                    hotTemps = new String[11];
+                    {
+                        hotTemps[0] = "50";
+                        hotTemps[1] = "55";
+                        hotTemps[2] = "60";
+                        hotTemps[3] = "65";
+                        hotTemps[4] = "70";
+                        hotTemps[5] = "75";
+                        hotTemps[6] = "80";
+                        hotTemps[7] = "85";
+                        hotTemps[8] = "90";
+                        hotTemps[9] = "95";
+                        hotTemps[10] = "100";
+                    }
+                }
                 int pos = 0;
                 for (int i = 0; i < hotTemps.length; i++) {
+                    try{
                     if (dataSnapshot.getValue().toString().equals(hotTemps[i])) {
                         pos = i;
+                    }}
+                    catch (NullPointerException e){
+                        pos = 0;
                     }
                 }
                 hotSpinner.setSelection(pos);
@@ -179,11 +207,34 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
         mUserRef.child("coldTemp").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String[] coldTemps = getResources().getStringArray(R.array.cold_spinner);
+                String[] coldTemps;
+                try{
+                coldTemps = getResources().getStringArray(R.array.cold_spinner);}
+                catch (IllegalStateException e){
+                    coldTemps = new String[11];
+                    {
+                        coldTemps[0] = "0";
+                        coldTemps[1] = "5";
+                        coldTemps[2] = "10";
+                        coldTemps[3] = "15";
+                        coldTemps[4] = "20";
+                        coldTemps[5] = "25";
+                        coldTemps[6] = "30";
+                        coldTemps[7] = "35";
+                        coldTemps[8] = "40";
+                        coldTemps[9] = "45";
+                        coldTemps[10] = "50";
+                    }
+
+                }
                 int pos = 0;
                 for (int i = 0; i < coldTemps.length; i++) {
+                    try{
                     if (dataSnapshot.getValue().toString().equals(coldTemps[i])) {
                         pos = i;
+                    }}
+                    catch (NullPointerException e){
+                        pos = 0;
                     }
                 }
                 coldSpinner.setSelection(pos);
