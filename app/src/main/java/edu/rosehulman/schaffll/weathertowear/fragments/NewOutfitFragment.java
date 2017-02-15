@@ -53,7 +53,6 @@ public class NewOutfitFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         String firebasePath = getArguments().getString(FIREBASE_PATH);
-        Log.d("fb", firebasePath);
         mBooleanRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("booleanArray");
        // mNewOutfitRef = FirebaseDatabase.getInstance().getReference().child(firebasePath).child("newOutfits");
         mNewOutfitRef = FirebaseDatabase.getInstance().getReference().child(firebasePath);
@@ -127,7 +126,6 @@ public class NewOutfitFragment extends Fragment {
         builder.setPositiveButton("APPLY", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int k) {
-                Log.d("project", "outfit changes have been applied here");
                 dialog.dismiss();
             }
         });

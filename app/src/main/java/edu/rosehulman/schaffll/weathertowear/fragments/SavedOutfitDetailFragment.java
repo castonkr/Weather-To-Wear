@@ -139,7 +139,6 @@ class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
     @Override
     public boolean onFling(MotionEvent event1, MotionEvent event2,
                            float velocityX, float velocityY) {
-        Log.d("wtw", "onFling: " + event1.toString() + event2.toString());
         mListener.onSwipeSavedOutfit();
         return true;
     }

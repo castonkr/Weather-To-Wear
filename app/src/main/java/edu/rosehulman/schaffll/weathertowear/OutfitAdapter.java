@@ -71,7 +71,6 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             OutfitItem outfit = dataSnapshot.getValue(OutfitItem.class);
             outfit.setKey(dataSnapshot.getKey());
-            Log.d("kiki", dataSnapshot.getKey());
             mOutfitItems.add(outfit);
             notifyDataSetChanged();
         }
@@ -98,7 +97,6 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
         @Override
         public void onChildRemoved(DataSnapshot dataSnapshot) {
             String keyToRemove = dataSnapshot.getKey();
-            Log.d("wtw", keyToRemove);
             for(int i = 0; i < mOutfitItems.size();i++){
                 if(keyToRemove.equals(mOutfitItems.get(i).getKey())){
                     mOutfitItems.remove(i);
@@ -164,7 +162,6 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
                 @Override
                 public boolean onLongClick(View view) {
                     final OutfitItem outfitItem = mOutfitItems.get(getAdapterPosition());
-                    Log.d("adapter", "" + outfitItem.getOutfitName());
                     final View contentView = mInflater.inflate(R.layout.dialog_save_outfit, null, false);
                     final EditText editOutfitName = (EditText) contentView.findViewById(R.id.saveOutfitEditText);
                     editOutfitName.setText(outfitItem.getOutfitName());
@@ -196,7 +193,6 @@ public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.ViewHolder
             mTitleTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("adapter", "item has been clicked");
                     mCallback.onOutfitSelected(mOutfitItems.get(getAdapterPosition()));
                 }
             });

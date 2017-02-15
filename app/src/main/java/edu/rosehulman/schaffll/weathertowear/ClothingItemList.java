@@ -68,12 +68,11 @@ public class ClothingItemList {
     }
 
     public ClothingItemList(boolean[] clothingItemsinFirebase) {
-        Log.d("test", "in the constructor");
+
         mBooleanClothingItems = clothingItemsinFirebase;
 
         for (int i = 0; i < allClothingItemList.size(); i++) {
             if (mBooleanClothingItems[i]) {
-                Log.d("test", "clothing item has been added at " + i + " pos");
                 returnClothingItemList.add(allClothingItemList.get(i));
             }
         }
@@ -81,7 +80,7 @@ public class ClothingItemList {
 
 
     public List<ClothingItem> getReturnClothingItemList(){
-        int k = returnClothingItemList.size();
+        //int k = returnClothingItemList.size();
         return returnClothingItemList;
     }
 
@@ -93,9 +92,6 @@ public class ClothingItemList {
         mClothingItemList.remove(allClothingItemList.get(pos));
     }
 
-//    public List getAllClothingItems(){
-//        return allClothingItemList;
-//    }
 
 
 

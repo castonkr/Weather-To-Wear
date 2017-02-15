@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Log.d("PB", "user isn't null, would login");
                     mUser = user.getUid();
                     switchToHomeFragment("users/" + user.getUid(), user.getUid());
 
@@ -123,7 +122,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void switchToHomeFragment(String path, String id) {
-        Log.d("PB", "in switch to home fragment");
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment homeFragment = new HomeFragment();
@@ -137,7 +135,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onLogin(String email, String password) {
-        Log.d("PB", "inside of onLogin");
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mOnCompleteListener);
     }
 
@@ -215,9 +212,7 @@ public class MainActivity extends AppCompatActivity
         //homeFragment.setArguments(args);
 
         if (id == R.id.nav_home) {
-            Log.d("WTW", "home has been called");
             switchTo = new HomeFragment();
-            // Handle the camera action
         } else if (id == R.id.nav_pref) {
             switchTo = new PreferencesFragment();
             tag = "pref";
@@ -227,13 +222,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_saved_outfits) {
             switchTo = new SavedOutfitListFragment();
             tag = "savedoutfits";
-
         } else if (id == R.id.nav_new_outfits) {
             switchTo = new NewOutfitFragment();
             tag = "newoutfits";
         } else if (id == R.id.nav_logout) {
             onLogout();
-            //switchTo = new LoginFragment();
             tag = "login";
         }
 
@@ -257,9 +250,6 @@ public class MainActivity extends AppCompatActivity
             ft.addToBackStack("detail");
             ft.commit();
 
-
-        //
-        Log.d("click", "a button has been pressed");
     }
 
     @Override

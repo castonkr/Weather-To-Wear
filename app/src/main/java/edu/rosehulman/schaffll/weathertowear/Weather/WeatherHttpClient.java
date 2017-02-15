@@ -65,7 +65,7 @@ public class WeatherHttpClient {
         HttpURLConnection connection = null ;
         InputStream inputStream = null;
         try {
-            Log.d("TRY", "in image");
+
             connection = (HttpURLConnection) ( new URL(IMG_URL + imageCode + ".png")).openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
@@ -78,7 +78,6 @@ public class WeatherHttpClient {
             while ( inputStream.read(buffer) != -1) {
                 byteArrayOutputStream.write(buffer);
             }
-            Log.d("TRY", "String" + byteArrayOutputStream.toString());
 
             return byteArrayOutputStream.toByteArray();
         }

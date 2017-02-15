@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,16 +25,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import edu.rosehulman.schaffll.weathertowear.OutfitAdapter;
 import edu.rosehulman.schaffll.weathertowear.OutfitItem;
 import edu.rosehulman.schaffll.weathertowear.R;
-import edu.rosehulman.schaffll.weathertowear.Weather.Calculations;
 import edu.rosehulman.schaffll.weathertowear.Weather.JSONWeatherParser;
 import edu.rosehulman.schaffll.weathertowear.Weather.Weather;
 import edu.rosehulman.schaffll.weathertowear.Weather.WeatherHttpClient;
@@ -55,19 +51,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private DatabaseReference mUserRef;
     private DatabaseReference mOutfitsRef;
     private OnStartPressedListener mListener;
-    private Toolbar mToolbar;
     private TextView locationText;
     private TextView tempText;
     private TextView conditionDesciption;
     private ImageView weatherImage;
     private ImageButton buttonOutfit1;
     private ImageButton buttonOutfit2;
+    private String zipcode;
     public static int tempF;
     public static String weatherCond;
     public List<OutfitItem> mSavedOutfitsItems;
     public TextView welcomeText;
 
-    String zipcode;
 
 
     public HomeFragment() {
@@ -91,7 +86,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         String time = new SimpleDateFormat("HH").format(Calendar.getInstance().getTime());
         int intTime = Integer.parseInt(time);
-
 
 
         locationText = (TextView) view.findViewById(R.id.locationTextView);
@@ -128,7 +122,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 }
                 JSONWeatherTask task = new JSONWeatherTask();
                 task.execute(new String[]{zipcode});
-                Log.d("ZC", zipcode);
+
             }
 
             @Override
@@ -208,12 +202,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             case R.id.outfitChoiceOne:
                 OutfitItem temp = mSavedOutfitsItems.get(0);
                 mListener.onStartPressed(temp);
-                Log.d("click", "outfit one has been clicked");
                 break;
             case R.id.outfitChoiceTwo:
                 OutfitItem temp2 = mSavedOutfitsItems.get(1);
                 mListener.onStartPressed(temp2);
-                Log.d("click", "outfit two has been clicked");
         }
     }
 
@@ -256,7 +248,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 tempF = (int) (tempC * 1.8 + 32);
                 tempText.setText("" + tempF + " *F");
                 weatherCond = weather.currentCondition.getCondition();
-                Log.d("rain?", weatherCond);
                 conditionDesciption.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
             }
             else{

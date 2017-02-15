@@ -125,7 +125,6 @@ public class Calculations {
 
         if (type1Clothes.size() > 0){
             iter1 = type1Clothes.size();
-            Log.d("tag", "correct size set");
         }
         else{
             type1Clothes.add(new ClothingItem("null", 0, 0, 0));
@@ -181,12 +180,10 @@ public class Calculations {
 
         ClothingItem umbrella = new ClothingItem("Umbrella", 6, 0, 0);
 
-        Log.d("rain", "before checking weather cond");
 
         if (HomeFragment.weatherCond.equals("Rain")){
             for (int i = 0; i < outfitOptions.size();i++){
                 if (outfitOptions.get(i).getmType6() != umbrella) {
-                    Log.d("rain", "umbrella doesn't exist in the outfit");
                     outfitOptions.get(i).setmType6(umbrella);
                 }
             }

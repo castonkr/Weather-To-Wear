@@ -59,9 +59,7 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String firebasePath = getArguments().getString(FIREBASE_PATH);
-        Log.d("FP", firebasePath);
         mUser = getArguments().getString(FIREBASE_USER_ID);
-        Log.d("PK", mUser);
         if (firebasePath == null || firebasePath.isEmpty()) {
             mUserRef = FirebaseDatabase.getInstance().getReference();
         } else {
@@ -169,7 +167,6 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                 try{
                 hotTemps = getResources().getStringArray(R.array.hot_spinner);}
                 catch (IllegalStateException e){
-                    Log.d("rosefire", "working on exception is handled");
                     hotTemps = new String[11];
                     {
                         hotTemps[0] = "50";
@@ -260,7 +257,6 @@ public class PreferencesFragment extends Fragment implements View.OnClickListene
                 mUserRef.child("coldTemp").setValue(coldTemp);
                 Calculations calc = new Calculations(hotTemp, coldTemp, currentTemp, mBooleanArray);
                 userClothingOptions = calc.createNewOutfits();
-                Log.d("linde", userClothingOptions.get(0).getKey());
                 mUserRef.child("newOutfits").setValue(userClothingOptions);
 
                 hideKeyboard();

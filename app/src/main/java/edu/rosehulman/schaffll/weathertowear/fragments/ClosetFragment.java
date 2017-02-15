@@ -40,8 +40,6 @@ public class ClosetFragment extends Fragment {
     private boolean mBoolList[];
     private ClothingItemList mClothingItemList;
 
-    // Make set list of ClothingItems
-
     public ClosetFragment() {
         // Required empty public constructor
     }
@@ -121,10 +119,8 @@ public class ClosetFragment extends Fragment {
 
     private void showDialog() {
 
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.add_clothing_title);
-
 
         builder.setMultiChoiceItems(mClothingItems, mBoolList, new DialogInterface.OnMultiChoiceClickListener() {
             @Override

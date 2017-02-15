@@ -54,7 +54,6 @@ public class SavedOutfitAdapter extends RecyclerView.Adapter<SavedOutfitAdapter.
         holder.mTitleTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("WTW", "saved outfit has been clicked on");
                 mCallback.onSavedOutfitSelected(outfitItem);
             }
         });
@@ -80,10 +79,8 @@ public class SavedOutfitAdapter extends RecyclerView.Adapter<SavedOutfitAdapter.
 
         @Override
         public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            Log.d("PK", "on child changed called");
             String key = dataSnapshot.getKey();
             OutfitItem updateOutfit = dataSnapshot.getValue(OutfitItem.class);
-            Log.d("PK", updateOutfit.getOutfitName());
             for (OutfitItem o : mOutfitItems){
                 if (o.getKey().equals(key)){
                     o.setmType1(updateOutfit.getmType1());
@@ -157,7 +154,6 @@ public class SavedOutfitAdapter extends RecyclerView.Adapter<SavedOutfitAdapter.
             mTitleTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("adapter", "item has been clicked");
                     mCallback.onSavedOutfitSelected(mOutfitItems.get(getAdapterPosition()));
                 }
             });
